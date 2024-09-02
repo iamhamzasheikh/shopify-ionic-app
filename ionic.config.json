@@ -1,0 +1,7 @@
+{
+  "name": "shopify",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
