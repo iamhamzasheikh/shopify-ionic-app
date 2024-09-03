@@ -52,13 +52,16 @@ ion-content {
         flex-direction: column;
         align-items: center;
         h1{
+          // border: 1px solid #000;
           font-size: 40px;
           font-weight: 700;
         }
         p {
+          // border: 2px solid red;
           text-align: center;
-          font-size: 14px;
+          font-size: 17px;
           line-height: 20px;
+          padding: 10px;
         }
       }
     }
@@ -110,7 +113,7 @@ ion-content {
 
 // lets design in mobile screens
 
-@media (min-width: 768px) and (max-width: 1079px) {
+@media (min-width: 768px) and (max-width: 1200px) {
   ion-content {
     .box-container {
       width: 50%;
@@ -135,7 +138,7 @@ ion-content {
           }
 
           p {
-            font-size: 14px;
+            font-size: 15px;
           }
         }
       }
@@ -176,7 +179,7 @@ ion-content {
           }
 
           p {
-            font-size: 13px;
+            font-size: 14px;
           }
         }
       }
@@ -217,7 +220,7 @@ ion-content {
           }
 
           p {
-            font-size: 12px;
+            font-size: 13px;
           }
         }
       }
@@ -260,7 +263,7 @@ ion-content {
 
           p {
             width: 50%;
-            font-size: 13px;
+            font-size: 14px;
           }
         }
       }
