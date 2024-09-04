@@ -1,13 +1,41 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>create_account</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">create_account</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-list class="create-account-main-container">
+
+    <!-- upper-section -->
+    <ion-list class="upper-section">
+      <img class="bubble-left" src="/assets/bubble-left.png" alt="bubble-left">
+      <h1>Create Account</h1>
+      <img class="bubble-blue-right" src="/assets/bubble-blue-right.png" alt="bubble-blue-right">
+      <img class="uplord-img" src="/assets/Upload-Photo.png" alt="uplord-img">
+    </ion-list>
+    <!-- bottom-section -->
+    <ion-list class="bottom-section">
+      <div class="inputs-container">
+        <input type="email" name="email" id="email" placeholder="Enter your Email">
+        <input type="password" name="password" id="password" placeholder="Enter your password">
+        <!-- phone-input-container -->
+        <div class="phone-input-container">
+          <select class="country-select">
+              <option value="gb" data-flag="🇬🇧">🇬🇧</option>
+              <option value="us" data-flag="🇺🇸">🇺🇸</option>
+              <option value="ca" data-flag="🇨🇦">🇨🇦</option>
+              <option value="de" data-flag="🇩🇪">🇩🇪</option>
+              <option value="fr" data-flag="🇫🇷">🇫🇷</option>
+          </select>
+          <input type="text" placeholder="Your number" class="phone-number-input">
+      </div>
+      </div>
+
+      <!-- submit-btn-container -->
+      <div class="submit-cancel-btn-container">
+        <button class="submit-btn">Sign Up</button>
+        <p class="cancel">Cancel</p>
+      </div>
+
+
+    </ion-list>
+
+
+
+  </ion-list>
 </ion-content>
