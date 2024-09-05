@@ -1,6 +1,6 @@
 ion-content {
     .ready-main-container {
-        border: 2px solid red;
+        // border: 2px solid red;
         width: 100%;
         height: 100vh;
         margin: 0 auto;
@@ -16,34 +16,251 @@ ion-content {
         
         .slider-main-container {
             position: absolute;
-            border: 2px solid black;
-            border-radius: 20px;
+            // border: 2px solid black;
+            border-radius: 40px;
             width: 80%;
-            height: 90vh;
+            height: 85vh;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             z-index: 2;
             margin: 0;
             padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
-            .slider-show-section {
-                border: 2px solid yellow;
+            swiper-container {
                 width: 100%;
-                height: 98%;
+                height: 100%;
+                margin: 0 auto;
+                padding: 0;
 
-                swiper-container {
-                    border: 2px solid red;
+                swiper-slide {
+                    // border: 2px solid seagreen;
+                    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+                    border-radius: 40px;
+                    width: 100%;
                     height: 100%;
 
-                    swiper-slide {
-                        border: 2px solid seagreen;
+                    .slider-img {
+                        // border: 2px solid yellow;
+                        border-top-left-radius: 40px;
+                        border-top-right-radius: 40px;
                         width: 100%;
-                        height: 90%;
+                        height: 60%;
+
+                        img {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                            border-top-left-radius: 40px;
+                            border-top-right-radius: 40px;
+                        }
+                    }
+
+                    .slider-info-btn {
+                        // border: 2px solid brown;
+                        width: 100%;
+                        height: 40%;
+                        border-bottom-left-radius: 40px;
+                        border-bottom-right-radius: 40px;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        padding: 50px 0 0;
+
+                        h1 {
+                            font-size: 30px;
+                            font-weight: 700;
+                        }
+
+                        p {
+                            font-size: 18px;
+                            max-width: 60%;
+                            text-align: center;
+                        }
+
+                        button {
+                            border-radius: 10px;
+                            max-width: 70%;
+                            width: 50%;
+                            background-color: rgb(0, 162, 255);
+                            padding: 20px 60px;
+                            font-size: 16px;
+                            font-weight: 700;
+                            color: white;
+                            cursor: pointer;
+                            transition: background-color 0.3s ease;
+                        }
+                        
                     }
                 }
             }
         }
 
+    }
+}
+
+
+@media (min-width: 1081px) and (max-width:1400px) {
+    // larger screen adjustments
+
+    ion-content {
+        .ready-main-container {
+            .slider-main-container {
+                width: 90%;
+
+                swiper-container {    
+                    swiper-slide {
+
+                        .slider-info-btn {
+                            
+                            padding: 25px 0 0;
+    
+                            h1 {
+                                font-size: 24px;
+                                font-weight: 700;
+                            }
+    
+                            p {
+                                font-size: 16px;
+                                max-width: 60%;
+                                text-align: center;
+                            }
+    
+                            button {
+                                width: 60%;
+                                font-size: 15px;
+                                font-weight: 600;
+                            }
+                            
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 760px) and (max-width:1080px) {
+    // tablet screen adjustments
+
+    ion-content {
+        .ready-main-container {
+            .slider-main-container {
+                width: 95%;
+
+                swiper-container {    
+                    swiper-slide {
+
+                        .slider-info-btn {
+                            
+                            padding: 20px 0 0;
+    
+                            h1 {
+                                font-size: 24px;
+                                font-weight: 700;
+                            }
+    
+                            p {
+                                font-size: 16px;
+                                max-width: 60%;
+                                text-align: center;
+                            }
+    
+                            button {
+                                width: 60%;
+                                font-size: 15px;
+                                font-weight: 600;
+                            }
+                            
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 576px) and (max-width:759px) {
+    // mobiles screen adjustments
+
+    ion-content {
+        .ready-main-container {
+            .slider-main-container {
+                width: 85%;
+                height: 80vh;
+
+                swiper-container {    
+                    swiper-slide {
+
+                        .slider-info-btn {
+                            
+                            padding: 15px 0 0;
+    
+                            h1 {
+                                font-size: 22px;
+                                font-weight: 600;
+                            }
+    
+                            p {
+                                font-size: 14px;
+                                max-width: 60%;
+                                text-align: center;
+                            }
+    
+                            button {
+                                width: 60%;
+                                font-size: 15px;
+                                font-weight: 600;
+                            }
+                            
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 150px) and (max-width:575px) {
+    // mobiles screen adjustments
+
+    ion-content {
+        .ready-main-container {
+            .slider-main-container {
+                width: 85%;
+                height: 80vh;
+
+                swiper-container {    
+                    swiper-slide {
+
+                        .slider-info-btn {
+                            
+                            padding: 15px 0 0;
+    
+                            h1 {
+                                font-size: 22px;
+                                font-weight: 600;
+                            }
+    
+                            p {
+                                font-size: 14px;
+                                max-width: 60%;
+                                text-align: center;
+                            }
+    
+                            button {
+                                width: 60%;
+                                font-size: 15px;
+                                font-weight: 600;
+                            }
+                            
+                        }
+                    }
+                }
+            }
+        }
     }
 }
