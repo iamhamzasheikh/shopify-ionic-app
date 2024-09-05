@@ -1,3 +1,40 @@
 <ion-content [fullscreen]="true">
-<h1>Hello, Ready</h1>
+
+    <ion-list class="ready-main-container">
+        <img class="top-left-img" src="/assets/ready-page-blue-left-bubble.png" alt="upper-blue-img">
+
+        <ion-list class="slider-main-container">
+
+            <div class="slider-show-section">
+                <swiper-container class="ion-margin-top ion-margin" pagination="true"  [breakpoints]="{
+                    '360':{
+                      'slidesPerView':1,
+                      'spaceBetween':30,
+                    },
+                    '760':{
+                      'slidesPerView':2,
+                      'spaceBetween':10,
+                    },
+                    '1221':{
+                      'slidesPerView':3,
+                      'spaceBetween':15,
+                    },
+                  }">
+                    <swiper-slide class="b">hello1</swiper-slide>
+                    <swiper-slide class="b">hello2</swiper-slide>
+                    <swiper-slide class="b">hello3</swiper-slide>
+                    <swiper-slide class="b">hello4</swiper-slide>
+                    <swiper-slide class="b">hello5</swiper-slide>
+                    <swiper-slide class="b">hello6</swiper-slide>
+            
+                  </swiper-container>
+            </div>
+            <div class="slider-bottom-section"></div>
+        </ion-list>
+        <img class="bottom-right-img" src="/assets/bubble-left.png" alt="" srcset="">
+    </ion-list>
+
+
+
+
 </ion-content>

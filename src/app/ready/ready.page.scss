@@ -1,0 +1,49 @@
+ion-content {
+    .ready-main-container {
+        border: 2px solid red;
+        width: 100%;
+        height: 100vh;
+        margin: 0 auto;
+        padding: 0;
+        position: relative;
+
+        .bottom-right-img {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            z-index: 1;
+        }
+        
+        .slider-main-container {
+            position: absolute;
+            border: 2px solid black;
+            border-radius: 20px;
+            width: 80%;
+            height: 90vh;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            margin: 0;
+            padding: 0;
+
+            .slider-show-section {
+                border: 2px solid yellow;
+                width: 100%;
+                height: 98%;
+
+                swiper-container {
+                    border: 2px solid red;
+                    height: 100%;
+
+                    swiper-slide {
+                        border: 2px solid seagreen;
+                        width: 100%;
+                        height: 90%;
+                    }
+                }
+            }
+        }
+
+    }
+}
