@@ -1,0 +1,129 @@
+ion-content {
+    // css-for-navbar
+    .navbar-container {
+        border: 2px solid red;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+
+        ion-title {
+            font-weight: bold;
+            font-size: 24px; // Default font size for large screens
+
+            // Font size changes based on screen size
+            @media (max-width: 480px) {
+                font-size: 18px; // Smaller for mobile
+            }
+
+            @media (min-width: 481px) and (max-width: 768px) {
+                font-size: 20px; // For tablets
+            }
+
+            @media (min-width: 769px) and (max-width: 1080px) {
+                font-size: 22px; // For medium-sized screens
+            }
+
+            @media (min-width: 1081px) and (max-width: 1400px) {
+                font-size: 24px; // For large screens
+            }
+
+            @media (min-width: 1401px) {
+                font-size: 26px; // Extra large screens
+            }
+        }
+
+        ion-list {
+            border-radius: 50px;
+            padding: 0 10px;
+            margin: 5px;
+            background-color: #e3e6e4;
+            display: flex;
+            align-items: center;
+
+            // Adjust width of ion-list (search bar) for different screen sizes
+            @media (max-width: 480px) {
+                width: 90%; // Smaller for mobile screens
+            }
+
+            @media (min-width: 481px) and (max-width: 768px) {
+                width: 50%; // Slightly larger for tablets
+            }
+
+            @media (min-width: 769px) and (max-width: 1080px) {
+                width: 40%; // Larger width for medium screens
+            }
+
+            @media (min-width: 1081px) and (max-width: 1400px) {
+                width: 30%; // Wider for large screens
+            }
+
+            @media (min-width: 1401px) {
+                width: 20%; // Full width for extra large screens
+            }
+
+            ion-input {
+                background-color: #e3e6e4;
+                width: 100%; // Input will fill the width of the ion-list
+                --padding-start: 10px;
+                --padding-end: 0;
+                font-size: 16px; // Default font size
+
+                // Adjust font size for different screen sizes
+                @media (max-width: 480px) {
+                    font-size: 14px; // Smaller input text for mobile
+                }
+
+                @media (min-width: 481px) and (max-width: 768px) {
+                    font-size: 15px; // Slightly larger for tablets
+                }
+
+                @media (min-width: 769px) and (max-width: 1080px) {
+                    font-size: 16px; // Normal size for medium screens
+                }
+
+                @media (min-width: 1081px) and (max-width: 1400px) {
+                    font-size: 17px; // Larger font for large screens
+                }
+
+                @media (min-width: 1401px) {
+                    font-size: 18px; // Extra large screens
+                }
+            }
+
+            ion-icon {
+                color: #0066ff;
+                font-size: 34px; // Default icon size
+
+                // Adjust icon size for different screens
+                @media (max-width: 480px) {
+                    font-size: 28px; // Smaller for mobile
+                }
+
+                @media (min-width: 481px) and (max-width: 768px) {
+                    font-size: 30px; // Tablet size
+                }
+
+                @media (min-width: 769px) and (max-width: 1080px) {
+                    font-size: 32px; // Medium screens
+                }
+
+                @media (min-width: 1081px) and (max-width: 1400px) {
+                    font-size: 34px; // Large screens
+                }
+
+                @media (min-width: 1401px) {
+                    font-size: 36px; // Extra large screens
+                }
+            }
+        }
+    }
+    // css-for-big-sale-container
+
+    .hero-sale-container {
+        border: 2px solid #0066ff;
+        width: 100%;
+        height: 300px;
+    }
+
+}

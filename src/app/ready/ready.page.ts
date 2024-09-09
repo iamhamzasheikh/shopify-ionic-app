@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { register } from 'swiper/element/bundle';
+import { Router } from '@angular/router';
 register();
 
 @Component({
@@ -9,6 +10,10 @@ register();
 })
 export class ReadyPage {
 
-  constructor() { }
+  constructor(private router: Router) {}
+
+  goToNextPage() {
+    this.router.navigate(['/shop']);  // Replace with your desired route
+  }
 
 }

@@ -1,111 +1,112 @@
 <ion-content [fullscreen]="true">
+  <ion-list class="ready-main-container">
+    <img class="top-left-img" src="/assets/ready-page-blue-left-bubble.png" alt="upper-blue-img">
 
-    <ion-list class="ready-main-container">
-        <img class="top-left-img" src="/assets/ready-page-blue-left-bubble.png" alt="upper-blue-img">
+    <ion-list class="slider-main-container">
+      <swiper-container class="ion-margin-top ion-margin" pagination="true" [breakpoints]="{
+                              '300': {
+              'slidesPerView': 1,
+              'spaceBetween': 30,
+            },
+            '576': {
+              'slidesPerView': 2,
+              'spaceBetween': 10,
+            },
+            '768': {
+              'slidesPerView': 2,
+              'spaceBetween': 10,
+            },
+            '1080': {
+              'slidesPerView': 3,
+              'spaceBetween': 15,
+            },
+            '1400': {
+              'slidesPerView': 4,
+              'spaceBetween': 15,
+            },
+            }">
+        <swiper-slide class="">
+          <!-- upper-section -->
+          <div class="slider-img">
+            <img src="/assets/image3.png" alt="">
+          </div>
+          <!-- bottom-section -->
+          <div class="slider-info-btn">
+            <h1>Ready?</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            <button (click)="goToNextPage()">Lets Start</button>
+          </div>
+        </swiper-slide>
 
-        <ion-list class="slider-main-container">
-                <swiper-container class="ion-margin-top ion-margin" pagination="true"  [breakpoints]="{
-                    '360':{
-                      'slidesPerView':1,
-                      'spaceBetween':30,
-                    },
-                    '760':{
-                      'slidesPerView':2,
-                      'spaceBetween':10,
-                    },
-                    '1221':{
-                      'slidesPerView':3,
-                      'spaceBetween':15,
-                    },
-                  }">
+        <swiper-slide class="">
+          <!-- upper-section -->
+          <div class="slider-img">
+            <img src="/assets/image3.png" alt="">
+          </div>
+          <!-- bottom-section -->
+          <div class="slider-info-btn">
+            <h1>Ready?</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            <button (click)="goToNextPage()">Lets Start</button>
+          </div>
+        </swiper-slide>
 
-                    <swiper-slide class="">
-                      <!-- upper-section -->
-                      <div class="slider-img">
-                        <img src="/assets/image3.png" alt="">
-                      </div>
-                      <!-- bottom-section -->
-                      <div class="slider-info-btn">
-                        <h1>Ready?</h1>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                        <button>Lets Start</button>
-                      </div>
-                    </swiper-slide>
+        <swiper-slide class="">
+          <!-- upper-section -->
+          <div class="slider-img">
+            <img src="/assets/image3.png" alt="">
+          </div>
+          <!-- bottom-section -->
+          <div class="slider-info-btn">
+            <h1>Ready?</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            <button (click)="goToNextPage()">Lets Start</button>
+          </div>
+        </swiper-slide>
 
-                    <swiper-slide class="">
-                      <!-- upper-section -->
-                      <div class="slider-img">
-                        <img src="/assets/image3.png" alt="">
-                      </div>
-                      <!-- bottom-section -->
-                      <div class="slider-info-btn">
-                        <h1>Ready?</h1>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                        <button>Lets Start</button>
-                      </div>
-                    </swiper-slide>
+        <swiper-slide class="">
+          <!-- upper-section -->
+          <div class="slider-img">
+            <img src="/assets/image3.png" alt="">
+          </div>
+          <!-- bottom-section -->
+          <div class="slider-info-btn">
+            <h1>Ready?</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            <button (click)="goToNextPage()">Lets Start</button>
+          </div>
+        </swiper-slide>
 
-                    <swiper-slide class="">
-                      <!-- upper-section -->
-                      <div class="slider-img">
-                        <img src="/assets/image3.png" alt="">
-                      </div>
-                      <!-- bottom-section -->
-                      <div class="slider-info-btn">
-                        <h1>Ready?</h1>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                        <button>Lets Start</button>
-                      </div>
-                    </swiper-slide>
+        <swiper-slide class="">
+          <!-- upper-section -->
+          <div class="slider-img">
+            <img src="/assets/image3.png" alt="">
+          </div>
+          <!-- bottom-section -->
+          <div class="slider-info-btn">
+            <h1>Ready?</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            <button (click)="goToNextPage()">Lets Start</button>
+          </div>
+        </swiper-slide>
 
-                    <swiper-slide class="">
-                      <!-- upper-section -->
-                      <div class="slider-img">
-                        <img src="/assets/image3.png" alt="">
-                      </div>
-                      <!-- bottom-section -->
-                      <div class="slider-info-btn">
-                        <h1>Ready?</h1>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                        <button>Lets Start</button>
-                      </div>
-                    </swiper-slide>
-
-                    <swiper-slide class="">
-                      <!-- upper-section -->
-                      <div class="slider-img">
-                        <img src="/assets/image3.png" alt="">
-                      </div>
-                      <!-- bottom-section -->
-                      <div class="slider-info-btn">
-                        <h1>Ready?</h1>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                        <button>Lets Start</button>
-                      </div>
-                    </swiper-slide>
-
-                    <swiper-slide class="">
-                      <!-- upper-section -->
-                      <div class="slider-img">
-                        <img src="/assets/image3.png" alt="">
-                      </div>
-                      <!-- bottom-section -->
-                      <div class="slider-info-btn">
-                        <h1>Ready?</h1>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                        <button>Lets Start</button>
-                      </div>
-                    </swiper-slide>
-
-
-
-
-            
-                  </swiper-container>
-            <div class="slider-bottom-section"></div>
-        </ion-list>
-        <img class="bottom-right-img" src="/assets/bubble-left.png" alt="" srcset="">
+        <swiper-slide class="">
+          <!-- upper-section -->
+          <div class="slider-img">
+            <img src="/assets/image3.png" alt="">
+          </div>
+          <!-- bottom-section -->
+          <div class="slider-info-btn">
+            <h1>Ready?</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            <button (click)="goToNextPage()">Lets Start</button>
+          </div>
+        </swiper-slide>
+      </swiper-container>
+      <div class="slider-bottom-section"></div>
     </ion-list>
+    <img class="bottom-right-img" src="/assets/bubble-left.png" alt="" srcset="">
+  </ion-list>
 
 
 
