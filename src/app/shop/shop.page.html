@@ -8,6 +8,63 @@
   </div>
 
   <section class="hero-sale-container">
+    <swiper-container class="ion-margin-top ion-margin" pagination="true" [breakpoints]="{
+              '300': {
+          'slidesPerView': 1,
+          'spaceBetween': 30
+        },
+        '480': {
+          'slidesPerView': 1,
+          'spaceBetween': 20
+        },
+        '576': {
+          'slidesPerView': 1,
+          'spaceBetween': 20
+        },
+        '768': {
+          'slidesPerView': 2,
+          'spaceBetween': 15
+        },
+        '1080': {
+          'slidesPerView': 3,
+          'spaceBetween': 15
+        },
+        '1400': {
+          'slidesPerView': 3,
+          'spaceBetween': 20
+        }
+    }">
+      <swiper-slide><img src="/assets/BigSaleBanner_Q.png" alt=""></swiper-slide>
+      <swiper-slide><img src="/assets/BigSaleBanner_Q.png" alt=""></swiper-slide>
+      <swiper-slide><img src="/assets/BigSaleBanner_Q.png" alt=""></swiper-slide>
+      <swiper-slide><img src="/assets/BigSaleBanner_Q.png" alt=""></swiper-slide>
+      <swiper-slide><img src="/assets/BigSaleBanner_Q.png" alt=""></swiper-slide>
+      <swiper-slide><img src="/assets/BigSaleBanner_Q.png" alt=""></swiper-slide>
+    </swiper-container>
+  </section>
+  <!-- categories-section -->
+
+  <section class="categories-container">
+    <ion-list class="category-header">
+      <h2 class="category-title">Categories</h2>
+      <ion-button fill="clear" color="primary" class="see-all-button">
+        See All
+        <ion-icon slot="end" name="arrow-forward"></ion-icon>
+      </ion-button>
+    </ion-list>
+
+    <div class="category-products">
+      <ion-grid>
+        <ion-row>
+          <ion-col sizeLg="2" sizeMd="4" sizeSm="6" sizeXs="6" >1</ion-col>
+          <ion-col sizeLg="2" sizeMd="4" sizeSm="6" sizeXs="6">2</ion-col>
+          <ion-col sizeLg="2" sizeMd="4" sizeSm="6" sizeXs="6">3</ion-col>
+          <ion-col sizeLg="2" sizeMd="4" sizeSm="6" sizeXs="6">4</ion-col>
+          <ion-col sizeLg="2" sizeMd="4" sizeSm="6" sizeXs="6">5</ion-col>
+          <ion-col sizeLg="2" sizeMd="4" sizeSm="6" sizeXs="6">6</ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
 
   </section>
 
