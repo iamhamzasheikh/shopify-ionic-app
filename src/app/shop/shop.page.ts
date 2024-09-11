@@ -10,19 +10,34 @@ register();
 export class ShopPage  {
 
   slides = [
-    '/src/assets/images/ss1.png',
-    'assets/images/ss2.png',
-    'assets/images/ss3.png',
-    'assets/images/ss4.png',
-    'assets/images/ss5.png',
-    'assets/images/ss6.png',
-    'assets/images/ss7.png',
-    'assets/images/ss8.png',
-    'assets/images/ss9.png',
-    'assets/images/ss10.png',
-    'assets/images/ss11.png',
-    'assets/images/ss12.png'
-  ]; // Array of 12 image paths
+    '../../assets/ss1.png',
+    '../../assets/ss2.png',
+    '../../assets/ss3.png',
+    '../../assets/ss4.png',
+    '../../assets/ss5.png',
+    '../../assets/ss6.png',
+    '../../assets/ss7.png',
+    '../../assets/ss8.png',
+    '../../assets/ss9.png',
+    '../../assets/ss6.png',
+    '../../assets/ss1.png',
+    '../../assets/ss2.png',
+    '../../assets/ss3.png',
+    '../../assets/ss4.png'
+  ];
+  item_slides = [
+    '../../assets/item1.png',
+    '../../assets/item2.png',
+    '../../assets/item1.png',
+    '../../assets/item2.png',
+    '../../assets/item1.png',
+    '../../assets/item2.png',
+    '../../assets/item1.png',
+    '../../assets/item2.png',
+    '../../assets/item1.png',
+    '../../assets/item2.png'
+  ];
+  // Array of 12 image paths
 
   // constructor() { } Create an array with 12 items
 }

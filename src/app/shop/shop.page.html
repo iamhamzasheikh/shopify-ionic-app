@@ -202,13 +202,11 @@
   </section>
   <!-- Top-Products-section -->
    <section class="top-products-main-container">
-
     <ion-list class="top-product-heading">
       <h2>Top Product</h2>
     </ion-list>
-
     <ion-list class="top-product-slider-container">
-      <swiper-container class="ion-margin-top ion-margin" pagination="true" [breakpoints]="{
+      <swiper-container class="ion-margin-top ion-margin" [breakpoints]="{
         '300': {
           'slidesPerView': 4,
           'spaceBetween': 10
@@ -244,11 +242,64 @@
           </div>
         </swiper-slide>
       </swiper-container>
-      
     </ion-list>
-
-
    </section>
+   <!-- new-Item-Section -->
+    <section class="new-Item-container">
+      <!-- item-header -->
+      <ion-list class="newItem-header">
+        <h2 class="newItem-title">New Items</h2>
+        <ion-button fill="clear" color="primary" class="see-all-button">
+          See All
+          <ion-icon slot="end" name="arrow-forward"></ion-icon>
+        </ion-button>
+      </ion-list>
+      <!-- item-slider -->
+       <div class="newItem-slider-container">
+        <swiper-container pagination="true" [breakpoints]= " {
+          '300': {
+            'slidesPerView': 2,
+            'spaceBetween': 10
+          },
+          '480': {
+            'slidesPerView': 3,
+            'spaceBetween': 10
+          },
+          '576': {
+            'slidesPerView': 4,
+            'spaceBetween': 10
+          },
+          '768': {
+            'slidesPerView': 5,
+            'spaceBetween': 10
+          },
+          '1080': {
+            'slidesPerView': 6,
+            'spaceBetween': 15
+          },
+          '1200': {
+            'slidesPerView': 6,
+            'spaceBetween': 15
+          },
+          '1400': {
+            'slidesPerView': 8,
+            'spaceBetween': 20
+          }
+        }">
+          
+          <swiper-slide *ngFor="let item of item_slides">
+            <div class="item-img-container">
+              <div class="item-img-inner-upper-section"><img [src]="item" class="slide-img" /></div>
+              <div class="item-img-bottom-section">
+                <p>Lorem ipsum dolor sit amet, consectetur.</p>
+                <h5>$17,00</h5>
+              </div>
+            </div>
+          </swiper-slide>
+        </swiper-container>
+       </div>
+
+    </section>
 
 
 
