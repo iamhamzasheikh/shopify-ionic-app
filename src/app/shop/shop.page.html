@@ -56,30 +56,199 @@
     <div class="category-products">
       <ion-grid>
         <ion-row>
-          <ion-col sizeLg="2" sizeMd="4" sizeSm="6" sizeXs="6" >
-            <ion-list class="products-container">
-              <div class="img-container">
-                <img src="/assets/card1.png" alt=""><img src="/assets/card2.png" alt=""><img src="/assets/card3.png" alt=""><img src="/assets/card4.png" alt="">
+
+          <ion-col sizeLg="2" sizeMd="4" sizeSm="6" sizeXs="6">
+            <ion-list>
+              <div class="grid-container">
+                <div class="grid-item">
+                  <img src="../../assets/card1.png">
+                </div>
+                <div class="grid-item">
+                  <img src="../../assets/card2.png">
+                </div>
+                <div class="grid-item">
+                  <img src="../../assets/card3.png">
+                </div>
+                <div class="grid-item">
+                  <img src="../../assets/card4.png">
+                </div>
               </div>
-              <div class="bottom-heading">
-                <p>Clothing</p>
-                <p>120</p>
+
+              <div class="category-info">
+                <p class="category-name">Clothing</p>
+                <p class="item-count">109</p>
               </div>
             </ion-list>
           </ion-col>
 
+          <ion-col sizeLg="2" sizeMd="4" sizeSm="6" sizeXs="6">
+            <ion-list>
+              <div class="grid-container">
+                <div class="grid-item">
+                  <img src="../../assets/shoes1.png">
+                </div>
+                <div class="grid-item">
+                  <img src="../../assets/shoes2.png">
+                </div>
+                <div class="grid-item">
+                  <img src="../../assets/shoes3.png">
+                </div>
+                <div class="grid-item">
+                  <img src="../../assets/shoes4.png">
+                </div>
+              </div>
 
+              <div class="category-info">
+                <p class="category-name">Shoes</p>
+                <p class="item-count">530</p>
+              </div>
+            </ion-list>
+          </ion-col>
+          <ion-col sizeLg="2" sizeMd="4" sizeSm="6" sizeXs="6">
+            <ion-list>
+              <div class="grid-container">
+                <div class="grid-item">
+                  <img src="../../assets/bag1.png">
+                </div>
+                <div class="grid-item">
+                  <img src="../../assets/bag2.png">
+                </div>
+                <div class="grid-item">
+                  <img src="../../assets/bag3.png">
+                </div>
+                <div class="grid-item">
+                  <img src="../../assets/bag4.png">
+                </div>
+              </div>
 
-          <ion-col sizeLg="2" sizeMd="4" sizeSm="6" sizeXs="6">2</ion-col>
-          <ion-col sizeLg="2" sizeMd="4" sizeSm="6" sizeXs="6">3</ion-col>
-          <ion-col sizeLg="2" sizeMd="4" sizeSm="6" sizeXs="6">4</ion-col>
-          <ion-col sizeLg="2" sizeMd="4" sizeSm="6" sizeXs="6">5</ion-col>
-          <ion-col sizeLg="2" sizeMd="4" sizeSm="6" sizeXs="6">6</ion-col>
+              <div class="category-info">
+                <p class="category-name">Bags</p>
+                <p class="item-count">87</p>
+              </div>
+            </ion-list>
+          </ion-col>
+          <ion-col sizeLg="2" sizeMd="4" sizeSm="6" sizeXs="6">
+            <ion-list>
+              <div class="grid-container">
+                <div class="grid-item">
+                  <img src="../../assets/lingerie1.jpg">
+                </div>
+                <div class="grid-item">
+                  <img src="../../assets/lingerie2.png">
+                </div>
+                <div class="grid-item">
+                  <img src="../../assets/lingerie3.png">
+                </div>
+                <div class="grid-item">
+                  <img src="../../assets/lingerie4.png">
+                </div>
+              </div>
+
+              <div class="category-info">
+                <p class="category-name">Lingerie</p>
+                <p class="item-count">218</p>
+              </div>
+            </ion-list>
+          </ion-col>
+          <ion-col sizeLg="2" sizeMd="4" sizeSm="6" sizeXs="6">
+            <ion-list>
+              <div class="grid-container">
+                <div class="grid-item">
+                  <img src="../../assets/watch1.png">
+                </div>
+                <div class="grid-item">
+                  <img src="../../assets/watch2.png">
+                </div>
+                <div class="grid-item">
+                  <img src="../../assets/watch3.png">
+                </div>
+                <div class="grid-item">
+                  <img src="../../assets/watch4.png">
+                </div>
+              </div>
+
+              <div class="category-info">
+                <p class="category-name">Watch</p>
+                <p class="item-count">289</p>
+              </div>
+            </ion-list>
+          </ion-col>
+          <ion-col sizeLg="2" sizeMd="4" sizeSm="6" sizeXs="6">
+            <ion-list>
+              <div class="grid-container">
+                <div class="grid-item">
+                  <img src="../../assets/hoodies1.png">
+                </div>
+                <div class="grid-item">
+                  <img src="../../assets/hoodies2.png">
+                </div>
+                <div class="grid-item">
+                  <img src="../../assets/hoodies3.png">
+                </div>
+                <div class="grid-item">
+                  <img src="../../assets/hoodies4.png">
+                </div>
+              </div>
+
+              <div class="category-info">
+                <p class="category-name">Hoodies</p>
+                <p class="item-count">310</p>
+              </div>
+            </ion-list>
+          </ion-col>
         </ion-row>
       </ion-grid>
     </div>
-
   </section>
+  <!-- Top-Products-section -->
+   <section class="top-products-main-container">
+
+    <ion-list class="top-product-heading">
+      <h2>Top Product</h2>
+    </ion-list>
+
+    <ion-list class="top-product-slider-container">
+      <swiper-container class="ion-margin-top ion-margin" pagination="true" [breakpoints]="{
+        '300': {
+          'slidesPerView': 4,
+          'spaceBetween': 10
+        },
+        '480': {
+          'slidesPerView': 6,
+          'spaceBetween': 10
+        },
+        '576': {
+          'slidesPerView': 7,
+          'spaceBetween': 10
+        },
+        '768': {
+          'slidesPerView': 7,
+          'spaceBetween': 10
+        },
+        '1080': {
+          'slidesPerView': 10,
+          'spaceBetween': 15
+        },
+        '1200': {
+          'slidesPerView': 10,
+          'spaceBetween': 15
+        },
+        '1400': {
+          'slidesPerView': 12,
+          'spaceBetween': 20
+        }
+      }">
+        <swiper-slide *ngFor="let slide of slides">
+          <div class="top-product-img-card-container">
+            <img [src]="slide" alt="Product image" />
+          </div>
+        </swiper-slide>
+      </swiper-container>
+      
+    </ion-list>
+
+
+   </section>
 
 
 

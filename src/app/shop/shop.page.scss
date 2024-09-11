@@ -1,11 +1,12 @@
 ion-content {
     // css-for-navbar
     .navbar-container {
-        border: 2px solid red;
+        // border: 2px solid red;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        width: 100%;
+        width: 98%;
+        margin: 0 auto;
 
         ion-title {
             font-weight: bold;
@@ -43,7 +44,7 @@ ion-content {
 
             // Adjust width of ion-list (search bar) for different screen sizes
             @media (max-width: 480px) {
-                width: 90%; // Smaller for mobile screens
+                width: 60%; // Smaller for mobile screens
             }
 
             @media (min-width: 481px) and (max-width: 768px) {
@@ -120,16 +121,19 @@ ion-content {
     }
     // css-for-big-sale-container
     .hero-sale-container {
-        border: 2px solid #0066ff;
-        width: 100%;
+        // border: 2px solid #0066ff;
+        border-radius: 15px;
+        width: 98%;
         height: 250px;
+        margin: 0 auto;
 
         swiper-container {
             // border: 2px solid yellow;
+            border-radius: 15px;
             width: 100%;
             height: 100%;
             padding: 0;
-            margin: 0;
+            margin: 0 auto;
 
             swiper-slide {
                 // border: 2px solid seagreen;
@@ -144,14 +148,18 @@ ion-content {
     }
     // catagories-css
     .categories-container {
-        border: 2px solid orangered;
+        // border: 2px solid orangered;
         width: 100%;
         height: auto;
+        margin: 0 auto;
+        padding: 0;
 
         .category-header {
-            border: 2px solid black;
-            width: 100%;
+            // border: 2px solid black;
+            width: 98%;
             height: 50px;
+            margin: 0 auto;
+            padding: 0 0 0 10px ;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -173,97 +181,141 @@ ion-content {
         }
 
         .category-products {
-            border: 2px solid blue;
+            // border: 2px solid blue;
             width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
 
             ion-row {
-                border: 2px solid red;
+                // border: 2px solid red;
 
                 ion-col {
-                    border: 2px solid seagreen;
+                    // border: 2px solid seagreen;
 
-                    .products-container {
-                        // border: 2px solid black;
+                    ion-list {
+                        // border: 2px solid orchid;
                         box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
                         border-radius: 10px;
-                        width: 100%;
-                        height: 250px;
-                        margin: 0;
-                        padding: 0;
-
-                        .img-container {
-                            // border: 2px solid yellow;
-                            width: 95%;
-                            height: 220px;
-                            margin: 5px auto 0;
+                        width: 95%;
+                        padding: 4px;
+                        margin: 0 auto;
+                        .grid-container {
+                            // border: 2px solid olive;
+                            width: 98%;
+                            margin: 0 auto;
+                            border-radius: 10px;
                             display: grid;
-                            flex-wrap: wrap;
                             grid-template-columns: repeat(2, 1fr);
-                            grid-template-rows: repeat(2, 1fr);
                             gap: 5px;
-                            padding: 2px;
-                            box-sizing: border-box;
-
-                            img {
-                                border-radius: 10px;
-                                object-fit: cover;
+                            margin-bottom: 10px;
+                        
+                            .grid-item {
+                                aspect-ratio: 1 / 1;
+                                overflow: hidden;
+                        
+                                img {
+                                    width: 100%;
+                                    height: 100%;
+                                    object-fit: cover;
+                                    border-radius: 10px;
+                                }
                             }
                         }
-
-                        .bottom-heading {
-                            // border: 2px solid red;
-                            width: 95%;
-                            height: 30px;
-                            margin: 0 auto; /* Center horizontally */
-                            bottom: 0; /* Align to bottom */
-                            position: absolute; /* Position relative to the container */
-                            left: 0;
-                            right: 0;
+    
+                        .category-info {
                             display: flex;
-                            align-items: center;
                             justify-content: space-between;
-
-                            p:first-child {
-                                font-size: 20px;
-                                font-weight: 700;
+                            align-items: center;
+                            background-color: white;
+                            border-radius: 5px;
+                    
+                            .category-name {
+                                font-size: 22px;
+                                font-weight: bold;
+                                margin: 0;
                             }
-                            p:nth-child(2) {
+                    
+                            .item-count {
                                 width: 50px;
                                 height: 25px;
-                                background-color: #dfe9ff;
-                                border-radius: 10px;
+                                font-size: 18px;
+                                color: black;
+                                margin: 0;
+                                padding: 0;
+                                background-color: #DFE9FF;
                                 display: flex;
                                 align-items: center;
                                 justify-content: center;
-                                margin: 0;
+                                border-radius: 5px;
+                                cursor: pointer;
                             }
+                        }
+                    }
+
+                    ion-list:hover {
+                        cursor: pointer;
+                        transform: scale(1.03);
+                        transition: 0.5s;
+                    }
+                    
+                }
+            }
+        }
+    }
+    // Top-Products-section-css
+    .top-products-main-container {
+        border: 2px solid sienna;
+        width: 98%;
+        height: 150px;
+        margin: 0 auto;
+
+        .top-product-heading {
+            border: 2px solid black;
+            width: 100%;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            margin: 0;
+            padding: 0;
+
+            h2 {
+                margin: 0;
+                padding: 0;
+                font-size: 26px;
+                font-weight: bold;
+            }
+        }
+
+        .top-product-slider-container {
+            border: 2px solid yellow;
+            width: 100%;
+            height: 120px;
+
+            swiper-container {
+                border: 2px solid blue;
+                width: 100%;
+                height: 100%;
+                padding: 0;
+                margin: 0;
+
+                swiper-slide {
+                    border: 2px solid green;
+                    width: 100%;
+                    height: 100%;
+
+                    div {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        img {
+                            width: 50px;
+                            height: 50px;
                         }
                     }
                 }
             }
         }
     }
-
-    // @media (min-width:200px) and (max-width:300px) {
-    //     .categories-container {
-    //         .category-products {
-    //             ion-row {
-    //                 ion-col {
-    //                     .products-container {
-    //                         height: 200px;
-    //                         .img-container {
-    //                             height: 150px;
-    //                         }
-    //                         .bottom-heading {
-    //                             height: 30px;
-    //                         }
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
 }
