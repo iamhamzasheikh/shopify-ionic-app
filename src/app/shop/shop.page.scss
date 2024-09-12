@@ -1,4 +1,5 @@
 ion-content {
+
     // css-for-navbar
     .navbar-container {
         // border: 2px solid red;
@@ -119,6 +120,7 @@ ion-content {
             }
         }
     }
+
     // css-for-big-sale-container
     .hero-sale-container {
         // border: 2px solid #0066ff;
@@ -146,6 +148,7 @@ ion-content {
             }
         }
     }
+
     // catagories-css
     .categories-container {
         // border: 2px solid orangered;
@@ -159,15 +162,19 @@ ion-content {
             width: 98%;
             height: 50px;
             margin: 0 auto;
-            padding: 0 0 0 10px ;
+            padding: 0 0 0 10px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            .category-title{
-                margin: 0; /* Remove default margins */
-                text-align: center; /* Center the text inside h2 */
+
+            .category-title {
+                margin: 0;
+                /* Remove default margins */
+                text-align: center;
+                /* Center the text inside h2 */
                 font-weight: 600;
             }
+
             ion-button {
                 ion-icon {
                     width: 30px;
@@ -175,7 +182,7 @@ ion-content {
                     background-color: #0066ff;
                     border-radius: 50%;
                     color: white;
-                    
+
                 }
             }
         }
@@ -200,6 +207,7 @@ ion-content {
                         width: 95%;
                         padding: 4px;
                         margin: 0 auto;
+
                         .grid-container {
                             // border: 2px solid olive;
                             width: 98%;
@@ -209,11 +217,11 @@ ion-content {
                             grid-template-columns: repeat(2, 1fr);
                             gap: 5px;
                             margin-bottom: 10px;
-                        
+
                             .grid-item {
                                 aspect-ratio: 1 / 1;
                                 overflow: hidden;
-                        
+
                                 img {
                                     width: 100%;
                                     height: 100%;
@@ -222,20 +230,20 @@ ion-content {
                                 }
                             }
                         }
-    
+
                         .category-info {
                             display: flex;
                             justify-content: space-between;
                             align-items: center;
                             background-color: white;
                             border-radius: 5px;
-                    
+
                             .category-name {
                                 font-size: 22px;
                                 font-weight: bold;
                                 margin: 0;
                             }
-                    
+
                             .item-count {
                                 width: 50px;
                                 height: 25px;
@@ -258,11 +266,12 @@ ion-content {
                         transform: scale(1.03);
                         transition: 0.5s;
                     }
-                    
+
                 }
             }
         }
     }
+
     // Top-Products-section-css
     .top-products-main-container {
         // border: 2px solid sienna;
@@ -272,12 +281,12 @@ ion-content {
 
         .top-product-heading {
             // border: 2px solid black;
-            width: 100%;
+            width: 95%;
             height: 30px;
             display: flex;
             align-items: center;
             justify-content: start;
-            margin: 0;
+            margin: 0 auto;
             padding: 0;
 
             h2 {
@@ -316,7 +325,8 @@ ion-content {
                         width: 70px;
                         height: 70px;
                         box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-                        margin:  0 auto;
+                        margin: 0 auto;
+
                         // border: 2px solid salmon;
                         img {
                             width: 60px;
@@ -346,15 +356,19 @@ ion-content {
             width: 98%;
             height: 50px;
             margin: 0 auto;
-            padding: 0 0 0 10px ;
+            padding: 0 0 0 10px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            .newItem-title{
-                margin: 0; /* Remove default margins */
-                text-align: center; /* Center the text inside h2 */
+
+            .newItem-title {
+                margin: 0;
+                /* Remove default margins */
+                text-align: center;
+                /* Center the text inside h2 */
                 font-weight: 600;
             }
+
             ion-button {
                 ion-icon {
                     width: 30px;
@@ -362,7 +376,7 @@ ion-content {
                     background-color: #0066ff;
                     border-radius: 50%;
                     color: white;
-                    
+
                 }
             }
         }
@@ -376,6 +390,7 @@ ion-content {
                 // border: 2px solid saddlebrown;
                 width: 100%;
                 height: 100%;
+
                 swiper-slide {
                     // border: 2px solid green;
 
@@ -401,13 +416,20 @@ ion-content {
                             display: flex;
                             align-items: center;
                             justify-content: center;
-                            
+                            cursor: pointer;
+
                             img {
                                 width: 90%;
                                 height: 90%;
-                                margin:  0 auto;
-                            
+                                margin: 0 auto;
+
                             }
+                        }
+
+                        .item-img-inner-upper-section:hover {
+                            cursor: pointer;
+                            transform: scale(1.04);
+                            transition: 0.4s;
                         }
 
                         .item-img-bottom-section {
@@ -418,6 +440,7 @@ ion-content {
                             p {
                                 font-size: 14px;
                             }
+
                             h5 {
                                 font-size: 22px;
                             }
@@ -427,4 +450,186 @@ ion-content {
             }
         }
     }
+
+    // flash-sale-container-css
+    .flash-sale-main-container {
+        // border: 3px solid yellow;
+        width: 98%;
+        height: auto;
+        margin: 0 auto;
+
+        .flash-sale-heading {
+            // border: 2px solid black;
+            width: 100%;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 0;
+            padding: 0 20px 0;
+
+            .flash-sale-title {
+                margin: 0;
+                text-align: center;
+                font-weight: 600;
+            }
+
+            ion-note {
+                display: flex;
+                align-items: center;
+                font-size: 16px;
+                font-weight: bold;
+                color: #3880ff;
+                background-color: #f3f3f3;
+                width: auto;
+                height: 30px;
+                border-radius: 50px;
+                padding: 10px;
+            }
+
+            ion-icon {
+                margin-right: 4px;
+            }
+        }
+
+        .flash-sale-grid-container {
+            // border: 2px solid green;
+            width: 100%;
+            height: auto;
+
+            ion-grid {
+                // border: 2px solid red;
+
+                ion-row {
+                    ion-col {
+                        // border: 2px solid #0066ff;
+
+                        .product-card {
+                            position: relative;
+                            width: 200px;
+                            height: 200px;
+                            border-radius: 10px;
+                            overflow: hidden;
+                            margin: 0 auto;
+                            box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+
+                            img {
+                                width: 95%;
+                                height: 95%;
+                                border-radius: 10px;
+                                margin: 0 auto;
+                                padding: 0;
+                            }
+
+                            .discount-label {
+                                position: absolute;
+                                top: 5px;
+                                right: 10px;
+                                background-color: red;
+                                color: white;
+                                padding: 2px 5px;
+                                border-radius: 5px;
+                                font-weight: bold;
+                                font-size: 14px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // responsive-flash-sale-container
+        @media (min-width: 250px) and (max-width: 400px) {
+            .flash-sale-grid-container {
+                ion-grid {
+                    ion-row {
+                        ion-col {
+
+                            .product-card {
+                                position: relative;
+                                width: 140px;
+                                height: 140px;
+                                border-radius: 10px;
+
+                                img {
+                                    width: 95%;
+                                    height: 95%;
+                                    border-radius: 10px;
+                                    margin: 0 auto;
+                                    padding: 0;
+                                }
+
+                                .discount-label {
+                                    top: 5px;
+                                    right: 5px;
+                                    font-size: 10px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        @media (min-width: 401px) and (max-width: 576px) {
+            .flash-sale-grid-container {
+                ion-grid {
+                    ion-row {
+                        ion-col {
+                            .product-card {
+                                position: relative;
+                                width: 200px;
+                                height: 200px;
+                                max-width: 150px;
+                                max-height: 150px;
+
+                                img {
+                                    width: 95%;
+                                    height: 95%;
+                                    border-radius: 10px;
+                                    margin: 0 auto;
+                                    padding: 0;
+                                }
+
+                                .discount-label {
+                                    top: 5px;
+                                    right: 5px;
+                                    font-size: 12px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        @media (min-width: 1200px) and (max-width: 1400px) {
+            .flash-sale-grid-container {
+                ion-grid {
+                    ion-row {
+                        ion-col {
+                            .product-card {
+                                position: relative;
+                                width: 200px;
+                                height: 200px;
+                                max-width: 180px;
+                                max-height: 180px;
+
+                                .discount-label {
+                                    top: 5px;
+                                    right: 5px;
+                                    font-size: 16px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
 }

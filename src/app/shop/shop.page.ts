@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { register } from 'swiper/element/bundle';
+import { interval, Subscription } from 'rxjs';
+
 register();
 
 @Component({
@@ -7,8 +9,7 @@ register();
   templateUrl: './shop.page.html',
   styleUrls: ['./shop.page.scss'],
 })
-export class ShopPage  {
-
+export class ShopPage implements OnInit, OnDestroy {
   slides = [
     '../../assets/ss1.png',
     '../../assets/ss2.png',
@@ -25,6 +26,7 @@ export class ShopPage  {
     '../../assets/ss3.png',
     '../../assets/ss4.png'
   ];
+
   item_slides = [
     '../../assets/item1.png',
     '../../assets/item2.png',
@@ -37,7 +39,56 @@ export class ShopPage  {
     '../../assets/item1.png',
     '../../assets/item2.png'
   ];
-  // Array of 12 image paths
 
-  // constructor() { } Create an array with 12 items
+  // Flash Sale Timer properties
+  hours: number = 0;
+  minutes: number = 36;
+  seconds: number = 58;
+  private timerSubscription: Subscription | undefined;
+
+  // Product List for Grid with Discounts
+  products = [
+    { image: '../../assets/sc1.png', discount: 20 },
+    { image: '../../assets/sc2.png', discount: 15 },
+    { image: '../../assets/sc3.png', discount: 10 },
+    { image: '../../assets/sc4.png', discount: 25 },
+    { image: '../../assets/sc2.png', discount: 30 },
+    { image: '../../assets/sc1.png', discount: 30 }
+  ];
+
+  ngOnInit() {
+    this.startTimer();
+  }
+
+  ngOnDestroy() {
+    this.stopTimer();
+  }
+
+  private startTimer() {
+    this.timerSubscription = interval(1000).subscribe(() => {
+      if (this.seconds > 0) {
+        this.seconds--;
+      } else {
+        if (this.minutes > 0) {
+          this.minutes--;
+          this.seconds = 59;
+        } else {
+          if (this.hours > 0) {
+            this.hours--;
+            this.minutes = 59;
+            this.seconds = 59;
+          } else {
+            this.stopTimer();
+          }
+        }
+      }
+    });
+  }
+
+  private stopTimer() {
+    if (this.timerSubscription) {
+      this.timerSubscription.unsubscribe();
+      this.timerSubscription = undefined;
+    }
+  }
 }

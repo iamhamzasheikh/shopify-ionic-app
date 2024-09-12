@@ -256,7 +256,7 @@
       </ion-list>
       <!-- item-slider -->
        <div class="newItem-slider-container">
-        <swiper-container pagination="true" [breakpoints]= " {
+        <swiper-container [breakpoints]= " {
           '300': {
             'slidesPerView': 2,
             'spaceBetween': 10
@@ -286,7 +286,6 @@
             'spaceBetween': 20
           }
         }">
-          
           <swiper-slide *ngFor="let item of item_slides">
             <div class="item-img-container">
               <div class="item-img-inner-upper-section"><img [src]="item" class="slide-img" /></div>
@@ -298,8 +297,33 @@
           </swiper-slide>
         </swiper-container>
        </div>
-
     </section>
+    <!-- Flash-Sale-Section -->
+     <section class="flash-sale-main-container">
+       <!-- flash-sale-heading -->
+       <ion-list class="flash-sale-heading">
+         <h2 class="flash-sale-title">Flash Sale</h2>
+         <ion-note slot="end">
+          <ion-icon name="time-outline"></ion-icon>
+          {{ hours.toString().padStart(2, '0') }} :
+          {{ minutes.toString().padStart(2, '0') }} :
+          {{ seconds.toString().padStart(2, '0') }}
+        </ion-note>
+       </ion-list>
+       <!-- flash-sale-Grid -->
+        <div class="flash-sale-grid-container">
+          <ion-grid>
+            <ion-row>
+              <ion-col size="6" size-md="4" size-lg="4" sizeXl="2" *ngFor="let item of products">
+                <div class="product-card">
+                  <img [src]="item.image" alt="product image">
+                  <div class="discount-label">{{ item.discount }}% OFF</div>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+     </section>
 
 
 
