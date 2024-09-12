@@ -10,6 +10,7 @@ register();
   styleUrls: ['./shop.page.scss'],
 })
 export class ShopPage implements OnInit, OnDestroy {
+  Count: number = 1780; // Count for likes
   slides = [
     '../../assets/ss1.png',
     '../../assets/ss2.png',
@@ -38,6 +39,19 @@ export class ShopPage implements OnInit, OnDestroy {
     '../../assets/item2.png',
     '../../assets/item1.png',
     '../../assets/item2.png'
+  ];
+
+  popular_slides = [
+    '../../assets/sc1.png',
+    '../../assets/sc2.png',
+    '../../assets/sc3.png',
+    '../../assets/sc2.png',
+    '../../assets/sc1.png',
+    '../../assets/sc2.png',
+    '../../assets/sc3.png',
+    '../../assets/sc1.png',
+    '../../assets/sc2.png',
+    '../../assets/sc3.png'
   ];
 
   // Flash Sale Timer properties
