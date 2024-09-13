@@ -382,7 +382,94 @@
       </swiper-container>
     </ion-list>
   </section>
-
-
+  <!-- just-for-you-section -->
+  <section class="new-Item-container">
+    <!-- item-header -->
+    <ion-list class="newItem-header">
+      <h2 class="newItem-title">just for you</h2>
+      <ion-button fill="clear" color="primary" class="see-all-button">
+        See All
+        <ion-icon slot="end" name="arrow-forward"></ion-icon>
+      </ion-button>
+    </ion-list>
+    <!-- item-slider -->
+    <div class="newItem-slider-container">
+      <swiper-container [breakpoints]=" {
+          '300': {
+            'slidesPerView': 2,
+            'spaceBetween': 10
+          },
+          '480': {
+            'slidesPerView': 3,
+            'spaceBetween': 10
+          },
+          '576': {
+            'slidesPerView': 4,
+            'spaceBetween': 10
+          },
+          '768': {
+            'slidesPerView': 5,
+            'spaceBetween': 10
+          },
+          '1080': {
+            'slidesPerView': 6,
+            'spaceBetween': 15
+          },
+          '1200': {
+            'slidesPerView': 6,
+            'spaceBetween': 15
+          },
+          '1400': {
+            'slidesPerView': 8,
+            'spaceBetween': 20
+          }
+        }">
+        <swiper-slide *ngFor="let just of just_slides">
+          <div class="item-img-container">
+            <div class="item-img-inner-upper-section"><img [src]="just" class="slide-img" /></div>
+            <div class="item-img-bottom-section">
+              <p>Lorem ipsum dolor sit amet, consectetur.</p>
+              <h5>$17,00</h5>
+            </div>
+          </div>
+        </swiper-slide>
+      </swiper-container>
+    </div>
+  </section>
 
 </ion-content>
+<!-- footer-section -->
+
+<ion-footer class="ion-no-border">
+  <ion-toolbar>
+    <ion-tabs>
+      <ion-tab-bar slot="bottom">
+        <ion-tab-button tab="home">
+          <ion-icon name="home-outline"></ion-icon>
+          <ion-label>Home</ion-label>
+        </ion-tab-button>
+    
+        <ion-tab-button tab="favorites">
+          <ion-icon name="heart-outline"></ion-icon>
+          <ion-label>Favorites</ion-label>
+        </ion-tab-button>
+    
+        <ion-tab-button tab="orders">
+          <ion-icon name="list-outline"></ion-icon>
+          <ion-label>Orders</ion-label>
+        </ion-tab-button>
+    
+        <ion-tab-button tab="cart">
+          <ion-icon name="cart-outline"></ion-icon>
+          <ion-label>Cart</ion-label>
+        </ion-tab-button>
+    
+        <ion-tab-button tab="profile">
+          <ion-icon name="person-outline"></ion-icon>
+          <ion-label>Profile</ion-label>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+    
+  </ion-toolbar>
+</ion-footer>

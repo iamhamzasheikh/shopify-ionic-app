@@ -54,6 +54,18 @@ export class ShopPage implements OnInit, OnDestroy {
     '../../assets/sc3.png'
   ];
 
+  just_slides = [
+    '../../assets/sc1.png',
+    '../../assets/sc2.png',
+    '../../assets/sc3.png',
+    '../../assets/sc2.png',
+    '../../assets/sc1.png',
+    '../../assets/sc2.png',
+    '../../assets/sc3.png',
+    '../../assets/sc1.png',
+    '../../assets/sc2.png',
+    '../../assets/sc3.png'
+  ];
   // Flash Sale Timer properties
   hours: number = 0;
   minutes: number = 36;
