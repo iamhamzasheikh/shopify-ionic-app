@@ -513,6 +513,7 @@ ion-content {
                             display: flex;
                             align-items: center;
                             justify-content: center;
+                            cursor: pointer;
 
                             img {
                                 width: 95%;
@@ -533,6 +534,12 @@ ion-content {
                                 font-weight: bold;
                                 font-size: 14px;
                             }
+                        }
+
+                        .product-card:hover {
+                            cursor: pointer;
+                            transform: scale(1.04);
+                            transition: 0.4s;
                         }
                     }
                 }

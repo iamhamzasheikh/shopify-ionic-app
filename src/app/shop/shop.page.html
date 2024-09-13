@@ -315,7 +315,7 @@
       <ion-grid>
         <ion-row>
           <ion-col size="6" size-md="4" size-lg="4" sizeXl="2" *ngFor="let item of products">
-            <div class="product-card">
+            <div class="product-card" (click)="goToNextPage()">
               <img [src]="item.image" alt="product image">
               <div class="discount-label">{{ item.discount }}% OFF</div>
             </div>

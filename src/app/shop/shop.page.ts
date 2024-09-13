@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { register } from 'swiper/element/bundle';
 import { interval, Subscription } from 'rxjs';
+import { Router } from '@angular/router'; 
 
 register();
 
@@ -81,6 +82,7 @@ export class ShopPage implements OnInit, OnDestroy {
     { image: '../../assets/sc2.png', discount: 30 },
     { image: '../../assets/sc1.png', discount: 30 }
   ];
+  constructor(private router: Router) {} // Inject Router in the constructor
 
   ngOnInit() {
     this.startTimer();
@@ -117,4 +119,8 @@ export class ShopPage implements OnInit, OnDestroy {
       this.timerSubscription = undefined;
     }
   }
+    // Navigation function
+    goToNextPage() {
+      this.router.navigate(['/flash-sale']);  // Replace with your desired route
+    }
 }
