@@ -1,13 +1,27 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>flashSale</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">flashSale</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <section class="header-section">
+    <img class="sky-bubble" src="../../assets/bubble8.png" alt="">
+    <img src="../../assets/bubble7.png" alt="" class="blue-bubble">
+
+    <div class="header-heading">
+      <div class="heading-timer"><h1>Flash Sale</h1> 
+        <div class="timer">
+          <div class="timer-container">
+            <ion-chip>
+              <ion-icon name="timer-outline"></ion-icon>
+            </ion-chip>
+            <ion-chip>
+              <ion-label>{{ minutes.toString().padStart(2, '0') }}</ion-label>
+            </ion-chip>
+            <ion-chip>
+              <ion-label>{{ seconds.toString().padStart(2, '0') }}</ion-label>
+            </ion-chip>
+          </div>
+        </div>
+      </div>
+      <div class="para">Choose your Discount</div>
+
+    </div>
+
+  </section>
 </ion-content>

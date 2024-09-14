@@ -1,0 +1,61 @@
+ion-content {
+    margin: 0;
+    padding: 0;
+    --padding-top: 0px;
+    position: relative;
+    .header-section {
+        border: 2px solid red;
+        width: 100%;
+        height: 250px;
+        position: absolute;
+        margin: 0;
+        padding: 0;
+        .sky-bubble {
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: 1;
+        }
+        .blue-bubble {
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: 2;
+        }
+
+        .header-heading {
+            position: relative;
+            margin-left: 20px;
+            border: 2px solid seagreen;
+            width: 30%;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            padding: 0;
+            z-index: 1;
+
+            .heading-timer {
+                border: 2px solid black;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                .timer {
+                    .timer-container {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        padding: 10px;
+                      }
+                      
+                      ion-chip {
+                        --background: #d9e4f9;
+                        --color: #000000;
+                        font-size: 1.2em;
+                        margin: 0 5px;
+                      }
+                }
+            }
+        }
+    }
+}
