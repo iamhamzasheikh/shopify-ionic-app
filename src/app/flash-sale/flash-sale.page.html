@@ -1,8 +1,8 @@
 <ion-content [fullscreen]="true">
+  <!-- Header-section -->
   <section class="header-section">
     <img class="sky-bubble" src="../../assets/bubble8.png" alt="">
     <img src="../../assets/bubble7.png" alt="" class="blue-bubble">
-
     <div class="header-heading">
       <div class="heading-timer"><h1>Flash Sale</h1> 
         <div class="timer">
@@ -20,8 +20,35 @@
         </div>
       </div>
       <div class="para">Choose your Discount</div>
-
     </div>
 
+    <div class="discounts">
+      <ion-grid>
+        <ion-row class="discount-container">
+          <ion-col size="2">
+            <ion-button fill="clear" class="discount-button" [class.selected]="selectedDiscount === 'all'" (click)="selectDiscount('all')">All</ion-button>
+          </ion-col>
+          <ion-col size="2">
+            <ion-button fill="clear" class="discount-button" [class.selected]="selectedDiscount === '10%'" (click)="selectDiscount('10%')">10%</ion-button>
+          </ion-col>
+          <ion-col size="2">
+            <ion-button fill="clear" class="discount-button" [class.selected]="selectedDiscount === '20%'" (click)="selectDiscount('20%')">20%</ion-button>
+          </ion-col>
+          <ion-col size="2">
+            <ion-button fill="clear" class="discount-button" [class.selected]="selectedDiscount === '30%'" (click)="selectDiscount('30%')">30%</ion-button>
+          </ion-col>
+          <ion-col size="2">
+            <ion-button fill="clear" class="discount-button" [class.selected]="selectedDiscount === '40%'" (click)="selectDiscount('40%')">40%</ion-button>
+          </ion-col>
+          <ion-col size="2">
+            <ion-button fill="clear" class="discount-button" [class.selected]="selectedDiscount === '50%'" (click)="selectDiscount('50%')">50%</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      
+    </div>
   </section>
+  <!-- Slider-Section -->
+
+
 </ion-content>

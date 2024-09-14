@@ -10,6 +10,7 @@ export class FlashSalePage implements OnInit, OnDestroy {
   minutes: number = 0;
   seconds: number = 0;
   private timerSubscription: Subscription | undefined;
+  selectedDiscount: string = 'all';  // Default value
 
   constructor() { }
 
@@ -36,5 +37,10 @@ export class FlashSalePage implements OnInit, OnDestroy {
       this.timerSubscription.unsubscribe();
       this.timerSubscription = undefined;
     }
+  }
+
+  // Method to select the discount
+  selectDiscount(discount: string) {
+    this.selectedDiscount = discount;
   }
 }
