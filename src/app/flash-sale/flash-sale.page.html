@@ -4,7 +4,8 @@
     <img class="sky-bubble" src="../../assets/bubble8.png" alt="">
     <img src="../../assets/bubble7.png" alt="" class="blue-bubble">
     <div class="header-heading">
-      <div class="heading-timer"><h1>Flash Sale</h1> 
+      <div class="heading-timer">
+        <h1>Flash Sale</h1>
         <div class="timer">
           <div class="timer-container">
             <ion-chip>
@@ -23,32 +24,116 @@
     </div>
 
     <div class="discounts">
-      <ion-grid>
-        <ion-row class="discount-container">
-          <ion-col size="2">
-            <ion-button fill="clear" class="discount-button" [class.selected]="selectedDiscount === 'all'" (click)="selectDiscount('all')">All</ion-button>
-          </ion-col>
-          <ion-col size="2">
-            <ion-button fill="clear" class="discount-button" [class.selected]="selectedDiscount === '10%'" (click)="selectDiscount('10%')">10%</ion-button>
-          </ion-col>
-          <ion-col size="2">
-            <ion-button fill="clear" class="discount-button" [class.selected]="selectedDiscount === '20%'" (click)="selectDiscount('20%')">20%</ion-button>
-          </ion-col>
-          <ion-col size="2">
-            <ion-button fill="clear" class="discount-button" [class.selected]="selectedDiscount === '30%'" (click)="selectDiscount('30%')">30%</ion-button>
-          </ion-col>
-          <ion-col size="2">
-            <ion-button fill="clear" class="discount-button" [class.selected]="selectedDiscount === '40%'" (click)="selectDiscount('40%')">40%</ion-button>
-          </ion-col>
-          <ion-col size="2">
-            <ion-button fill="clear" class="discount-button" [class.selected]="selectedDiscount === '50%'" (click)="selectDiscount('50%')">50%</ion-button>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-      
+      <div class="discount-container">
+        <button class="discount-button" [class.selected]="selectedDiscount === 'all'"
+          (click)="selectDiscount('all')">All</button>
+        <button class="discount-button" [class.selected]="selectedDiscount === '10%'"
+          (click)="selectDiscount('10%')">10%</button>
+        <button class="discount-button" [class.selected]="selectedDiscount === '20%'"
+          (click)="selectDiscount('20%')">20%</button>
+        <button class="discount-button" [class.selected]="selectedDiscount === '30%'"
+          (click)="selectDiscount('30%')">30%</button>
+        <button class="discount-button" [class.selected]="selectedDiscount === '40%'"
+          (click)="selectDiscount('40%')">40%</button>
+        <button class="discount-button" [class.selected]="selectedDiscount === '50%'"
+          (click)="selectDiscount('50%')">50%</button>
+      </div>
     </div>
   </section>
   <!-- Slider-Section -->
-
-
+  <section class="hero-sale-container">
+    <swiper-container class="ion-margin-top ion-margin" pagination="true" [breakpoints]="{
+              '300': {
+          'slidesPerView': 1,
+          'spaceBetween': 30
+        },
+        '480': {
+          'slidesPerView': 1,
+          'spaceBetween': 20
+        },
+        '576': {
+          'slidesPerView': 1,
+          'spaceBetween': 20
+        },
+        '768': {
+          'slidesPerView': 2,
+          'spaceBetween': 15
+        },
+        '1080': {
+          'slidesPerView': 3,
+          'spaceBetween': 15
+        },
+        '1400': {
+          'slidesPerView': 3,
+          'spaceBetween': 20
+        }
+    }">
+      <swiper-slide><img src="../../assets/live.png" alt=""></swiper-slide>
+      <swiper-slide><img src="../../assets/live.png" alt=""></swiper-slide>
+      <swiper-slide><img src="../../assets/live.png" alt=""></swiper-slide>
+      <swiper-slide><img src="../../assets/live.png" alt=""></swiper-slide>
+      <swiper-slide><img src="../../assets/live.png" alt=""></swiper-slide>
+      <swiper-slide><img src="../../assets/live.png" alt=""></swiper-slide>
+    </swiper-container>
+  </section>
+  <!-- 20%-discount-section -->
+  <section class="sale-discount">
+    <!-- filter-header -->
+    <div class="discount-filter-container">
+      <h2 class="discount-label">20% Discount</h2>
+      <ion-icon name="options-outline" class="filter-icon"></ion-icon>
+    </div>
+    <div class="discount-info">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6" size-md="4" size-lg="4" sizeXl="2" *ngFor="let product of products">
+            <div class="product-card">
+              <div class="dis-img">
+                <img [src]="product.image" alt="product image">
+                <div class="label-discount">{{ product.discount }}% OFF</div>
+              </div>
+              <p>{{ product.description }}</p>
+              <div class="price-container">
+                <div class="old-price">{{ product.oldPrice | currency }}</div>
+                <div class="new-price">{{ product.newPrice | currency }}</div>
+              </div>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </section>
 </ion-content>
+<!-- footer -->
+<ion-footer class="ion-no-border">
+  <ion-toolbar>
+    <ion-tabs>
+      <ion-tab-bar slot="bottom">
+        <ion-tab-button tab="home">
+          <ion-icon name="home-outline"></ion-icon>
+          <ion-label>Home</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="favorites">
+          <ion-icon name="heart-outline"></ion-icon>
+          <ion-label>Favorites</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="orders">
+          <ion-icon name="list-outline"></ion-icon>
+          <ion-label>Orders</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="cart">
+          <ion-icon name="cart-outline"></ion-icon>
+          <ion-label>Cart</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="profile">
+          <ion-icon name="person-outline"></ion-icon>
+          <ion-label>Profile</ion-label>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>
