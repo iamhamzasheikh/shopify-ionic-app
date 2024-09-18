@@ -1,0 +1,33 @@
+<ion-content [fullscreen]="true">
+    <ion-list class="product-main-container">
+      <ion-grid>
+        <ion-row>
+          <ion-col sizeLg="6" sizeXl="6" sizeMd="6" sizeSm="12" sizeXs="12">
+            <img src="../../assets/pg1.png" alt="">
+          </ion-col>
+
+          <ion-col sizeLg="6" sizeXl="6" sizeMd="6" sizeSm="12" sizeXs="12">
+            <div class="header-heading">
+              <div class="heading-timer">
+                <h1>$24,00</h1>
+                <div class="timer">
+                  <div class="timer-container">
+                    <ion-chip>
+                      <ion-icon name="timer-outline"></ion-icon>
+                    </ion-chip>
+                    <ion-chip>
+                      <ion-label>{{ minutes.toString().padStart(2, '0') }}</ion-label>
+                    </ion-chip>
+                    <ion-chip>
+                      <ion-label>{{ seconds.toString().padStart(2, '0') }}</ion-label>
+                    </ion-chip>
+                  </div>
+                </div>
+              </div>
+              <div class="para"> -20%</div>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-list>
+</ion-content>

@@ -26,6 +26,10 @@ const routes: Routes = [
     path: 'flash-sale',
     loadChildren: () => import('./flash-sale/flash-sale.module').then( m => m.FlashSalePageModule)
   },
+  {
+    path: 'product',
+    loadChildren: () => import('./product/product.module').then( m => m.ProductPageModule)
+  },
 
 
 ];

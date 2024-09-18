@@ -56,7 +56,7 @@ ion-content {
                         justify-content: center;
                         align-items: center;
                         padding: 10px;
-                    }
+                    }   
 
                     ion-chip {
                         --background: #d9e4f9;
@@ -274,6 +274,7 @@ ion-content {
                             border: 1px solid #e0e0e0;
                             padding: 10px;
                             box-sizing: border-box;
+                            cursor: pointer;
 
                             .dis-img {
                                 position: relative;

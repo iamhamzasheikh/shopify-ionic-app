@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { interval, Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 import { register } from 'swiper/element';
 register();
 
@@ -60,7 +61,8 @@ export class FlashSalePage implements OnInit, OnDestroy {
     }
   ];
 
-  constructor() { }
+  // Inject Router via constructor
+  constructor(private router: Router) { }
 
   ngOnInit() {
     this.startTimer();
@@ -94,6 +96,6 @@ export class FlashSalePage implements OnInit, OnDestroy {
 
   // Method to navigate to the next page when clicking on a product
   goToNextPage() {
-    // Your logic to navigate to the product detail page or another action
+    this.router.navigate(['/product']); // Ensure the route exists
   }
 }
