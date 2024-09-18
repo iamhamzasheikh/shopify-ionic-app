@@ -1,9 +1,9 @@
 ion-content {
     .product-main-container {
-        border: 2px solid seagreen;
+        // border: 2px solid seagreen;
         box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
-        width: 80%;
-        height: 80vh;
+        width: 90%;
+        height: 90vh;
         position: absolute;
         top: 50%;
         left: 50%;
@@ -16,7 +16,7 @@ ion-content {
             height: 100%;
 
             ion-row {
-                border: 2px solid red;
+                // border: 2px solid red;
                 width: 100%;
                 height: 100%;
 
@@ -37,48 +37,151 @@ ion-content {
                 }
 
                 ion-col:nth-child(2) {
-                    .heading-timer {
+                    .header-heading {
+                        border: 2px solid black;
+                        .heading-timer {
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            width: 98%;
+                            margin: 0 auto;
+                            // border: 2px solid salmon;
+    
+    
+                            h1 {
+                                width: 100%;
+                                font-size: 27px;
+                                font-weight: 700;
+                            }
+    
+                            .timer {
+                                .timer-container {
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    padding: 10px;
+                                }
+    
+                                ion-chip {
+                                    --background: #d9e4f9;
+                                    --color: #000000;
+                                    font-size: 1.2em;
+                                    margin: 0 5px;
+                                }
+                            }
+                        }
+                        
+                        .para {
+                            width: 70px;
+                            height: 30px;
+                            background-color: red;
+                            color: white;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            border-radius: 10px;
+                            margin-left: 5px;
+                        }
+    
+                        p {
+                            margin-left: 5px;
+                        }
+                    }
+
+                    .color-option {
+                        border: 2px solid yellow;
+                        width: 100%;
+                        height: 160px;
+                        margin: 0;
+                        padding: 0;
                         display: flex;
-                        align-items: center;
-                        justify-content: space-between;
-                        width: 98%;
-                        margin: 0 auto;
-                        // border: 2px solid salmon;
+                        flex-direction: column;
 
-
-                        h1 {
-                            width: 100%;
-                            font-size: 27px;
-                            font-weight: 700;
+                        h2 {
+                            font-size: 24px;
+                            font-weight: 600;
+                            margin-left: 5px;
+                            margin: 0;
+                            padding: 0;
                         }
 
-                        .timer {
-                            .timer-container {
+                        .img-box {
+                            border: 1px solid red;
+                            width: 100%;
+                            height: 120px;
+                            padding: 10px 0;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                        
+                            swiper-container {
+                                // border: 2px solid yellowgreen;
+                                width: 100%;
+                                height: 100%;
                                 display: flex;
                                 justify-content: center;
                                 align-items: center;
-                                padding: 10px;
-                            }
-
-                            ion-chip {
-                                --background: #d9e4f9;
-                                --color: #000000;
-                                font-size: 1.2em;
-                                margin: 0 5px;
+                        
+                                ::ng-deep swiper-slide {
+                                    // border: 2px solid black;
+                                    display: flex !important;
+                                    align-items: center !important;
+                                    justify-content: center !important;
+                                    height: 100%;
+                                    width: auto !important;
+                        
+                                    img {
+                                        border-radius: 10px;
+                                        height: 100%;
+                                        width: auto;
+                                        object-fit: cover;
+                                    }
+                        
+                                    .checkbox-icon {
+                                        position: absolute;
+                                        bottom: 5px;
+                                        left: 5px;
+                                        font-size: 24px;
+                                        color: blue;
+                                    }
+                                }
                             }
                         }
                     }
-                    
-                    .para {
-                        width: 70px;
-                        height: 30px;
-                        background-color: red;
-                        color: white;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        border-radius: 10px;
-                        margin-left: 5px;
+
+                    .size-container {
+                        border: 2px solid orangered;
+                        width: 100%;
+                        height: 150px;
+
+                        p {
+                            padding: 0;
+                            margin: 0;
+                            margin-left: 5px;
+                            font-size: 22px;
+                            font-weight: 600;
+                        }
+
+                        ion-grid {
+                            ion-row {
+                                border: 2px solid black;
+                                width: 100%;
+                                height: 100px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+
+                                ion-col {
+                                    border: 2px solid seagreen;
+                                    width: 100%;
+                                    height: 50px;
+                                    display: flex;
+                                    flex-direction: row;
+                                    align-items: center;
+                                    justify-content: center;
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -89,15 +192,33 @@ ion-content {
         .product-main-container {
             width: 100%;
             height: 100vh;
+            position: static;
+            transform: none;
+            overflow-y: auto; 
 
             ion-grid {
                 height: 100%;
 
                 ion-row {
-                    height: 100%;
+                    height: auto;
+                    flex-direction: column;
 
                     ion-col {
-                        height: 50% !important;  // Force 50% height on smaller screens
+                        height: 50% !important;  
+                    }
+
+                    ion-col:first-child {
+                        height: 50vh !important;
+
+                        img {
+                            height: 100%;
+                            object-fit: cover;
+                        }
+                    }
+
+                    ion-col:nth-child(2) {
+                        overflow-y: visible; // Remove scrolling from individual column
+                        
                     }
                 }
             }

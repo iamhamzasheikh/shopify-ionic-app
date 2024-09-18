@@ -1,33 +1,90 @@
 <ion-content [fullscreen]="true">
-    <ion-list class="product-main-container">
-      <ion-grid>
-        <ion-row>
-          <ion-col sizeLg="6" sizeXl="6" sizeMd="6" sizeSm="12" sizeXs="12">
-            <img src="../../assets/pg1.png" alt="">
-          </ion-col>
+  <ion-list class="product-main-container">
+    <ion-grid>
+      <ion-row>
+        <ion-col sizeLg="6" sizeXl="6" sizeMd="6" sizeSm="12" sizeXs="12">
+          <img src="../../assets/pg1.png" alt="">
+        </ion-col>
 
-          <ion-col sizeLg="6" sizeXl="6" sizeMd="6" sizeSm="12" sizeXs="12">
-            <div class="header-heading">
-              <div class="heading-timer">
-                <h1>$24,00</h1>
-                <div class="timer">
-                  <div class="timer-container">
-                    <ion-chip>
-                      <ion-icon name="timer-outline"></ion-icon>
-                    </ion-chip>
-                    <ion-chip>
-                      <ion-label>{{ minutes.toString().padStart(2, '0') }}</ion-label>
-                    </ion-chip>
-                    <ion-chip>
-                      <ion-label>{{ seconds.toString().padStart(2, '0') }}</ion-label>
-                    </ion-chip>
-                  </div>
+        <ion-col sizeLg="6" sizeXl="6" sizeMd="6" sizeSm="12" sizeXs="12">
+          <div class="header-heading">
+            <div class="heading-timer">
+              <h1>$24,00</h1>
+              <div class="timer">
+                <div class="timer-container">
+                  <ion-chip>
+                    <ion-icon name="timer-outline"></ion-icon>
+                  </ion-chip>
+                  <ion-chip>
+                    <ion-label>{{ minutes.toString().padStart(2, '0') }}</ion-label>
+                  </ion-chip>
+                  <ion-chip>
+                    <ion-label>{{ seconds.toString().padStart(2, '0') }}</ion-label>
+                  </ion-chip>
                 </div>
               </div>
-              <div class="para"> -20%</div>
             </div>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-list>
+            <div class="para"> -20%</div>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere, inventore laudantium doloremque illum
+              minus laborum nesciunt exercitationem. </p>
+          </div>
+
+          <div class="color-option">
+            <h2>Color options</h2>
+
+            <div class="img-box">
+              <swiper-container class="ion-margin-top ion-margin" pagination="false" [breakpoints]="{
+                  '300': {
+                    'slidesPerView': 4,
+                    'spaceBetween': 30
+                  },
+                  '480': {
+                    'slidesPerView': 4,
+                    'spaceBetween': 30
+                  },
+                  '576': {
+                    'slidesPerView': 5,
+                    'spaceBetween': 10
+                  },
+                  '768': {
+                    'slidesPerView': 5,
+                    'spaceBetween': 10
+                  },
+                  '1080': {
+                    'slidesPerView': 5,
+                    'spaceBetween': 15
+                  },
+                  '1200': {
+                    'slidesPerView': 6,
+                    'spaceBetween': 15
+                  },
+                  '1400': {
+                    'slidesPerView': 6,
+                    'spaceBetween': 15
+                  }
+                }">
+                <swiper-slide *ngFor="let img of images; let i = index" (click)="toggleSlideSelection(i)">
+                  <img [src]="img" alt="slide image">
+                  <!-- Display checkbox if selected -->
+                  <ion-icon *ngIf="selectedSlides[i]" name="checkbox-outline" class="checkbox-icon"></ion-icon>
+                </swiper-slide>
+              </swiper-container>
+            </div>
+          </div>
+
+          <div class="size-container">
+            <p>Size</p>
+            <ion-grid>
+              <ion-row>
+                <ion-col sizeXl="2" sizeLg="2" sizeMd="2" sizeSm="2" sizeXs="2"  *ngFor="let size of sizeOptions">{{ size }}</ion-col>
+              </ion-row>
+            </ion-grid>
+          </div>
+
+
+
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-list>
 </ion-content>
