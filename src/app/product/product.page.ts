@@ -10,8 +10,26 @@ register();
 })
 export class ProductPage implements OnInit, OnDestroy {
 
+  isFavorite: boolean = false;
+
+  toggleFavorite() {
+    this.isFavorite = !this.isFavorite;
+  }
+
+
+  quantity: number = 1;
+  increment() {
+    this.quantity++;
+  }
+
+  decrement() {
+    if (this.quantity > 1) {
+      this.quantity--;
+    }
+  }
+
   sizeOptions: string[] = ['S', 'M', 'L', 'XL', 'XXL', 'XS'];
-  
+
   // Timer variables
   minutes: number = 0;
   seconds: number = 0;

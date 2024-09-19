@@ -21,7 +21,7 @@ ion-content {
                 height: 100%;
 
                 ion-col {
-                    border: 2px solid orange;
+                    // border: 2px solid orange;
                     width: 100%;
                     height: 100%;
                     margin: 0;
@@ -38,7 +38,8 @@ ion-content {
 
                 ion-col:nth-child(2) {
                     .header-heading {
-                        border: 2px solid black;
+                        // border: 2px solid black;
+
                         .heading-timer {
                             display: flex;
                             align-items: center;
@@ -46,14 +47,14 @@ ion-content {
                             width: 98%;
                             margin: 0 auto;
                             // border: 2px solid salmon;
-    
-    
+
+
                             h1 {
                                 width: 100%;
                                 font-size: 27px;
                                 font-weight: 700;
                             }
-    
+
                             .timer {
                                 .timer-container {
                                     display: flex;
@@ -61,7 +62,7 @@ ion-content {
                                     align-items: center;
                                     padding: 10px;
                                 }
-    
+
                                 ion-chip {
                                     --background: #d9e4f9;
                                     --color: #000000;
@@ -70,7 +71,7 @@ ion-content {
                                 }
                             }
                         }
-                        
+
                         .para {
                             width: 70px;
                             height: 30px;
@@ -82,14 +83,14 @@ ion-content {
                             border-radius: 10px;
                             margin-left: 5px;
                         }
-    
+
                         p {
                             margin-left: 5px;
                         }
                     }
 
                     .color-option {
-                        border: 2px solid yellow;
+                        // border: 2px solid yellow;
                         width: 100%;
                         height: 160px;
                         margin: 0;
@@ -100,20 +101,20 @@ ion-content {
                         h2 {
                             font-size: 24px;
                             font-weight: 600;
-                            margin-left: 5px;
+                            margin-left: 5px !important;
                             margin: 0;
                             padding: 0;
                         }
 
                         .img-box {
-                            border: 1px solid red;
+                            // border: 1px solid red;
                             width: 100%;
                             height: 120px;
                             padding: 10px 0;
                             display: flex;
                             justify-content: center;
                             align-items: center;
-                        
+
                             swiper-container {
                                 // border: 2px solid yellowgreen;
                                 width: 100%;
@@ -121,7 +122,7 @@ ion-content {
                                 display: flex;
                                 justify-content: center;
                                 align-items: center;
-                        
+
                                 ::ng-deep swiper-slide {
                                     // border: 2px solid black;
                                     display: flex !important;
@@ -129,14 +130,20 @@ ion-content {
                                     justify-content: center !important;
                                     height: 100%;
                                     width: auto !important;
-                        
+
                                     img {
                                         border-radius: 10px;
                                         height: 100%;
                                         width: auto;
                                         object-fit: cover;
                                     }
-                        
+
+                                    img:hover {
+                                        transform: scale(0.9);
+                                        transition: 0.4s;
+                                        cursor: pointer;
+                                    }
+
                                     .checkbox-icon {
                                         position: absolute;
                                         bottom: 5px;
@@ -150,9 +157,9 @@ ion-content {
                     }
 
                     .size-container {
-                        border: 2px solid orangered;
+                        // border: 2px solid orangered;
                         width: 100%;
-                        height: 150px;
+                        height: 100px;
 
                         p {
                             padding: 0;
@@ -162,27 +169,150 @@ ion-content {
                             font-weight: 600;
                         }
 
-                        ion-grid {
-                            ion-row {
-                                border: 2px solid black;
+                        .size-grid {
+                            .size-row {
+                                // border: 2px solid black;
                                 width: 100%;
-                                height: 100px;
+                                height: 60px;
                                 display: flex;
                                 align-items: center;
                                 justify-content: center;
 
-                                ion-col {
-                                    border: 2px solid seagreen;
-                                    width: 100%;
-                                    height: 50px;
+                                .size-col {
+                                    // border: 2px solid seagreen;
+                                    border: none;
                                     display: flex;
                                     flex-direction: row;
                                     align-items: center;
                                     justify-content: center;
+
+                                    .size-box {
+                                        // border: 2px solid sienna;
+                                        border-radius: 10px;
+                                        background: #d9e4f9;
+                                        width: 90%;
+                                        height: 90%;
+                                        margin: 0 auto;
+                                        display: flex;
+                                        align-items: center;
+                                        justify-content: center;
+                                        font-size: 18px;
+                                        font-weight: 500;
+                                    }
+
+                                    .size-box:hover {
+                                        border: 2px solid blue;
+                                        cursor: pointer;
+                                        transform: scale(1.05);
+                                        transition: 0.4s;
+                                    }
                                 }
                             }
                         }
                     }
+
+                    ion-item {
+                        ion-label {
+                            font-size: 24px;
+                            font-weight: 600;
+                        }
+
+                        .quantity-selector {
+                            display: flex;
+                            align-items: center;
+
+                            ion-button {
+                                --padding-start: 0;
+                                --padding-end: 0;
+                                margin: 0;
+                            }
+
+                            ion-input {
+                                text-align: center;
+                                width: 50px;
+                                border: 1px solid #ddd;
+                                border-radius: 4px;
+                                margin: 0 8px;
+                            }
+
+                            ion-icon {
+                                font-size: 40px;
+                            }
+                        }
+                    }
+
+                    .product-action {
+                        // border: 2px solid saddlebrown;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-around;
+                        gap: 10px;
+                        padding: 10px;
+
+                        button {
+                            border: none;
+                            padding: 10px 20px;
+                            border-radius: 20px;
+                            cursor: pointer;
+                            font-size: 14px;
+                        }
+
+                        .favorite-btn {
+                            background: none;
+                            padding: 0;
+                            color: #0066ff;
+                            font-size: 50px;
+
+                            ion-icon {
+                                font-size: 24px;
+                            }
+                        }
+
+                        .btn-container {
+                            display: flex;
+                            align-items: center;
+                            gap: 10px;
+                            margin: 10px 0;
+
+                            .add-to-cart-btn {
+                                background-color: #333;
+                                color: white;
+                            }
+
+                            .buy-now-btn {
+                                background-color: #0066ff;
+                                color: white;
+                            }
+                        }
+
+                        @media (max-width: 768px) {
+
+                            .product-action {
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+
+                                .favorite-btn {
+                                    flex: 0 0 auto;
+                                }
+
+                                .btn-container {
+                                    flex: 1 1 100%;
+                                    justify-content: center;
+
+                                    .add-to-cart-btn,
+                                    .buy-now-btn {
+                                        flex: 1 1 48%;
+                                        /* Each button takes 48% of the available width on small screens */
+                                        margin: 5px;
+                                        text-align: center;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+
                 }
             }
         }
@@ -194,7 +324,7 @@ ion-content {
             height: 100vh;
             position: static;
             transform: none;
-            overflow-y: auto; 
+            overflow-y: auto;
 
             ion-grid {
                 height: 100%;
@@ -204,7 +334,7 @@ ion-content {
                     flex-direction: column;
 
                     ion-col {
-                        height: 50% !important;  
+                        height: 50% !important;
                     }
 
                     ion-col:first-child {
@@ -218,7 +348,32 @@ ion-content {
 
                     ion-col:nth-child(2) {
                         overflow-y: visible; // Remove scrolling from individual column
-                        
+
+                        .size-container {
+                            height: 150px;
+
+                            .size-grid {
+                                .size-row {
+                                    height: 100px;
+
+                                    .size-col {
+                                        // border: 2px solid seagreen;
+                                        margin: 5px;
+                                        padding: 16px 36px;
+
+                                        .size-box {
+                                            padding: 16px 36px;
+                                        }
+
+                                        .size-box:hover {
+                                            border: 2px solid blue;
+                                            cursor: pointer;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
                     }
                 }
             }
