@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { interval, Subscription } from 'rxjs';
 import { register } from 'swiper/element/bundle';
+import { Router } from '@angular/router';  // Import Router
 register();
 
 @Component({
@@ -11,31 +12,11 @@ register();
 export class ProductPage implements OnInit, OnDestroy {
 
   isFavorite: boolean = false;
-
-  toggleFavorite() {
-    this.isFavorite = !this.isFavorite;
-  }
-
-
   quantity: number = 1;
-  increment() {
-    this.quantity++;
-  }
-
-  decrement() {
-    if (this.quantity > 1) {
-      this.quantity--;
-    }
-  }
-
   sizeOptions: string[] = ['S', 'M', 'L', 'XL', 'XXL', 'XS'];
-
-  // Timer variables
   minutes: number = 0;
   seconds: number = 0;
   private timerSubscription: Subscription | undefined;
-
-  // Image and selection variables for Swiper
   images: string[] = [
     '../../assets/card1.png',
     '../../assets/card2.png',
@@ -47,15 +28,12 @@ export class ProductPage implements OnInit, OnDestroy {
     '../../assets/card4.png',
     '../../assets/card5.png'
   ];
-
   selectedSlides: boolean[] = [];
 
-  constructor() { }
+  constructor(private router: Router) { }  // Inject Router
 
   ngOnInit() {
     this.startTimer();
-
-    // Initialize the selectedSlides array with 'false'
     this.selectedSlides = new Array(this.images.length).fill(false);
   }
 
@@ -63,8 +41,21 @@ export class ProductPage implements OnInit, OnDestroy {
     this.stopTimer();
   }
 
+  toggleFavorite() {
+    this.isFavorite = !this.isFavorite;
+  }
+
+  increment() {
+    this.quantity++;
+  }
+
+  decrement() {
+    if (this.quantity > 1) {
+      this.quantity--;
+    }
+  }
+
   startTimer() {
-    // Subscribe to an interval observable for the timer
     this.timerSubscription = interval(1000).subscribe(() => {
       this.seconds++;
       if (this.seconds === 60) {
@@ -75,15 +66,18 @@ export class ProductPage implements OnInit, OnDestroy {
   }
 
   stopTimer() {
-    // Unsubscribe from the timer when component is destroyed
     if (this.timerSubscription) {
       this.timerSubscription.unsubscribe();
       this.timerSubscription = undefined;
     }
   }
 
-  // Toggle the checkbox sign on slide click
   toggleSlideSelection(index: number) {
     this.selectedSlides[index] = !this.selectedSlides[index];
+  }
+
+  // Add this method to navigate to the next page
+  goToNextPage() {
+    this.router.navigate(['/cart']);
   }
 }
