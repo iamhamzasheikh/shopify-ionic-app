@@ -30,30 +30,6 @@
           </div>
           <!-- product-cart -->
           <div class="select-product-container">
-            <!-- 
-            <div class="img-box-details">
-              <div class="img"><img src="../../assets/cart1.png" alt="">
-                <ion-icon name="trash-outline"></ion-icon>
-              </div>
-
-              <div class="product-img-details">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                <p>Pink, SizeM</p>
-                <ion-item lines="none">
-                  <ion-label>Quantity</ion-label>
-                  <div class="quantity-selector">
-                    <ion-button fill="clear" (click)="decrement()">
-                      <ion-icon name="remove-circle-outline"></ion-icon>
-                    </ion-button>
-                    <ion-input type="number" [(ngModel)]="quantity" readonly></ion-input>
-                    <ion-button fill="clear" (click)="increment()">
-                      <ion-icon name="add-circle-outline"></ion-icon>
-                    </ion-button>
-                  </div>
-                </ion-item>
-              </div>
-            </div> -->
-
             <div *ngFor="let product of products" class="img-box-details">
               <div class="img">
                 <img [src]="product.image" alt="">
@@ -78,20 +54,29 @@
                 </ion-item>
               </div>
             </div>
+          </div>
+        </ion-col>
 
+        <ion-col class="cart-main-col" sizeLg="6" sizeXl="6" sizeMd="6" sizeSm="12" sizeXs="12">
+          <div class="product-charges-container">
+            <div class="sub-total">
+              <p>Sub Total</p>
+              <p>$10.0</p>
+            </div>
 
+            <div class="delivery">
+              <p>Delivery</p>
+              <p>$2.00</p>
+            </div>
 
+            <div class="total-charges">
+              <p>Total</p>
+              <p>$12.00</p>
+            </div>
 
           </div>
 
-
-
-
         </ion-col>
-
-
-        <ion-col style="border: 2px solid red;" class="cart-main-col" sizeLg="6" sizeXl="6" sizeMd="6" sizeSm="12"
-          sizeXs="12"></ion-col>
       </ion-row>
     </ion-grid>
   </ion-list>
