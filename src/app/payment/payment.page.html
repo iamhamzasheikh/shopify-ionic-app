@@ -1,13 +1,122 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>payment</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">payment</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-list class="payment-main-container">
+    <ion-grid class="payment-grid">
+      <ion-row class="payment-row">
+        <ion-col sizeLg="6" sizeXl="6" sizeMd="6" sizeSm="12" sizeXs="12" class="payment-col">
+
+          <div class="payment-header">
+            <h2 class="payment-text">
+              Payment
+            </h2>
+          </div>
+          <!-- address-area -->
+          <div class="payment-address-area">
+            <ion-card *ngFor="let address of addresses; let i = index">
+              <ion-grid class="payment-address-container">
+                <ion-row>
+                  <ion-col size="10">
+                    <h2>{{ headings[i] }}</h2> <!-- Bind the heading for each address -->
+                    <p>{{ address }}</p> <!-- Bind the address from the array -->
+
+                    <!-- Conditionally show email only for the second container -->
+                    <p *ngIf="i === 1">Email: {{ email }}</p>
+                  </ion-col>
+                  <ion-col size="2" class="edit-icon">
+                    <ion-button fill="clear">
+                      <ion-icon name="pencil" style="color: white;"></ion-icon>
+                    </ion-button>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-card>
+          </div>
+
+          <div class="payment-item">
+            <div class="item-header">
+              <h2 class="item-text">
+                Items
+                <span class="item-badge">2</span>
+              </h2>
+              <button>Add Voucher</button>
+            </div>
+
+            <!-- Payment Product Item -->
+            <div *ngFor="let item of items" class="payment-product-container">
+              <ion-grid>
+                <ion-row class="payment-product-row">
+                  <ion-col size="2" class="payment-product-avatar-col">
+                    <ion-avatar>
+                      <img [src]="item.image" />
+                    </ion-avatar>
+                  </ion-col>
+                  <ion-col size="8" class="payment-product-description">
+                    <ion-row>
+                      <ion-col size="12">
+                        <p>{{ item.description }}</p>
+                      </ion-col>
+                    </ion-row>
+                  </ion-col>
+                  <ion-col size="2" class="payment-product-price-col">
+                    <strong>${{ item.price }}</strong>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </div>
+          </div>
+        </ion-col>
+        <ion-col class="payment-col" sizeLg="6" sizeXl="6" sizeMd="6" sizeSm="12" sizeXs="12">
+
+          <div class="payment-summary-area">
+            <div class="summary-heading">
+              <h2>Shipping Option</h2>
+            </div>
+
+            <div *ngFor="let option of shippingOptions" class="shipping-option">
+              <ion-row class="option-row">
+                <ion-col size="4" class="shipping-type">
+                  <ion-radio></ion-radio>
+                  <span>{{ option.type }}</span>
+                </ion-col>
+                <ion-col size="4" class="shipping-time">
+                  <span>{{ option.time }}</span>
+                </ion-col>
+                <ion-col size="4" class="shipping-price">
+                  <span>{{ option.price }}</span>
+                </ion-col>
+              </ion-row>
+            </div>
+
+            <p>Delivered on or before Thursday, 23 April 2024</p>
+
+            <div class="checkout-section">
+              <ion-grid>
+                <ion-row class="payment-row">
+                  <ion-col size="10" class="payment-info">
+                    <h2 class="payment-title">Payment Method</h2>
+                    <ion-button class="payment-button" fill="outline">
+                      Card
+                    </ion-button>
+                  </ion-col>
+                  <ion-col size="2" class="edit-col">
+                    <ion-icon name="create-outline" class="edit-icon"></ion-icon>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </div>
+
+            <div class="payment-btn-area">
+              <div class="total-info">
+                <h2 class="total-title">Total $34,00</h2>
+                <button>Pay</button>
+              </div>
+            </div>
+
+
+
+
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-list>
 </ion-content>
