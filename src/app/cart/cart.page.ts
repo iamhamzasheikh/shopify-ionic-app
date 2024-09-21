@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.page.html',
@@ -11,7 +12,11 @@ export class CartPage {
     { name: 'Product 2', description: 'Adipisicing elit.', color: 'Blue', size: 'L', quantity: 1, image: '../../assets/cart2.png' },
   ];
 
-  constructor() { }
+  constructor(private router: Router) { }
+
+  goToNextPage() {
+    this.router.navigate(['/payment']);
+  }
 
   decrement(product: any) {
     if (product.quantity > 1) {
