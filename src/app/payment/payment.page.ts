@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-payment',
@@ -39,8 +40,11 @@ export class PaymentPage implements OnInit {
     { type: 'Standard', time: '3-5 days', price: '$5.00' }
   ];
 
-  constructor() { }
+  constructor(private router: Router) { }
 
+  goToNextPage() {
+    this.router.navigate(['/receive']);
+  }
   ngOnInit() {
   }
 

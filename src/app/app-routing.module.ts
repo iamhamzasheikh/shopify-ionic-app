@@ -38,6 +38,10 @@ const routes: Routes = [
     path: 'payment',
     loadChildren: () => import('./payment/payment.module').then( m => m.PaymentPageModule)
   },
+  {
+    path: 'receive',
+    loadChildren: () => import('./receive/receive.module').then( m => m.ReceivePageModule)
+  },
 
 
 ];
