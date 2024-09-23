@@ -1,0 +1,208 @@
+ion-content {
+    .receive-main-container {
+        border: 2px solid black;
+        width: 90%;
+        height: 90vh;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        margin: 0;
+        padding: 0;
+
+        .receive-main-grid {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+
+            .receive-main-row {
+                width: 100%;
+                height: 100%;
+
+                .receive-main-col {
+                    border: 2px solid red;
+                    width: 100%;
+                    height: 100%;
+                    margin: 0;
+                    padding: 0;
+                }
+
+                .receive-main-col:first-child {
+                    .receive-col-header {
+                        border: 2px solid blue;
+                        width: 100%;
+                        height: 70px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+
+                        .left-side {
+                            border: 2px solid seagreen;
+                            width: 45%;
+                            height: 100%;
+                            margin-left: 5px;
+                            padding: 0;
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+
+                            .img-header {
+                                // border: 2px solid saddlebrown;
+                                box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+                                border-radius: 50%;
+                                width: 60px;
+                                height: 60px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+
+                                img {
+                                    width: 50px;
+                                    height: 50px;
+                                    border-radius: 50%;
+                                }
+                            }
+
+                            .info-header {
+                                border: 2px solid yellow;
+                                width: 200px;
+                                height: 100%;
+                                display: flex;
+                                flex-direction: column;
+                                align-items: start;
+                                justify-content: space-between;
+                                margin: 0;
+                                padding: 0;
+
+                                h4,
+                                p {
+                                    width: auto;
+                                    height: auto;
+                                    margin: 0;
+                                    padding: 0;
+                                }
+
+                                h4 {
+                                    font-weight: bold;
+                                }
+                            }
+                        }
+
+                        .right-side {
+                            border: 2px solid salmon;
+                            width: 55%;
+                            height: 100%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+
+                            .icon-row {
+                                display: flex;
+                                justify-content: space-evenly;
+                                align-items: center;
+                                width: 100%;
+                                padding: 20px;
+                                border: 2px solid yellow;
+                                margin: 0;
+                                padding: 0;
+
+                                .icon-container {
+                                    // border: 2px solid red;
+                                    background-color: #e8eeff;
+                                    border-radius: 50%;
+                                    width: 50px;
+                                    height: 50px;
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    transition: all 0.3s ease;
+
+                                    ion-icon {
+                                        font-size: 25px;
+                                        /* Icon size */
+                                        color: #005eff;
+                                        /* Blue color for icons */
+                                    }
+
+                                    &:hover {
+                                        cursor: pointer;
+                                        background-color: #c3d2ff;
+                                        /* Slightly darker on hover */
+                                    }
+                                }
+                            }
+
+                            //   @media (max-width: 768px) {
+                            //     .icon-row {
+                            //       .icon-container {
+                            //         margin-bottom: 15px; /* Add space between stacked icons */
+                            //       }
+                            //     }
+                            //   }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @media (max-width:768px) {
+        .receive-main-container {
+            width: 100%;
+            height: 100vh;
+        }
+    }
+
+    @media (min-width:250px) and (max-width:480px) {
+
+        /* Mobile screen adjustments */
+        .receive-main-container {
+            .receive-main-grid {
+                .receive-main-row {
+                    .receive-main-col:first-child {
+                        .receive-col-header {
+                            .left-side {
+                                width: 50%;
+
+                                .img-header {
+                                    width: 50px;
+                                    height: 50px;
+
+                                    img {
+                                        width: 40px;
+                                        height: 40px;
+                                    }
+                                }
+
+                                .info-header {
+                                    width: 140px;
+                                    max-width: 120px;
+
+                                    h4 {
+                                        font-size: 16px;
+                                    }
+                                }
+
+
+                            }
+
+                            .right-side {
+                                width: 50%;
+
+                                .icon-row {
+                                    justify-content: space-around;
+
+                                    .icon-container {
+                                        width: 40px;
+                                        height: 40px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
