@@ -8,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class ReceivePage implements OnInit {
 
   constructor() { }
+  
+  
 
   ngOnInit() {
   }

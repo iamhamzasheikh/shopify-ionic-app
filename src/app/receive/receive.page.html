@@ -3,8 +3,8 @@
     <ion-grid class="receive-main-grid">
       <ion-row class="receive-main-row">
         <ion-col class="receive-main-col" sizeLg="6" sizeXl="6" sizeMd="6" sizeSm="12" sizeXs="12">
+          <!-- left-col-header-area -->
           <div class="receive-col-header">
-
             <div class="left-side">
               <div class="img-header">
                 <img src="../../assets/card1.png" alt="">
@@ -15,8 +15,6 @@
                 <p>My Order</p>
               </div>
             </div>
-
-
             <div class="right-side">
               <div class="icon-row">
                 <div class="icon-container">
@@ -30,24 +28,175 @@
                 </div>
               </div>
             </div>
-
           </div>
 
+          <!-- order-items-area -->
+          <ion-list class="order-area">
+            <div class="order-img-container">
+              <img src="../../assets/card4.png" alt="img">
+              <img src="../../assets/card6.png" alt="img">
+              <img src="../../assets/card2.png" alt="img">
+              <img src="../../assets/card1.png" alt="img">
+            </div>
+
+            <div class="info-order-container">
+              <div class="order-num-item">
+                <div class="num-type">
+                  <p>Order # 922871</p>
+                  <p>Standard Delivery</p>
+                </div>
+                <p class="num-item">3 item</p>
+              </div>
+              <div class="btn-order">
+                <p>Packed</p>
+                <button>Track</button>
+              </div>
+            </div>
+          </ion-list>
+          <!-- order-items-area -->
+          <ion-list class="order-area">
+            <div class="order-img-container">
+              <img src="../../assets/card4.png" alt="img">
+              <img src="../../assets/card6.png" alt="img">
+              <img src="../../assets/card2.png" alt="img">
+              <img src="../../assets/card1.png" alt="img">
+            </div>
+
+            <div class="info-order-container">
+              <div class="order-num-item">
+                <div class="num-type">
+                  <p>Order # 922871</p>
+                  <p>Standard Delivery</p>
+                </div>
+                <p class="num-item">4 item</p>
+              </div>
+              <div class="btn-order">
+                <p>Shipped</p>
+                <button>Track</button>
+              </div>
+            </div>
+          </ion-list>
         </ion-col>
-
-
-
-
-
-
+        <!-- second-column -->
         <ion-col class="receive-main-col" sizeLg="6" sizeXl="6" sizeMd="6" sizeSm="12" sizeXs="12">
+
+          <!-- order-items-area -->
+          <ion-list class="order-area">
+            <div class="order-img-container">
+              <img src="../../assets/card4.png" alt="img">
+              <img src="../../assets/card6.png" alt="img">
+              <img src="../../assets/card2.png" alt="img">
+              <img src="../../assets/card1.png" alt="img">
+            </div>
+
+            <div class="info-order-container">
+              <div class="order-num-item">
+                <div class="num-type">
+                  <p>Order # 922871</p>
+                  <p>Standard Delivery</p>
+                </div>
+                <p class="num-item">4 item</p>
+              </div>
+
+              <div class="btn-order">
+                <ion-list>
+                  <p>Delivered</p>
+                  <ion-checkbox slot="start" [checked]="true" class="rounded-checkbox"></ion-checkbox>
+                </ion-list>
+                <button>Review</button>
+              </div>
+            </div>
+          </ion-list>
+          <!-- order-items-area -->
+          <ion-list class="order-area">
+            <div class="order-img-container">
+              <img src="../../assets/card4.png" alt="img">
+              <img src="../../assets/card6.png" alt="img">
+              <img src="../../assets/card2.png" alt="img">
+              <img src="../../assets/card1.png" alt="img">
+            </div>
+
+            <div class="info-order-container">
+              <div class="order-num-item">
+                <div class="num-type">
+                  <p>Order # 922871</p>
+                  <p>Standard Delivery</p>
+                </div>
+                <p class="num-item">4 item</p>
+              </div>
+
+              <div class="btn-order">
+                <ion-list>
+                  <p>Delivered</p>
+                  <ion-checkbox slot="start" [checked]="true" class="rounded-checkbox"></ion-checkbox>
+                </ion-list>
+                <button>Review</button>
+              </div>
+            </div>
+          </ion-list>
+          <!-- order-items-area -->
+          <ion-list class="order-area">
+            <div class="order-img-container">
+              <img src="../../assets/card4.png" alt="img">
+              <img src="../../assets/card6.png" alt="img">
+              <img src="../../assets/card2.png" alt="img">
+              <img src="../../assets/card1.png" alt="img">
+            </div>
+
+            <div class="info-order-container">
+              <div class="order-num-item">
+                <div class="num-type">
+                  <p>Order # 922871</p>
+                  <p>Standard Delivery</p>
+                </div>
+                <p class="num-item">4 item</p>
+              </div>
+
+              <div class="btn-order">
+                <ion-list>
+                  <p>Delivered</p>
+                  <ion-checkbox slot="start" [checked]="true" class="rounded-checkbox"></ion-checkbox>
+                </ion-list>
+                <button>Review</button>
+              </div>
+            </div>
+          </ion-list>
 
         </ion-col>
       </ion-row>
     </ion-grid>
   </ion-list>
-
-
-
-
 </ion-content>
+<!-- footer -->
+<!-- <ion-footer class="ion-no-border">
+  <ion-toolbar>
+    <ion-tabs>
+      <ion-tab-bar slot="bottom">
+        <ion-tab-button tab="home">
+          <ion-icon name="home-outline"></ion-icon>
+          <ion-label>Home</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="favorites">
+          <ion-icon name="heart-outline"></ion-icon>
+          <ion-label>Favorites</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="orders">
+          <ion-icon name="list-outline"></ion-icon>
+          <ion-label>Orders</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="cart">
+          <ion-icon name="cart-outline"></ion-icon>
+          <ion-label>Cart</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="profile">
+          <ion-icon name="person-outline"></ion-icon>
+          <ion-label>Profile</ion-label>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer> -->
