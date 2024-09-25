@@ -42,6 +42,10 @@ const routes: Routes = [
     path: 'receive',
     loadChildren: () => import('./receive/receive.module').then( m => m.ReceivePageModule)
   },
+  {
+    path: 'setting',
+    loadChildren: () => import('./setting/setting.module').then( m => m.SettingPageModule)
+  },
 
 
 ];
