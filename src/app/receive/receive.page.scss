@@ -13,6 +13,7 @@ ion-content {
         transform: translate(-50%, -50%);
         margin: 0;
         padding: 0;
+        overflow: auto;
 
         .receive-main-grid {
             width: 100%;
@@ -606,6 +607,12 @@ ion-content {
             }
         }
     }
+
+    .receive-main-container::-webkit-scrollbar{
+    display: none;
+    }
+
+
 
     @media (max-width:768px) {
         .receive-main-container {

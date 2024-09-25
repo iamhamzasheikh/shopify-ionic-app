@@ -1,7 +1,7 @@
 ion-content {
     .cart-main-container {
         // border: 2px solid black;
-        width: 100%;
+        width: 90%;
         height: 100vh;
         position: absolute;
         top: 50%;
@@ -218,6 +218,7 @@ ion-content {
                         flex-direction: column;
                         align-items: center;
                         justify-content: space-between;
+                        margin-top: 70px;
 
                         div {
                             // border: 2px solid brown;
@@ -242,6 +243,10 @@ ion-content {
                 }
             }
         }
+    }
+
+    .cart-main-container::-webkit-scrollbar {
+        display: none;
     }
 
     @media (max-width: 480px) {
@@ -399,20 +404,20 @@ ion-content {
 
 
 
-    // @media (max-width:768px) {
-    //     .cart-main-container {
-    //         width: 100%;
-    //         height: 100vh;
-    //         overflow: auto;
+    @media (max-width:768px) {
+        .cart-main-container {
+            width: 100%;
+            height: 100vh;
+            overflow: auto;
 
-    //         .cart-main-grid {
-    //             .cart-main-row {
-    //                 .cart-main-col {
-    //                     height: auto;
+            .cart-main-grid {
+                .cart-main-row {
+                    .cart-main-col {
+                        height: auto;
 
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
+                    }
+                }
+            }
+        }
+    }
 }
