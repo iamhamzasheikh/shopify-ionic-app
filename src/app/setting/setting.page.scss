@@ -57,12 +57,11 @@ ion-content {
                 justify-content: center;
                 cursor: pointer;
 
-
-                img {
+                .profile-image {
                     width: 110px;
                     height: 110px;
                     border-radius: 50%;
-                    margin: 0 auto;
+                    object-fit: cover;
                 }
             }
 
