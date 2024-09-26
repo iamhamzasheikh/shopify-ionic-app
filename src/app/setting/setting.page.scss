@@ -4,14 +4,13 @@ ion-content {
         box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
         border-radius: 10px;
         width: 30%;
-        height: 80vh;
+        height: 90vh;
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
         margin: 0;
         padding: 0;
-
         .setting-header {
             // border: 2px solid red;
             width: 100%;
@@ -127,6 +126,8 @@ ion-content {
                 border-radius: 5px;
                 width: 95%;
                 height: 50px;
+                position: absolute;
+                bottom: 10px;
 
                 button {
                     border: none;
