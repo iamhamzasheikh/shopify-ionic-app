@@ -6,10 +6,10 @@
     </div>
 
     <div class="setting-img-container">
-      <div class="img-box-round">
-        <img src="../../assets/avatar12.png" alt="">
+      <div class="img-box-round" (click)="presentActionSheet()">
+        <img [src]="profileImage" [attr.data-unique]="uniqueId" class="profile-image">
       </div>
-      <ion-icon class="edit-icon" name="pencil"></ion-icon>
+      <ion-icon class="edit-icon" name="pencil" (click)="presentActionSheet()"></ion-icon>
     </div>
 
     <div class="setting-input-container">
@@ -23,7 +23,7 @@
 
     <div class="btn-container-setting">
       <div class="btn-control-btn">
-        <button>Save Changes</button>
+        <button (click)="onSaveChanges()">{{ buttonText }}</button>
       </div>
     </div>
 
