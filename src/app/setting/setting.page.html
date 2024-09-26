@@ -1,7 +1,7 @@
 <ion-content [fullscreen]="true">
   <ion-list class="setting-main-container">
     <div class="setting-header">
-      <h3>Settings</h3>
+      <h1>Settings</h1>
       <p>You Profile</p>
     </div>
 
@@ -9,18 +9,22 @@
       <div class="img-box-round">
         <img src="../../assets/avatar12.png" alt="">
       </div>
+      <ion-icon class="edit-icon" name="pencil"></ion-icon>
     </div>
 
     <div class="setting-input-container">
-
-      <input type="text" placeholder="Enter Name">
-      <input type="email" name="email" placeholder="Enter Email">
-      <input type="password" name="password" placeholder="Enter Password">
+      <div class="inputs-control">
+        <input type="text" placeholder="Enter Name">
+        <input type="email" name="email" placeholder="Enter Email">
+        <input type="password" name="password" placeholder="Enter Password">
+      </div>
 
     </div>
 
     <div class="btn-container-setting">
-      <button>Save Changes</button>
+      <div class="btn-control-btn">
+        <button>Save Changes</button>
+      </div>
     </div>
 
   </ion-list>
