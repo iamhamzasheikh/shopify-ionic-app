@@ -1,8 +1,7 @@
 ion-content {
     .payment-method-main-container {
-        border: 2px solid black;
-        // box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
-        border-radius: 10px;
+        // border: 2px solid black;
+        box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
         width: 30%;
         height: 90vh;
         position: absolute;
@@ -13,7 +12,7 @@ ion-content {
         padding: 0;
 
         .payment-method-header {
-            border: 2px solid red;
+            // border: 2px solid red;
             width: 100%;
             height: auto;
             display: flex;
@@ -34,6 +33,174 @@ ion-content {
                 margin: 0;
                 padding: 0;
                 font-size: 15px;
+            }
+        }
+
+        .payment-card-box {
+            // border: 2px solid seagreen;
+            width: 100%;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10%;
+
+            .master-card {
+                background-color: #f4f7ff;
+                border-radius: 10px;
+                width: 60%;
+                height: 200px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                ion-grid.credit-card {
+                    width: 100%;
+                    padding: 15px;
+                    background-color: #f4f7ff;
+                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                    border-radius: 15px;
+
+                    /* Nested styling for the card logo */
+                    .card-logo {
+                        img {
+                            width: 40px;
+                        }
+                    }
+
+                    /* Nested styling for the settings icon */
+                    .settings-icon {
+                        display: flex;
+                        justify-content: flex-end;
+                        align-items: center;
+
+                        ion-icon {
+                            font-size: 20px;
+                            color: #4a90e2;
+                        }
+                    }
+
+                    /* Nested styling for card details */
+                    .card-details {
+                        margin-top: 15px;
+
+                        .card-number {
+                            font-size: 18px;
+                            letter-spacing: 3px;
+                        }
+
+                        .cardholder-name {
+                            font-size: 14px;
+                            margin-top: 10px;
+                            font-weight: bold;
+                        }
+
+                        .expiry-date {
+                            font-size: 12px;
+                            margin-top: 5px;
+                        }
+                    }
+                }
+            }
+
+            .plus-btn {
+                width: 10%;
+                height: 200px;
+                background-color: #007bff;
+                /* Bright blue background */
+                border-radius: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                ion-icon {
+                    font-size: 32px;
+                    color: white;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    ion-content {
+        .payment-method-main-container {
+            width: 100%;
+            height: 100vh;
+            border: 0;
+        }
+    }
+}
+
+@media (max-width:480px) {
+    ion-content {
+        .payment-method-main-container {
+            .payment-card-box {
+                gap: 10%;
+
+                .master-card {
+                    width: 70%;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 481px) and (max-width: 576px) {
+    ion-content {
+        .payment-method-main-container {
+            .payment-card-box {
+                gap: 10%;
+
+                .master-card {
+                    width: 65%;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 577px) and (max-width: 768px) {
+    ion-content {
+        .payment-method-main-container {
+            .payment-card-box {
+                gap: 10%;
+
+                .master-card {
+                    width: 50%;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1080px) {
+    ion-content {
+        .payment-method-main-container {
+            width: 60%;
+
+            .payment-card-box {
+                gap: 10%;
+
+                .master-card {
+                    width: 70%;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 1081px) and (max-width: 1300px) {
+    ion-content {
+        .payment-method-main-container {
+            width: 50%;
+
+            .payment-card-box {
+                gap: 10%;
+
+                .master-card {
+                    width: 60%;
+                }
             }
         }
     }
