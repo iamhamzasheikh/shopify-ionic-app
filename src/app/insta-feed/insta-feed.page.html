@@ -1,0 +1,55 @@
+<ion-content [fullscreen]="true">
+  <ion-list class="insta-main-container">
+
+    <div class="main-box" *ngFor="let feed of feeds">
+      <ion-list class="feed-header">
+        <ion-item lines="none" class="profile-header">
+          <ion-avatar slot="start" class="profile-picture">
+            <img [src]="feed.profilePicture" />
+          </ion-avatar>
+    
+          <ion-label>
+            <div class="profile-info">
+              <span class="username">{{ feed.username }}</span>
+              <ion-icon name="checkmark-circle" class="verified-icon"></ion-icon>
+            </div>
+            <div class="music-info">
+              <ion-icon name="musical-notes" class="music-icon"></ion-icon>
+              <span>{{ feed.musicInfo }}</span>
+            </div>
+          </ion-label>
+    
+          <ion-icon slot="end" name="ellipsis-vertical" class="menu-icon"></ion-icon>
+        </ion-item>
+      </ion-list>
+    
+      <div class="swiper-slide-box">
+        <swiper-container class="ion-margin-top ion-margin" pagination="true" [breakpoints]="{
+            '360': {
+              'slidesPerView': 1,
+              'spaceBetween': 30,
+            },
+            '760': {
+              'slidesPerView': 1,
+              'spaceBetween': 10,
+            },
+            '1221': {
+              'slidesPerView': 1,
+              'spaceBetween': 15,
+            }
+          }">
+          <swiper-slide *ngFor="let slide of feed.slides; let i = index">
+            <div class="slide-wrapper">
+              <img [src]="slide.imageUrl" [alt]="slide.altText" />
+              <div class="slide-counter">
+                <span>{{ i + 1 }} / {{ feed.slides.length }}</span>
+              </div>
+            </div>
+          </swiper-slide>
+        </swiper-container>
+      </div>
+    </div>
+    
+
+  </ion-list>
+</ion-content>

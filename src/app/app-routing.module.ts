@@ -50,6 +50,10 @@ const routes: Routes = [
     path: 'payment-method',
     loadChildren: () => import('./payment-method/payment-method.module').then( m => m.PaymentMethodPageModule)
   },
+  {
+    path: 'insta-feed',
+    loadChildren: () => import('./insta-feed/insta-feed.module').then( m => m.InstaFeedPageModule)
+  },
 
 
 ];

@@ -190,10 +190,26 @@ ion-content {
     }
 }
 
-@media (min-width: 1081px) and (max-width: 1300px) {
+@media (min-width: 1081px) and (max-width: 1200px) {
     ion-content {
         .payment-method-main-container {
             width: 50%;
+
+            .payment-card-box {
+                gap: 10%;
+
+                .master-card {
+                    width: 60%;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 1300px) {
+    ion-content {
+        .payment-method-main-container {
+            width: 45%;
 
             .payment-card-box {
                 gap: 10%;
