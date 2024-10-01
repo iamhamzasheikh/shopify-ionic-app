@@ -1,0 +1,62 @@
+<ion-content [fullscreen]="true">
+<h1>Hello test page</h1>
+
+<!-- Action-button -->
+<ion-button (click)="setOpen(true)">Action Sheet</ion-button>
+<ion-action-sheet
+  [isOpen]="isActionSheetOpen"
+  header="Actions"
+  [buttons]="actionSheetButtons"
+  (didDismiss)="setOpen(false)"
+></ion-action-sheet>
+<!-- alert -->
+<ion-button id="present-alert">Alert</ion-button>
+<ion-alert
+  trigger="present-alert"
+  header="Alert!"
+  [buttons]="alertButtons"
+  (didDismiss)="setResult($event)"
+></ion-alert>
+<!-- popover -->
+<ion-button id="trigger-button">Click Me</ion-button>
+<ion-popover trigger="trigger-button">
+  <ng-template>
+    <ion-content class="ion-padding">Hello Styled World!</ion-content>
+  </ng-template>
+</ion-popover>
+
+<ion-button id="popover-button">Open Menu</ion-button>
+<ion-popover trigger="popover-button" [dismissOnSelect]="true">
+  <ng-template>
+    <ion-content>
+      <ion-list>
+        <ion-item [button]="true" [detail]="false">Option 1</ion-item>
+        <ion-item [button]="true" [detail]="false">Option 2</ion-item>
+        <ion-item [button]="true" id="nested-trigger">More options...</ion-item>
+
+        <ion-popover trigger="nested-trigger" [dismissOnSelect]="true" side="end">
+          <ng-template>
+            <ion-content>
+              <ion-list>
+                <ion-item [button]="true" [detail]="false">Nested option</ion-item>
+              </ion-list>
+            </ion-content>
+          </ng-template>
+        </ion-popover>
+      </ion-list>
+    </ion-content>
+  </ng-template>
+</ion-popover>
+
+<!-- toast -->
+<ion-button id="open-toast">Open Toast</ion-button>
+<ion-toast
+  trigger="open-toast"
+  [duration]="3000"
+  message="Hello Styled World!"
+  class="custom-toast"
+  [buttons]="toastButtons"
+></ion-toast>
+
+
+</ion-content>
