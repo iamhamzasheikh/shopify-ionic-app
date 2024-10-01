@@ -9,7 +9,7 @@
               Cart
               <span class="cart-badge">2</span>
             </h2>
-          </div> 
+          </div>
           <!-- address-area -->
           <div class="address-area">
             <ion-card>
@@ -41,7 +41,7 @@
                 <p>{{ product.color }}, Size{{ product.size }}</p>
 
                 <ion-item lines="none">
-                  <ion-label>$19.00</ion-label>
+                  <ion-label>Price: ${{ product.price.toFixed(2) }}</ion-label>
                   <div class="quantity-selector">
                     <ion-button fill="clear" (click)="decrement(product)">
                       <ion-icon name="remove-circle-outline"></ion-icon>
@@ -52,6 +52,7 @@
                     </ion-button>
                   </div>
                 </ion-item>
+                <p>Total Price: ${{ (product.price * product.quantity).toFixed(2) }}</p>
               </div>
             </div>
           </div>
@@ -61,19 +62,20 @@
           <div class="product-charges-container">
             <div class="sub-total">
               <p>Sub Total</p>
-              <p>$10.0</p>
+              <p>${{ subtotal.toFixed(2) }}</p>
             </div>
 
             <div class="delivery">
               <p>Delivery</p>
-              <p>$2.00</p>
+              <!-- Static or dynamic delivery charges -->
+                <p>${{ deliveryCharges.toFixed(2) }}</p>
             </div>
 
             <div class="total-charges">
               <p>Total</p>
-              <p>$12.00</p>
+              <p>${{ total.toFixed(2) }}</p>
             </div>
-            <ion-button (click)="goToNextPage()" expand="block">Check out</ion-button> 
+            <ion-button (click)="goToNextPage()" expand="block">Check out</ion-button>
           </div>
 
         </ion-col>

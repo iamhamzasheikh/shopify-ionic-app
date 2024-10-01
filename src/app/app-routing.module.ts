@@ -22,7 +22,8 @@ const routes: Routes = [
   {
     path: 'shop',
     loadChildren: () => import('./shop/shop.module').then( m => m.ShopPageModule)
-  },  {
+  },
+  {
     path: 'flash-sale',
     loadChildren: () => import('./flash-sale/flash-sale.module').then( m => m.FlashSalePageModule)
   },
@@ -54,6 +55,11 @@ const routes: Routes = [
     path: 'insta-feed',
     loadChildren: () => import('./insta-feed/insta-feed.module').then( m => m.InstaFeedPageModule)
   },
+  {
+    path: 'test',
+    loadChildren: () => import('./test/test.module').then( m => m.TestPageModule)
+  },
+
 
 
 ];
