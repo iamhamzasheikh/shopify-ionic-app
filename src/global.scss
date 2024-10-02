@@ -28,29 +28,29 @@ body {
   // }
 }
 
-/* Alert customization */
-ion-alert.alert-class {
-  --background: #000000;
-  --color: white;        /* White text color */
-  --color: white !important;          /* White text color for header and message */
-}
+// /* Alert customization */
+// ion-alert.alert-class {
+//   --background: #000000;
+//   --color: white;        /* White text color */
+//   --color: white !important;          /* White text color for header and message */
+// }
 
-/* Cancel button custom styling */
-ion-alert .alert-button.cancel-button {
-  --background: #ff4d4d !important;   /* Red background for Cancel button */
-  --color: white !important;          /* White text color for Cancel button */
-}
+// /* Cancel button custom styling */
+// ion-alert .alert-button.cancel-button {
+//   --background: #ff4d4d !important;   /* Red background for Cancel button */
+//   --color: white !important;          /* White text color for Cancel button */
+// }
 
-/* Confirm button custom styling */
-ion-alert .alert-button.confirm-button {
-  --background: #28a745 !important;   /* Green background for OK/Confirm button */
-  --color: white !important;          /* White text color for Confirm button */
-}
+// /* Confirm button custom styling */
+// ion-alert .alert-button.confirm-button {
+//   --background: #28a745 !important;   /* Green background for OK/Confirm button */
+//   --color: white !important;          /* White text color for Confirm button */
+// }
 
-/* Styling for all buttons (cancel and confirm) to ensure hover effect and text colors are applied */
-ion-alert .alert-button {
-  color: white !important;             /* Force white text for all buttons */
-}
-ion-alert .alert-title {
-  color: white !important;            /* White color for the header */
-}
+// /* Styling for all buttons (cancel and confirm) to ensure hover effect and text colors are applied */
+// ion-alert .alert-button {
+//   color: white !important;             /* Force white text for all buttons */
+// }
+// ion-alert .alert-title {
+//   color: white !important;            /* White color for the header */
+// }
