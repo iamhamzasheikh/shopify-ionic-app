@@ -13,9 +13,8 @@
 
 <!-- alert -->
 <ion-button id="present-alert">Alert</ion-button>
-<ion-alert trigger="present-alert" header="Alert!" [buttons]="alertButtons"
+<ion-alert trigger="present-alert" header="Alert!" [buttons]="alertButtons" cssClass="alert-class"
   (didDismiss)="setResult($event)"
-  style="--background: #000; --color: #fff;"
 ></ion-alert>
 
 

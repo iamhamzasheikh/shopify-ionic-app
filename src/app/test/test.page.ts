@@ -94,7 +94,7 @@ export class TestPage implements OnInit {
     this.isActionSheetOpen = isOpen;
   }
 
-  constructor(private animationCtrl: AnimationController) {}
+  constructor(private animationCtrl: AnimationController) { }
 
   ngOnInit() {
     // Initialize any default data or settings here

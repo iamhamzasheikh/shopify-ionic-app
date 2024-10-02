@@ -17,15 +17,40 @@
 // src/global.scss
 
 body {
-    // Ensure the background is set to light
-    --ion-background-color: #ffffff;
-    --ion-text-color: #000000;
-    
-  
-    // If you have any dark mode styles, you can comment them out or remove them
-    // @media (prefers-color-scheme: dark) {
-    //   --ion-background-color: #000000;
-    //   --ion-text-color: #ffffff;
-    // }
-  }
+  // Ensure the background is set to light
+  --ion-background-color: #ffffff;
+  --ion-text-color: #000000;
 
+  // If you have any dark mode styles, you can comment them out or remove them
+  // @media (prefers-color-scheme: dark) {
+  //   --ion-background-color: #000000;
+  //   --ion-text-color: #ffffff;
+  // }
+}
+
+/* Alert customization */
+ion-alert.alert-class {
+  --background: #000000;
+  --color: white;        /* White text color */
+  --color: white !important;          /* White text color for header and message */
+}
+
+/* Cancel button custom styling */
+ion-alert .alert-button.cancel-button {
+  --background: #ff4d4d !important;   /* Red background for Cancel button */
+  --color: white !important;          /* White text color for Cancel button */
+}
+
+/* Confirm button custom styling */
+ion-alert .alert-button.confirm-button {
+  --background: #28a745 !important;   /* Green background for OK/Confirm button */
+  --color: white !important;          /* White text color for Confirm button */
+}
+
+/* Styling for all buttons (cancel and confirm) to ensure hover effect and text colors are applied */
+ion-alert .alert-button {
+  color: white !important;             /* Force white text for all buttons */
+}
+ion-alert .alert-title {
+  color: white !important;            /* White color for the header */
+}
