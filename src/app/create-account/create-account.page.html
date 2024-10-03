@@ -1,6 +1,5 @@
 <ion-content [fullscreen]="true">
   <ion-list class="create-account-main-container">
-
     <!-- upper-section -->
     <ion-list class="upper-section">
       <img class="bubble-left" src="/assets/bubble02.png" alt="bubble-left">
@@ -30,16 +29,11 @@
 
       <!-- submit-btn-container -->
       <div class="submit-cancel-btn-container">
-        <button class="submit-btn" (click)="displayInputValues(emailInput.value, passwordInput.value)">Sign Up</button>
+        <button [disabled]="isButtonDisabled" class="submit-btn" (click)="displayInputValues(emailInput.value, passwordInput.value)">
+          {{ buttonText }}
+        </button>
         <p class="cancel">Cancel</p>
       </div>
-
-      <!-- Display the output -->
-      <!-- <div class="console-output">
-        <h3>Console Output:</h3>
-        <pre>{{ consoleOutput }}</pre>
-      </div> -->
-      
     </ion-list>
   </ion-list>
 </ion-content>

@@ -1,6 +1,7 @@
 ion-content {
     margin: 0;
     padding: 0;
+
     .create-account-main-container {
         // border: 2px solid black;
         box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
@@ -12,6 +13,7 @@ ion-content {
         transform: translate(-50%, -50%);
         margin: 0;
         padding: 0;
+
         // upper-section-css
         .upper-section {
             // border: 2px solid red;
@@ -19,7 +21,7 @@ ion-content {
             height: 45vh;
             margin: 0;
             padding: 0;
-    
+
             .bubble-left {
                 position: absolute;
                 top: 0;
@@ -27,7 +29,7 @@ ion-content {
                 width: 170px;
                 height: 170px;
             }
-    
+
             h1 {
                 position: absolute;
                 top: 20px;
@@ -36,16 +38,18 @@ ion-content {
                 font-weight: 700;
                 max-width: 50%;
             }
+
             .bubble-blue-right {
                 float: right;
             }
-    
+
             .uplord-img {
                 position: absolute;
                 bottom: 10px;
                 left: 50px;
             }
         }
+
         // bottom-section-css
         .bottom-section {
             // border: 2px solid seagreen;
@@ -53,7 +57,7 @@ ion-content {
             height: 55vh;
             margin: 0;
             padding: 0;
-    
+
             .inputs-container {
                 // border: 2px solid sienna;
                 width: 95%;
@@ -62,7 +66,7 @@ ion-content {
                 display: flex;
                 flex-direction: column;
                 gap: 10px;
-    
+
                 input {
                     padding: 18px 28px;
                     border-radius: 50px;
@@ -70,7 +74,7 @@ ion-content {
                     border: 0;
                     background-color: #e3e6e4;
                 }
-    
+
                 .phone-input-container {
                     display: flex;
                     align-items: center;
@@ -78,34 +82,34 @@ ion-content {
                     border-radius: 50px;
                     padding: 2px 10px;
                     width: 100%;
-                  
+
                     .country-select {
-                      border: none;
-                      background: transparent;
-                      font-size: 18px;
-                      margin-right: 20px;
-                  
-                      option {
-                        font-size: 16px;
-                      }
+                        border: none;
+                        background: transparent;
+                        font-size: 18px;
+                        margin-right: 20px;
+
+                        option {
+                            font-size: 16px;
+                        }
                     }
-                  
+
                     .phone-number-input {
-                      border: none;
-                      background: transparent;
-                      font-size: 16px;
-                      color: #b0b0b0;
-                      outline: none;
-                      flex-grow: 1;
-                      color: #000;
-                  
-                      &::placeholder {
-                        color: gray;
-                      }
+                        border: none;
+                        background: transparent;
+                        font-size: 16px;
+                        color: #b0b0b0;
+                        outline: none;
+                        flex-grow: 1;
+                        color: #000;
+
+                        &::placeholder {
+                            color: gray;
+                        }
                     }
-                  }
+                }
             }
-    
+
             .submit-cancel-btn-container {
                 // border: 2px solid yellow;
                 width: 95%;
@@ -114,7 +118,7 @@ ion-content {
                 display: flex;
                 align-items: center;
                 justify-content: space-evenly;
-    
+
                 button {
                     padding: 20px 30px;
                     width: 30%;
@@ -126,17 +130,27 @@ ion-content {
                     cursor: pointer;
                     font-size: 16px;
                 }
-    
+
                 p {
                     margin: 0;
                     font-size: 18px;
                     font-weight: 700;
                     color: #000;
                 }
-              }
+
+                /* When button is disabled, lighten the background color */
+                .button:disabled {
+                    background-color: #b0c4de;
+                    /* Lightened color */
+                    color: #f1f1f1;
+                    /* Lighter text color */
+                    cursor: not-allowed;
+                    /* Show that the button is not clickable */
+                }
+            }
         }
     }
-    
+
 }
 
 // @media (min-width:1401px) {
@@ -148,16 +162,18 @@ ion-content {
 // }
 
 @media (min-width: 1081px) and (max-width: 1400px) {
+
     // larger screen adjustments
     ion-content {
         .create-account-main-container {
             width: 100%;
-    
+
             .upper-section {
                 .uplord-img {
                     bottom: 10px;
                 }
             }
+
             .bottom-section {
                 .submit-cancel-btn-container {
                     button {
@@ -165,17 +181,18 @@ ion-content {
                     }
                 }
             }
-            
+
         }
     }
 }
 
 @media (min-width: 768px) and (max-width: 1080px) {
+
     // tablet screen adjustments
     ion-content {
         .create-account-main-container {
             width: 100%;
-    
+
             .upper-section {
                 .uplord-img {
                     bottom: 25px;
@@ -192,22 +209,24 @@ ion-content {
                         width: 100%;
                         font-size: 18px;
                     }
+
                     p {
                         margin-bottom: 10px;
                     }
                 }
             }
-            
+
         }
     }
 }
 
 @media (min-width: 450px) and (max-width: 767px) {
+
     // tablet-mobile screen adjustments
     ion-content {
         .create-account-main-container {
             width: 100%;
-    
+
             .upper-section {
                 .uplord-img {
                     bottom: 25px;
@@ -224,28 +243,31 @@ ion-content {
                         width: 100%;
                         font-size: 16px;
                     }
+
                     p {
                         margin-bottom: 10px;
                     }
                 }
             }
-            
+
         }
     }
 }
 
 @media (min-width: 50px) and (max-width: 449px) {
+
     // tablet-mobile screen adjustments
     ion-content {
         .create-account-main-container {
             width: 100%;
-    
+
             .upper-section {
                 h1 {
                     max-width: 60%;
                     font-size: 2.5rem;
                     font-weight: 600;
                 }
+
                 .uplord-img {
                     bottom: 25px;
                 }
@@ -261,12 +283,13 @@ ion-content {
                         width: 100%;
                         font-size: 14px;
                     }
+
                     p {
                         margin-bottom: 10px;
                     }
                 }
             }
-            
+
         }
     }
 }
