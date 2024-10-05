@@ -14,11 +14,14 @@ export class CreateAccountPage implements OnInit {
   ];
 
   private loginAttempts: number = 0;
-  public isButtonDisabled: boolean = false;
+  public isButtonDisabled: boolean = true;
   public buttonText: string = 'Sign Up';
   private countdown: number = 0;
   private countdownInterval: any;
   public isPermanentlyDisabled: boolean = false;
+  public showPassword: boolean = false;
+  public email: string = '';
+  public password: string = '';
 
   constructor(private router: Router, private alertController: AlertController) { }
 
@@ -36,7 +39,7 @@ export class CreateAccountPage implements OnInit {
     this.countdown = seconds;
     this.updateButtonText();
 
-    clearInterval(this.countdownInterval); // Clear any existing interval
+    clearInterval(this.countdownInterval);
     this.countdownInterval = setInterval(() => {
       this.countdown--;
       this.updateButtonText();
@@ -61,17 +64,16 @@ export class CreateAccountPage implements OnInit {
     }
   }
 
-  displayInputValues(email: string, password: string) {
-    if (!email || !password) {
+  displayInputValues() {
+    if (!this.email || !this.password) {
       this.presentAlert('Error', 'Please enter both email and password.');
       return;
     }
 
-    const account = this.validAccounts.find(acc => acc.email === email);
+    const account = this.validAccounts.find(acc => acc.email === this.email);
 
-    if (!account || account.password !== password) {
+    if (!account || account.password !== this.password) {
       this.loginAttempts++;
-      this.presentAlert('Error', !account ? 'Invalid email.' : 'Wrong password.');
 
       if (this.loginAttempts === 3) {
         this.disableButtonAndStartCountdown(10);
@@ -81,22 +83,40 @@ export class CreateAccountPage implements OnInit {
         this.isPermanentlyDisabled = true;
         this.isButtonDisabled = true;
         this.buttonText = 'Permanently Disabled';
-        this.presentAlert('Error', 'You are permanently disabled from submitting further attempts.');
       }
+
+      if (this.loginAttempts < 3 || this.loginAttempts === 4) {
+        this.presentAlert('Error', !account ? 'Invalid email.' : 'Wrong password.');
+      }
+
       return;
     }
 
-    // Successful login
     this.presentAlert('Success', 'Login Successful!');
+    this.resetLoginAttempts();
+  }
+
+  resetLoginAttempts() {
     this.loginAttempts = 0;
     this.isButtonDisabled = false;
     this.buttonText = 'Sign Up';
   }
 
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
+
+  checkButtonState() {
+    // Regex pattern for validating email format
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    // Enable button if the email is in valid format
+    const emailIsValid = emailPattern.test(this.email.trim());
+    this.isButtonDisabled = !emailIsValid;
+  }
+
   ngOnInit() {
-    this.loginAttempts = 0;
-    this.isButtonDisabled = false;
-    this.buttonText = 'Sign Up';
+    this.resetLoginAttempts();
+    this.checkButtonState();
     console.log('CreateAccountPage Initialized');
   }
 }

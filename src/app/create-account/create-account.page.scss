@@ -75,6 +75,26 @@ ion-content {
                     background-color: #e3e6e4;
                 }
 
+                .password-container {   
+                    position: relative;
+                    width: 100%;
+            
+                    input {
+                        width: 100%;
+                        padding-right: 40px; // Make room for the icon
+                    }
+            
+                    .password-visibility-icon {
+                        position: absolute;
+                        right: 15px;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        cursor: pointer;
+                        font-size: 1.2rem;
+                        color: #666;
+                    }
+                }
+
                 .phone-input-container {
                     display: flex;
                     align-items: center;
@@ -129,6 +149,20 @@ ion-content {
                     color: #fff;
                     cursor: pointer;
                     font-size: 16px;
+                    transition: background-color 0.3s ease;
+                    
+                    &.button-enabled {
+                      background-color: #0000FF; /* Blue */
+                      color: white;
+                      cursor: pointer;
+                    }
+                    
+                    &.button-disabled {
+                      background-color: #ADD8E6; /* Light Blue */
+                      color: #888;
+                      cursor: not-allowed;
+                    }
+                  }
                 }
 
                 p {
@@ -137,21 +171,11 @@ ion-content {
                     font-weight: 700;
                     color: #000;
                 }
-
-                /* When button is disabled, lighten the background color */
-                .button:disabled {
-                    background-color: #b0c4de;
-                    /* Lightened color */
-                    color: #f1f1f1;
-                    /* Lighter text color */
-                    cursor: not-allowed;
-                    /* Show that the button is not clickable */
-                }
             }
         }
     }
 
-}
+
 
 // @media (min-width:1401px) {
 //     ion-content{
