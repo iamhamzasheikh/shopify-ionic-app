@@ -13,6 +13,7 @@ ion-content {
         transform: translate(-50%, -50%);
         margin: 0;
         padding: 0;
+        overflow: scroll;
 
         // upper-section-css
         .upper-section {
@@ -75,15 +76,15 @@ ion-content {
                     background-color: #e3e6e4;
                 }
 
-                .password-container {   
+                .password-container {
                     position: relative;
                     width: 100%;
-            
+
                     input {
                         width: 100%;
                         padding-right: 40px; // Make room for the icon
                     }
-            
+
                     .password-visibility-icon {
                         position: absolute;
                         right: 15px;
@@ -93,6 +94,70 @@ ion-content {
                         font-size: 1.2rem;
                         color: #666;
                     }
+                }
+
+                .password-requirements {
+                    margin-top: 10px;
+                    transition: 0.4s ease-in-out;
+
+                    
+                    ul {
+                      list-style-type: none;
+                      padding-left: 0;
+                      margin: 0;
+                      display: flex;
+                      align-items: center;
+                      justify-content: flex-start;
+                      gap: 10px;
+                    }
+                  
+                    li {
+                      font-size: 14px;
+                      color: #999;
+                      margin-bottom: 5px;
+                      
+                      &:before {
+                        content: '❌ ';
+                      }
+                  
+                      &.met {
+                        color: #00cc00;
+                        
+                        &:before {
+                          content: '✅ ';
+                        } 
+                      }
+                    }
+                  }
+                  
+                  .button-enabled {
+                    opacity: 1;
+                  }
+                  
+                  .button-disabled {
+                    opacity: 0.5;
+                  }
+
+                .password-requirements {
+                    list-style-type: none;
+                    padding-left: 0;
+                    font-size: 12px;
+
+                    li {
+                        color: #999;
+
+                        &.met {
+                            color: #00cc00;
+                        }
+                    }
+                }
+
+                .button-enabled {
+                    opacity: 1;
+                }
+
+                .button-disabled {
+                    opacity: 0.5;
                 }
 
                 .phone-input-container {
@@ -113,6 +178,22 @@ ion-content {
                             font-size: 16px;
                         }
                     }
+
+                    .password-feedback {
+                        p {
+                            font-size: 14px;
+                            margin: 5px 0;
+                        }
+
+                        .valid {
+                            color: green;
+                        }
+
+                        .invalid {
+                            color: red;
+                        }
+                    }
+
 
                     .phone-number-input {
                         border: none;
@@ -150,30 +231,32 @@ ion-content {
                     cursor: pointer;
                     font-size: 16px;
                     transition: background-color 0.3s ease;
-                    
-                    &.button-enabled {
-                      background-color: #0000FF; /* Blue */
-                      color: white;
-                      cursor: pointer;
-                    }
-                    
-                    &.button-disabled {
-                      background-color: #ADD8E6; /* Light Blue */
-                      color: #888;
-                      cursor: not-allowed;
-                    }
-                  }
-                }
 
-                p {
-                    margin: 0;
-                    font-size: 18px;
-                    font-weight: 700;
-                    color: #000;
+                    &.button-enabled {
+                        background-color: #0000FF;
+                        /* Blue */
+                        color: white;
+                        cursor: pointer;
+                    }
+
+                    &.button-disabled {
+                        background-color: #ADD8E6;
+                        /* Light Blue */
+                        color: #888;
+                        cursor: not-allowed;
+                    }
                 }
+            }
+
+            p {
+                margin: 0;
+                font-size: 18px;
+                font-weight: 700;
+                color: #000;
             }
         }
     }
+}
 
 
 

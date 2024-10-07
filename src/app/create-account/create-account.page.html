@@ -15,22 +15,20 @@
           (input)="checkButtonState()">
         <div class="password-container">
           <input [type]="showPassword ? 'text' : 'password'" name="password" id="password"
-            placeholder="Enter your password" [(ngModel)]="password" (input)="checkButtonState()">
+            placeholder="Enter your password" [(ngModel)]="password" (input)="checkPasswordStrength()">
           <ion-icon [name]="showPassword ? 'eye-off' : 'eye'" (click)="togglePasswordVisibility()"
             class="password-visibility-icon"></ion-icon>
         </div>
-
-        <!-- phone-input-container -->
-        <div class="phone-input-container">
-          <select class="country-select" #countrySelect>
-            <option value="gb" data-flag="pk">pk</option>
-            <option value="us" data-flag="🇺🇸">🇺🇸</option>
-            <option value="ca" data-flag="🇨🇦">🇨🇦</option>
-            <option value="de" data-flag="🇩🇪">🇩🇪</option>
-            <option value="fr" data-flag="🇫🇷">🇫🇷</option>
-          </select>
-          <input type="text" placeholder="Your number" class="phone-number-input" #phoneInput>
+        <div class="password-strength-indicator">
+          <div [class]="'strength-bar ' + passwordStrength"></div>
+          <span class="strength-text">{{passwordStrengthText}}</span>
         </div>
+        <ul class="password-requirements">
+          <li [class.met]="hasMinLength">At least 8 characters</li>
+          <li [class.met]="hasLetter">Contains a letter</li>
+          <li [class.met]="hasNumber">Contains a number</li>
+          <li [class.met]="hasSpecialChar">Contains a special character</li>
+        </ul>
       </div>
 
       <!-- submit-btn-container -->

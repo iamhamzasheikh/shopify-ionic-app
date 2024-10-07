@@ -7,7 +7,7 @@
           <div class="header">
             <h2 class="cart-text">
               Cart
-              <span class="cart-badge">2</span>
+              <span class="cart-badge">{{ products.length }}</span>
             </h2>
           </div>
           <!-- address-area -->
@@ -33,12 +33,12 @@
             <div *ngFor="let product of products" class="img-box-details">
               <div class="img">
                 <img [src]="product.image" alt="">
-                <ion-icon name="trash-outline"></ion-icon>
+                <ion-icon name="trash-outline" (click)="removeProduct(product)"></ion-icon>
               </div>
 
               <div class="product-img-details">
                 <p>{{ product.description }}</p>
-                <p>{{ product.color }}, Size{{ product.size }}</p>
+                <p>{{ product.color }}, Size {{ product.size }}</p>
 
                 <ion-item lines="none">
                   <ion-label>Price: ${{ product.price.toFixed(2) }}</ion-label>
@@ -52,7 +52,7 @@
                     </ion-button>
                   </div>
                 </ion-item>
-                <p>Total Price: ${{ (product.price * product.quantity).toFixed(2) }}</p>
+                <p>Total Price: ${{ product.totalPrice.toFixed(2) }}</p>
               </div>
             </div>
           </div>
@@ -67,8 +67,7 @@
 
             <div class="delivery">
               <p>Delivery</p>
-              <!-- Static or dynamic delivery charges -->
-                <p>${{ deliveryCharges.toFixed(2) }}</p>
+              <p>${{ deliveryCharges.toFixed(2) }}</p>
             </div>
 
             <div class="total-charges">
@@ -77,7 +76,6 @@
             </div>
             <ion-button (click)="goToNextPage()" expand="block">Check out</ion-button>
           </div>
-
         </ion-col>
       </ion-row>
     </ion-grid>

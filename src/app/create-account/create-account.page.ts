@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
-
+import { AlertService } from '../services/alert.service';
 @Component({
   selector: 'app-create-account',
   templateUrl: './create-account.page.html',
@@ -9,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class CreateAccountPage implements OnInit {
   private validAccounts = [
-    { email: 'test@example.com', password: 'password123' },
+    { email: 'test@gmail.com', password: '!password123' },
     { email: 'user@example.com', password: 'password' }
   ];
 
@@ -23,16 +22,17 @@ export class CreateAccountPage implements OnInit {
   public email: string = '';
   public password: string = '';
 
-  constructor(private router: Router, private alertController: AlertController) { }
+  public passwordStrength: string = '';
+  public passwordStrengthText: string = '';
+  public hasMinLength: boolean = false;
+  public hasLetter: boolean = false;
+  public hasNumber: boolean = false;
+  public hasSpecialChar: boolean = false;
 
-  async presentAlert(header: string, message: string) {
-    const alert = await this.alertController.create({
-      header: header,
-      message: message,
-      buttons: ['OK']
-    });
-    await alert.present();
-  }
+  constructor(
+    private router: Router,
+    private alertService: AlertService
+  ) {}
 
   disableButtonAndStartCountdown(seconds: number) {
     this.isButtonDisabled = true;
@@ -66,7 +66,12 @@ export class CreateAccountPage implements OnInit {
 
   displayInputValues() {
     if (!this.email || !this.password) {
-      this.presentAlert('Error', 'Please enter both email and password.');
+      this.alertService.presentAlert('Error', 'Please enter both email and password.');
+      return;
+    }
+
+    if (!this.validatePassword()) {
+      this.alertService.presentPasswordAlert();
       return;
     }
 
@@ -86,14 +91,19 @@ export class CreateAccountPage implements OnInit {
       }
 
       if (this.loginAttempts < 3 || this.loginAttempts === 4) {
-        this.presentAlert('Error', !account ? 'Invalid email.' : 'Wrong password.');
+        this.alertService.presentAlert('Error', !account ? 'Invalid email.' : 'Wrong password.');
       }
 
       return;
     }
 
-    this.presentAlert('Success', 'Login Successful!');
+    this.alertService.presentAlert('Success', 'Login Successful!');
     this.resetLoginAttempts();
+  }
+
+  validatePassword(): boolean {
+    const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    return passwordPattern.test(this.password);
   }
 
   resetLoginAttempts() {
@@ -106,12 +116,45 @@ export class CreateAccountPage implements OnInit {
     this.showPassword = !this.showPassword;
   }
 
+  checkPasswordStrength() {
+    const password = this.password;
+    
+    this.hasMinLength = password.length >= 8;
+    this.hasLetter = /[A-Za-z]/.test(password);
+    this.hasNumber = /\d/.test(password);
+    this.hasSpecialChar = /[@$!%*?&]/.test(password);
+
+    let strength = 0;
+    if (this.hasMinLength) strength++;
+    if (this.hasLetter) strength++;
+    if (this.hasNumber) strength++;
+    if (this.hasSpecialChar) strength++;
+
+    switch (strength) {
+      case 0:
+      case 1:
+        this.passwordStrength = 'weak';
+        this.passwordStrengthText = 'Weak';
+        break;
+      case 2:
+      case 3:
+        this.passwordStrength = 'medium';
+        this.passwordStrengthText = 'Medium';
+        break;
+      case 4:
+        this.passwordStrength = 'strong';
+        this.passwordStrengthText = 'Strong';
+        break;
+    }
+
+    this.checkButtonState();
+  }
+
   checkButtonState() {
-    // Regex pattern for validating email format
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    // Enable button if the email is in valid format
-    const emailIsValid = emailPattern.test(this.email.trim());
-    this.isButtonDisabled = !emailIsValid;
+    const emailPattern = /^[^\s@]+@gmail\.com$/;
+    const isEmailValid = emailPattern.test(this.email.trim());
+    const isPasswordValid = this.passwordStrength === 'strong';
+    this.isButtonDisabled = !(isEmailValid && isPasswordValid);
   }
 
   ngOnInit() {
