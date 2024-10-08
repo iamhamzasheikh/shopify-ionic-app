@@ -3,22 +3,23 @@
     <!-- header-logo-section -->
     <ion-list class="header-section">
       <ion-list class="img-container">
-        <img src="/assets/image1.png" alt="" srcset="">
-      </ion-list>
+        <img [src]="homePageData?.logo ? homePageData.logo : 'assets/default-image.png'" alt="Logo"> </ion-list>
     </ion-list>
-    <!-- bottom-section -->
 
+    <!-- bottom-section -->
     <ion-list class="bottom-container">
       <div class="upper-info">
-        <h1>Shoppe</h1>
-        <p>Beautiful eCommerce UI Kit for your online store</p>
+        <h1>{{ homePageData?.title ? homePageData.title : 'Default Title' }}</h1>
+        <p>{{ homePageData?.description ? homePageData.description : 'Default description text goes here.' }}</p>
       </div>
 
       <div class="btn-container">
-        <button (click)="goToNextPage()">Let's get started</button>
+        <button (click)="goToNextPage()">{{ homePageData?.buttonLabel ? homePageData.buttonLabel : "Default Button Label" }}</button>
         <div class="already-account">
-          <p>I already have an account</p>
-          <div><ion-icon name="arrow-forward-outline"></ion-icon></div>
+          <p>{{ homePageData?.alreadyAccountText ? homePageData.alreadyAccountText : "I already have an account" }}</p>
+          <div> 
+            <ion-icon [name]="homePageData?.arrowIcon ? homePageData.arrowIcon : 'arrow-forward-outline'"></ion-icon>
+          </div>
         </div>
       </div>
     </ion-list>

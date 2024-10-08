@@ -1,7 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { interval, Subscription } from 'rxjs';
 import { register } from 'swiper/element/bundle';
-import { Router } from '@angular/router';  // Import Router
+import { Router } from '@angular/router';
+import { DataService } from '../services/data.service';  // Import DataService
+
 register();
 
 @Component({
@@ -13,28 +15,21 @@ export class ProductPage implements OnInit, OnDestroy {
 
   isFavorite: boolean = false;
   quantity: number = 1;
-  sizeOptions: string[] = ['S', 'M', 'L', 'XL', 'XXL', 'XS'];
   minutes: number = 0;
   seconds: number = 0;
   private timerSubscription: Subscription | undefined;
-  images: string[] = [
-    '../../assets/card1.png',
-    '../../assets/card2.png',
-    '../../assets/card3.png',
-    '../../assets/card4.png',
-    '../../assets/card5.png',
-    '../../assets/card6.png',
-    '../../assets/card3.png',
-    '../../assets/card4.png',
-    '../../assets/card5.png'
-  ];
+
+  colorOptions: string[] = [];
+  sizeOptions: string[] = [];
   selectedSlides: boolean[] = [];
 
-  constructor(private router: Router) { }  // Inject Router
+  constructor(private router: Router, private dataService: DataService) { }  // Inject DataService
 
   ngOnInit() {
     this.startTimer();
-    this.selectedSlides = new Array(this.images.length).fill(false);
+    this.colorOptions = this.dataService.getColorOptions();  // Get color options from DataService
+    this.sizeOptions = this.dataService.getSizeOptions();    // Get size options from DataService
+    this.selectedSlides = new Array(this.colorOptions.length).fill(false);
   }
 
   ngOnDestroy() {

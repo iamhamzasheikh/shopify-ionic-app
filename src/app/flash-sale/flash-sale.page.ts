@@ -1,8 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { interval, Subscription } from 'rxjs';
 import { Router } from '@angular/router';
-import { register } from 'swiper/element';
-register();
+import { DataService } from '../services/data.service'; // Import DataService
 
 @Component({
   selector: 'app-flash-sale',
@@ -14,58 +13,14 @@ export class FlashSalePage implements OnInit, OnDestroy {
   seconds: number = 0;
   private timerSubscription: Subscription | undefined;
   selectedDiscount: string = 'all';  // Default value
-  
-  // Products data array
-  products = [
-    {
-      image: '../../assets/sc2.png',
-      discount: 20,
-      description: 'Lorem ipsum dolor sit amet consectetur',
-      oldPrice: 500,
-      newPrice: 400
-    },
-    {
-      image: '../../assets/sc1.png', // Replace with other image URLs
-      discount: 30,
-      description: 'Lorem ipsum dolor sit amet consectetur adipiscing',
-      oldPrice: 700,
-      newPrice: 550
-    },
-    {
-      image: '../../assets/sc3.png', // Replace with other image URLs
-      discount: 15,
-      description: 'Consectetur adipiscing elit sed do eiusmod',
-      oldPrice: 200,
-      newPrice: 170
-    },
-    {
-      image: '../../assets/sc2.png', // Replace with other image URLs
-      discount: 50,
-      description: 'Tempor incididunt ut labore et dolore magna aliqua',
-      oldPrice: 1000,
-      newPrice: 500
-    },
-    {
-      image: '../../assets/sc3.png', // Replace with other image URLs
-      discount: 10,
-      description: 'Ut enim ad minim veniam quis nostrud',
-      oldPrice: 300,
-      newPrice: 270
-    },
-    {
-      image: '../../assets/sc1.png', // Replace with other image URLs
-      discount: 25,
-      description: 'Exercitation ullamco laboris nisi ut aliquip',
-      oldPrice: 400,
-      newPrice: 300
-    }
-  ];
+  products: any[] = [];  // Initialize products array
 
-  // Inject Router via constructor
-  constructor(private router: Router) { }
+  // Inject Router and DataService via constructor
+  constructor(private router: Router, private dataService: DataService) { }
 
   ngOnInit() {
     this.startTimer();
+    this.products = this.dataService.getProducts(); // Fetch product data from DataService
   }
 
   ngOnDestroy() {

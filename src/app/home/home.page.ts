@@ -1,17 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { DataService } from '../services/data.service';  // Import DataService
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit {
 
-  constructor(private router: Router) {}
+  homePageData: any;  // Variable to hold the home page data
 
-  goToNextPage() {
-    this.router.navigate(['/create-account']);  // Replace with your desired route
+  constructor(
+    private router: Router,
+    private dataService: DataService  // Inject the DataService
+  ) {}
+
+  ngOnInit() {
+    // Fetch home page data from DataService
+    this.homePageData = this.dataService.getHomePageData();
   }
 
+  goToNextPage() {
+    // Navigate to the 'create-account' page
+    this.router.navigate(['/create-account']);
+  }
 }

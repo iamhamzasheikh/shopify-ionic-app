@@ -106,11 +106,11 @@ ion-content {
                             padding: 0;
                         }
 
-                        .img-box {
+                        .color-main-box {
                             // border: 1px solid red;
                             width: 100%;
-                            height: 120px;
-                            padding: 10px 0;
+                            height: 80px;
+                            padding: 0 10px;
                             display: flex;
                             justify-content: center;
                             align-items: center;
@@ -131,25 +131,31 @@ ion-content {
                                     height: 100%;
                                     width: auto !important;
 
-                                    img {
-                                        border-radius: 10px;
-                                        height: 100%;
-                                        width: auto;
-                                        object-fit: cover;
-                                    }
+                                    .color-box {
+                                        width: 100px; // Set a fixed width for color boxes
+                                        height: 100px; // Set a fixed height for color boxes
+                                        border-radius: 5px; // Rounded corners for boxes
+                                        cursor: pointer; // Change cursor to pointer
+                                        position: relative; // Positioning for the checkbox icon
+                                        transition: border 0.3s; // Smooth transition for border color
+                                        display: flex; // Flexbox to center icon
+                                        justify-content: center; // Center icon horizontally
+                                        align-items: center; // Center icon vertically
 
-                                    img:hover {
-                                        transform: scale(0.9);
-                                        transition: 0.4s;
-                                        cursor: pointer;
-                                    }
+                                        // Optional: Change border color on hover
+                                        &:hover {
+                                            transform: scaleX(0.9);
+                                            transition: 0.4s;
+                                        }
 
-                                    .checkbox-icon {
-                                        position: absolute;
-                                        bottom: 5px;
-                                        left: 5px;
-                                        font-size: 24px;
-                                        color: blue;
+
+                                        .checkbox-icon {
+                                            position: absolute; // Position the icon absolutely
+                                            bottom: 10px; // Position it at the top
+                                            left: 5px; // Position it to the right
+                                            font-size: 24px; // Size of the checkbox icon
+                                            color: blue; // Color of the checkbox icon
+                                        }
                                     }
                                 }
                             }
@@ -311,8 +317,6 @@ ion-content {
                             }
                         }
                     }
-
-
                 }
             }
         }

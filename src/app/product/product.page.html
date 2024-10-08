@@ -25,14 +25,12 @@
               </div>
             </div>
             <div class="para"> -20%</div>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere, inventore laudantium doloremque illum
-              minus laborum nesciunt exercitationem. </p>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere, inventore laudantium doloremque illum minus laborum nesciunt exercitationem. </p>
           </div>
 
           <div class="color-option">
             <h2>Color options</h2>
-
-            <div class="img-box">
+            <div class="color-main-box">
               <swiper-container class="ion-margin-top ion-margin" pagination="false" [breakpoints]="{
                   '300': {
                     'slidesPerView': 4,
@@ -63,10 +61,10 @@
                     'spaceBetween': 15
                   }
                 }">
-                <swiper-slide *ngFor="let img of images; let i = index" (click)="toggleSlideSelection(i)">
-                  <img [src]="img" alt="slide image">
-                  <!-- Display checkbox if selected -->
-                  <ion-icon *ngIf="selectedSlides[i]" name="checkbox-outline" class="checkbox-icon"></ion-icon>
+                <swiper-slide *ngFor="let color of colorOptions; let i = index" (click)="toggleSlideSelection(i)">
+                  <div class="color-box" [style.backgroundColor]="color">
+                    <ion-icon *ngIf="selectedSlides[i]" name="checkbox-outline" class="checkbox-icon"></ion-icon>
+                  </div>
                 </swiper-slide>
               </swiper-container>
             </div>
@@ -76,8 +74,7 @@
             <p>Size</p>
             <ion-grid class="size-grid">
               <ion-row class="size-row">
-                <ion-col class="size-col" sizeXl="2" sizeLg="2" sizeMd="2" sizeSm="2" sizeXs="2"
-                  *ngFor="let size of sizeOptions">
+                <ion-col class="size-col" sizeXl="2" sizeLg="2" sizeMd="2" sizeSm="2" sizeXs="2" *ngFor="let size of sizeOptions">
                   <div class="size-box">{{ size }}</div>
                 </ion-col>
               </ion-row>
@@ -107,11 +104,6 @@
               <button class="buy-now-btn">Buy now</button>
             </div>
           </div>
-
-
-
-
-
         </ion-col>
       </ion-row>
     </ion-grid>
