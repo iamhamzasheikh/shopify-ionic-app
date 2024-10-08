@@ -54,3 +54,13 @@ body {
 // ion-alert .alert-title {
 //   color: white !important;            /* White color for the header */
 // }
+
+.custom-cancel-button {
+  --color: red !important;  /* Text color for Cancel button */
+  --background: white; /* Optional: background color for Cancel button */
+}
+
+.custom-ok-button {
+  --color: green !important; /* Text color for OK button */
+  --background: white; /* Optional: background color for OK button */
+}

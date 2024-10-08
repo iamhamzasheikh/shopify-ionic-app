@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertService } from '../services/alert.service';
+
 @Component({
   selector: 'app-create-account',
   templateUrl: './create-account.page.html',
@@ -66,7 +67,7 @@ export class CreateAccountPage implements OnInit {
 
   displayInputValues() {
     if (!this.email || !this.password) {
-      this.alertService.presentAlert('Error', 'Please enter both email and password.');
+      this.alertService.presentCreateAccountEmailError();
       return;
     }
 
@@ -91,13 +92,17 @@ export class CreateAccountPage implements OnInit {
       }
 
       if (this.loginAttempts < 3 || this.loginAttempts === 4) {
-        this.alertService.presentAlert('Error', !account ? 'Invalid email.' : 'Wrong password.');
+        if (!account) {
+          this.alertService.presentInvalidEmailAlert();
+        } else {
+          this.alertService.presentWrongPasswordAlert();
+        }
       }
 
       return;
     }
 
-    this.alertService.presentAlert('Success', 'Login Successful!');
+    this.alertService.presentLoginSuccessAlert();
     this.resetLoginAttempts();
   }
 

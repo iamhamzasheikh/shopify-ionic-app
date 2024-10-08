@@ -3,14 +3,23 @@
 
   <!-- Action-button -->
   <ion-button (click)="setOpen(true)">Action Sheet</ion-button>
-  <ion-action-sheet [isOpen]="alertService.isActionSheetOpen" header="Actions"
-    [buttons]="alertService.actionSheetButtons" (didDismiss)="setOpen(false)">
+  <ion-action-sheet> 
+    [isOpen]="false" <!-- Change this to a local variable or remove -->
+    header="Actions"
+    [buttons]="[]" <!-- Remove alertService.actionSheetButtons -->
+    (didDismiss)="setOpen(false)"
+  >
   </ion-action-sheet>
 
   <!-- Alert -->
   <ion-button id="present-alert">Alert</ion-button>
-  <ion-alert trigger="present-alert" header="Alert!" [buttons]="alertService.alertButtons" cssClass="alert-class"
-    (didDismiss)="setResult($event)">
+  <ion-alert>
+    trigger="present-alert" 
+    header="Alert!" 
+    [buttons]="[]" <!-- Remove alertService.alertButtons -->
+    cssClass="alert-class"
+    (didDismiss)="setResult($event)"
+  >
   </ion-alert>
 
   <!-- Popover -->
@@ -23,8 +32,13 @@
 
   <!-- Toast -->
   <ion-button id="open-toast">Open Toast</ion-button>
-  <ion-toast trigger="open-toast" [duration]="3000" message="Hello Styled World!" class="custom-toast"
-    [buttons]="alertService.getToastButtons()">
+  <ion-toast> 
+    trigger="open-toast" 
+    [duration]="3000" 
+    message="Hello Styled World!" 
+    class="custom-toast"
+    [buttons]="[]" <!-- Remove alertService.getToastButtons() -->
+  >
   </ion-toast>
 
   <!-- Animation Modal -->
@@ -36,8 +50,8 @@
   <ion-content class="ion-padding">
     <ion-button id="open-modal" expand="block">Open Modal</ion-button>
 
-    <ion-modal #modal trigger="open-modal" [enterAnimation]="alertService.enterAnimation"
-      [leaveAnimation]="alertService.leaveAnimation">
+    <ion-modal #modal trigger="open-modal">
+      <!-- Remove enterAnimation and leaveAnimation attributes -->
       <ng-template>
         <ion-header>
           <ion-toolbar>

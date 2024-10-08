@@ -1,27 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AlertService } from '../services/alert.service';
 
 @Component({
   selector: 'app-test',
   templateUrl: './test.page.html',
-  styleUrls: ['./test.page.scss'],
+  styleUrls: ['./test.page.scss']
 })
-export class TestPage implements OnInit {
+export class TestPage {
+  constructor(public alertService: AlertService) {}
 
-  constructor(public alertService: AlertService) { }  // Make sure AlertService is public
-
-  ngOnInit() {
-    console.log('TestPage component initialized');
-    this.alertService.setActionSheetOpen(false); // Initialize action sheet state
-  }
-
-  // Use this method to set the result of the alert
-  setResult(ev: CustomEvent) {
-    console.log(`Dismissed with role: ${ev.detail.role}`);
-  }
-
-  // Set action sheet state
+  // Action sheet handler
   setOpen(isOpen: boolean) {
-    this.alertService.setActionSheetOpen(isOpen);
+    // Remove this line as isActionSheetOpen doesn't exist in AlertService
+    // this.alertService.isActionSheetOpen = isOpen;
+  }
+
+  // For other actions like dismiss events, you can directly call methods
+  setResult(event: any) {
+    console.log('Alert dismissed with role:', event.detail.role);
   }
 }
