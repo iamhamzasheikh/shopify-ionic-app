@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { DataService } from '../services/data.service'; // Import the DataService
 
 interface Order {
   orderNumber: string;
@@ -16,59 +17,26 @@ interface Order {
 })
 export class ReceivePage implements OnInit {
 
-  // Orders data
-  orders: Order[] = [
-    {
-      orderNumber: 'Order # 922871',
-      deliveryType: 'Standard Delivery',
-      itemCount: 3,
-      status: 'Packed',
-      images: ['../../assets/card4.png', '../../assets/card6.png', '../../assets/card2.png', '../../assets/card1.png']
-    },
-    {
-      orderNumber: 'Order # 922872',
-      deliveryType: 'Standard Delivery',
-      itemCount: 4,
-      status: 'Shipped',
-      images: ['../../assets/h1.png', '../../assets/h2.png', '../../assets/h3.png', '../../assets/h4.png']
-    },
-    {
-      orderNumber: 'Order # 922873',
-      deliveryType: 'Standard Delivery',
-      itemCount: 4,
-      status: 'Delivered',
-      images: ['../../assets/sc1.png', '../../assets/sc2.png', '../../assets/sc3.png', '../../assets/sc4.png']
-    },
-    {
-      orderNumber: 'Order # 922874',
-      deliveryType: 'Standard Delivery',
-      itemCount: 4,
-      status: 'Delivered',
-      images: ['../../assets/card4.png', '../../assets/card6.png', '../../assets/card2.png', '../../assets/card1.png']
-    },
-    {
-      orderNumber: 'Order # 922874',
-      deliveryType: 'Standard Delivery',
-      itemCount: 4,
-      status: 'Delivered',
-      images: ['../../assets/card4.png', '../../assets/card6.png', '../../assets/card2.png', '../../assets/card1.png']
-    }
-  ];
-
   // Define leftOrders and rightOrders arrays
   leftOrders: Order[] = [];
   rightOrders: Order[] = [];
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private dataService: DataService) { }
 
   ngOnInit(): void {
-    this.splitOrders();
+    this.getOrdersFromService(); // Fetch orders from DataService
+  }
+
+  // Function to fetch orders from DataService
+  getOrdersFromService(): void {
+    const orders = this.dataService.getReceiveOrders(); // Now calling the new method in DataService
+    this.splitOrders(orders); // Split orders into left and right columns
   }
 
   // Function to split orders into left and right columns
-  splitOrders(): void {
-    this.leftOrders = this.orders.slice(0, 2);  // First two orders for the left column
-    this.rightOrders = this.orders.slice(2);     // Remaining orders for the right column
+  splitOrders(orders: Order[]): void {
+    this.leftOrders = orders.slice(0, 2);  // First two orders for the left column
+    this.rightOrders = orders.slice(2);     // Remaining orders for the right column
   }
 
   // Function to navigate to the new page
@@ -76,8 +44,6 @@ export class ReceivePage implements OnInit {
     console.log('Navigating to the new page with order:', orderNumber);
     this.router.navigate(['/setting']);
   }
-
-  // Additional helper functions as previously defined...
 
   // Helper function to check if an order is trackable
   isTrackable(status: string): boolean {
@@ -99,5 +65,4 @@ export class ReceivePage implements OnInit {
   getImagePath(imageName: string): string {
     return `../../assets/${imageName}`;
   }
-
 }

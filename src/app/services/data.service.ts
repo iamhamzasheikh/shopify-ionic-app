@@ -1,5 +1,15 @@
 import { Injectable } from '@angular/core';
 
+
+// Define Order interface here
+interface Order {
+  orderNumber: string;
+  deliveryType: string;
+  itemCount: number;
+  status: 'Packed' | 'Shipped' | 'Delivered';
+  images: string[];
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -59,7 +69,6 @@ export class DataService {
       newPrice: 300
     }
   ];
-
 
   private colorOptions: string[] = ['#FF5733', '#33FF57', '#3357FF', '#F3FF33', '#FF33F6', '#33FFF3', '#3357FF'];
   private sizeOptions: string[] = ['S', 'M', 'L', 'XL', 'XXL', 'XS'];
@@ -206,12 +215,94 @@ export class DataService {
   ];
 
   // receive-page
-  
-  
+
+  // Orders data for receive page
+  private orders: Order[] = [
+    {
+      orderNumber: 'Order # 922871',
+      deliveryType: 'Standard Delivery',
+      itemCount: 3,
+      status: 'Packed',
+      images: ['../../assets/card4.png', '../../assets/card6.png', '../../assets/card2.png', '../../assets/card1.png']
+    },
+    {
+      orderNumber: 'Order # 922872',
+      deliveryType: 'Standard Delivery',
+      itemCount: 4,
+      status: 'Shipped',
+      images: ['../../assets/h1.png', '../../assets/h2.png', '../../assets/h3.png', '../../assets/h4.png']
+    },
+    {
+      orderNumber: 'Order # 922873',
+      deliveryType: 'Standard Delivery',
+      itemCount: 4,
+      status: 'Delivered',
+      images: ['../../assets/sc1.png', '../../assets/sc2.png', '../../assets/sc3.png', '../../assets/sc4.png']
+    },
+    {
+      orderNumber: 'Order # 922874',
+      deliveryType: 'Standard Delivery',
+      itemCount: 4,
+      status: 'Delivered',
+      images: ['../../assets/card4.png', '../../assets/card6.png', '../../assets/card2.png', '../../assets/card1.png']
+    },
+    {
+      orderNumber: 'Order # 922874',
+      deliveryType: 'Standard Delivery',
+      itemCount: 4,
+      status: 'Delivered',
+      images: ['../../assets/card4.png', '../../assets/card6.png', '../../assets/card2.png', '../../assets/card1.png']
+    }
+  ];
+
+  private cartProducts = [
+    {
+      name: 'Product 1',
+      description: 'Lorem ipsum dolor sit amet consectetur.',
+      color: 'Pink',
+      size: 'M',
+      quantity: 0,
+      image: '../../assets/cart1.png',
+      price: 19.00,
+      totalPrice: 0.00
+    },
+    {
+      name: 'Product 2',
+      description: 'Adipisicing elit.',
+      color: 'Blue',
+      size: 'L',
+      quantity: 0,
+      image: '../../assets/cart2.png',
+      price: 15.00,
+      totalPrice: 0.00
+    }
+  ];
+
+  // New method to calculate totals for cart
+  calculateCartTotals(products: any[]) {
+    const subtotal = products.reduce((acc, product) => {
+      product.totalPrice = product.price * product.quantity;
+      return acc + product.totalPrice;
+    }, 0);
+
+    const deliveryCharges = subtotal > 0 ? 2.00 : 0.00;
+    const total = subtotal + deliveryCharges;
+
+    return { subtotal, deliveryCharges, total };
+  }
+
 
 
 
   constructor() { }
+
+  getCartProducts() {
+    return this.cartProducts;
+  }
+  // Getter for orders
+  getOrders() {
+    return this.orders;
+  }
 
   // Existing methods
   getHomePageData() {
@@ -259,4 +350,8 @@ export class DataService {
     return this.ready;
   }
 
+  // New method for receive page data
+  getReceiveOrders(): Order[] {
+    return this.orders;
+  }
 }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertService } from '../services/alert.service';
+import { DataService } from '../services/data.service'; // Import the DataService
 
 @Component({
   selector: 'app-cart',
@@ -8,25 +9,14 @@ import { AlertService } from '../services/alert.service';
   styleUrls: ['./cart.page.scss'],
 })
 export class CartPage {
-  products = [
-    {
-      name: 'Product 1', description: 'Lorem ipsum dolor sit amet consectetur.',
-      color: 'Pink', size: 'M', quantity: 0,
-      image: '../../assets/cart1.png', price: 19.00, totalPrice: 0.00
-    },
-    {
-      name: 'Product 2', description: 'Adipisicing elit.',
-      color: 'Blue', size: 'L', quantity: 0,
-      image: '../../assets/cart2.png', price: 15.00, totalPrice: 0.00
-    },
-  ];
-
+  products: any[] = [];
   newProductAdded: any = null;
   deliveryCharges: number = 0;
   subtotal: number = 0;
   total: number = 0;
 
-  constructor(private router: Router, private alertService: AlertService) {
+  constructor(private router: Router, private alertService: AlertService, private dataService: DataService) {
+    this.products = this.dataService.getCartProducts(); // Fetch products from DataService
     this.calculateTotals();
   }
 
@@ -66,9 +56,14 @@ export class CartPage {
 
   addNewProduct() {
     this.newProductAdded = {
-      name: 'New Product', description: 'A newly added product after exceeding the limit.',
-      color: 'Red', size: 'S', quantity: 1,
-      image: '../../assets/cart1.png', price: 20.00, totalPrice: 0.00
+      name: 'New Product',
+      description: 'A newly added product after exceeding the limit.',
+      color: 'Red',
+      size: 'S',
+      quantity: 1,
+      image: '../../assets/cart1.png',
+      price: 20.00,
+      totalPrice: 0.00
     };
     this.products.push(this.newProductAdded);
     this.calculateTotals();
@@ -83,12 +78,9 @@ export class CartPage {
   }
 
   calculateTotals() {
-    this.subtotal = this.products.reduce((acc, product) => {
-      product.totalPrice = product.price * product.quantity;
-      return acc + product.totalPrice;
-    }, 0);
-
-    this.deliveryCharges = this.subtotal > 0 ? 2.00 : 0.00;
-    this.total = this.subtotal + this.deliveryCharges;
+    const totals = this.dataService.calculateCartTotals(this.products);
+    this.subtotal = totals.subtotal;
+    this.deliveryCharges = totals.deliveryCharges;
+    this.total = totals.total;
   }
 }
