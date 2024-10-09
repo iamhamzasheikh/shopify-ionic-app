@@ -42,39 +42,39 @@
   </section>
   <!-- Slider-Section -->
   <section class="hero-sale-container">
+
     <swiper-container class="ion-margin-top ion-margin" pagination="true" [breakpoints]="{
-              '300': {
-          'slidesPerView': 1,
-          'spaceBetween': 30
-        },
-        '480': {
-          'slidesPerView': 1,
-          'spaceBetween': 20
-        },
-        '576': {
-          'slidesPerView': 1,
-          'spaceBetween': 20
-        },
-        '768': {
-          'slidesPerView': 2,
-          'spaceBetween': 15
-        },
-        '1080': {
-          'slidesPerView': 3,
-          'spaceBetween': 15
-        },
-        '1400': {
-          'slidesPerView': 3,
-          'spaceBetween': 20
-        }
-    }">
-      <swiper-slide><img src="../../assets/Live.png" alt=""></swiper-slide>
-      <swiper-slide><img src="../../assets/Live.png" alt=""></swiper-slide>
-      <swiper-slide><img src="../../assets/Live.png" alt=""></swiper-slide>
-      <swiper-slide><img src="../../assets/Live.png" alt=""></swiper-slide>
-      <swiper-slide><img src="../../assets/Live.png" alt=""></swiper-slide>
-      <swiper-slide><img src="../../assets/Live.png" alt=""></swiper-slide>
+      '300': {
+  'slidesPerView': 1,
+  'spaceBetween': 30
+},
+'480': {
+  'slidesPerView': 1,
+  'spaceBetween': 20
+},
+'576': {
+  'slidesPerView': 1,
+  'spaceBetween': 20
+},
+'768': {
+  'slidesPerView': 2,
+  'spaceBetween': 15
+},
+'1080': {
+  'slidesPerView': 3,
+  'spaceBetween': 15
+},
+'1400': {
+  'slidesPerView': 3,
+  'spaceBetween': 20
+}
+}">
+      <swiper-slide *ngFor="let slide of slides">
+        <img [src]="slide.image" alt="">
+      </swiper-slide>
     </swiper-container>
+
+
   </section>
   <!-- 20%-discount-section -->
   <section class="sale-discount">

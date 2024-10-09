@@ -145,7 +145,7 @@ ion-content {
                         // border: 2px solid blue;
                         width: 100%;
                         height: 200px;
-                        margin: 10px 0;
+                        margin: 20px 0;
                         padding: 0;
                         display: flex;
                         align-items: center;
@@ -457,12 +457,11 @@ ion-content {
                                 display: flex;
                                 align-items: center;
                                 justify-content: space-between;
-
                                 padding: 0 10px;
                                 box-sizing: border-box;
 
                                 ion-list {
-                                    // // border: 2px solid saddlebrown;
+                                    // border: 2px solid saddlebrown;
                                     display: flex;
                                     align-items: center;
                                     gap: 10px;
@@ -485,7 +484,6 @@ ion-content {
                                     border-radius: 5px;
                                     cursor: pointer;
                                 }
-
 
                             }
 

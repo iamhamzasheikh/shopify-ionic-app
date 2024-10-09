@@ -2,7 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { register } from 'swiper/element/bundle';
 import { interval, Subscription } from 'rxjs';
 import { Router } from '@angular/router';
- 
+import { DataService } from '../services/data.service';
+
 register();
 
 @Component({
@@ -11,85 +12,39 @@ register();
   styleUrls: ['./shop.page.scss'],
 })
 export class ShopPage implements OnInit, OnDestroy {
-  Count: number = 1780; // Count for likes
-  slides = [
-    '../../assets/ss1.png',
-    '../../assets/ss2.png',
-    '../../assets/ss3.png',
-    '../../assets/ss4.png',
-    '../../assets/ss5.png',
-    '../../assets/ss6.png',
-    '../../assets/ss7.png',
-    '../../assets/ss8.png',
-    '../../assets/ss9.png',
-    '../../assets/ss6.png',
-    '../../assets/ss1.png',
-    '../../assets/ss2.png',
-    '../../assets/ss3.png',
-    '../../assets/ss4.png'
-  ];
+  images: string[] = [];
+  categories: any[] = [];
+  slides: string[] = [];
+  item_slides: any[] = [];
+  popular_slides: any[] = [];
+  just_slides: any[] = [];
+  products: any[] = [];
 
-  item_slides = [
-    '../../assets/item1.png',
-    '../../assets/item2.png',
-    '../../assets/item1.png',
-    '../../assets/item2.png',
-    '../../assets/item1.png',
-    '../../assets/item2.png',
-    '../../assets/item1.png',
-    '../../assets/item2.png',
-    '../../assets/item1.png',
-    '../../assets/item2.png'
-  ];
-
-  popular_slides = [
-    '../../assets/sc1.png',
-    '../../assets/sc2.png',
-    '../../assets/sc3.png',
-    '../../assets/sc2.png',
-    '../../assets/sc1.png',
-    '../../assets/sc2.png',
-    '../../assets/sc3.png',
-    '../../assets/sc1.png',
-    '../../assets/sc2.png',
-    '../../assets/sc3.png'
-  ];
-
-  just_slides = [
-    '../../assets/sc1.png',
-    '../../assets/sc2.png',
-    '../../assets/sc3.png',
-    '../../assets/sc2.png',
-    '../../assets/sc1.png',
-    '../../assets/sc2.png',
-    '../../assets/sc3.png',
-    '../../assets/sc1.png',
-    '../../assets/sc2.png',
-    '../../assets/sc3.png'
-  ];
   // Flash Sale Timer properties
   hours: number = 0;
   minutes: number = 36;
   seconds: number = 58;
   private timerSubscription: Subscription | undefined;
 
-  // Product List for Grid with Discounts
-  products = [
-    { image: '../../assets/sc1.png', discount: 20 },
-    { image: '../../assets/sc2.png', discount: 15 },
-    { image: '../../assets/sc3.png', discount: 10 },
-    { image: '../../assets/sc4.png', discount: 25 },
-    { image: '../../assets/sc2.png', discount: 30 },
-    { image: '../../assets/sc1.png', discount: 30 }
-  ];
-  constructor(private router: Router) {} // Inject Router in the constructor
+  constructor(private router: Router, private dataService: DataService) { }
 
   ngOnInit() {
+    this.loadData();
     this.startTimer();
   }
 
   ngOnDestroy() {
     this.stopTimer();
+  }
+
+  private loadData() {
+    this.images = this.dataService.getShopPageImages();
+    this.categories = this.dataService.getCategories();
+    this.slides = this.dataService.getSlides();
+    this.item_slides = this.dataService.getItemSlides();
+    this.popular_slides = this.dataService.getPopularSlides();
+    this.just_slides = this.dataService.getJustSlides();
+    this.products = this.dataService.getProducts();
   }
 
   private startTimer() {
@@ -119,8 +74,8 @@ export class ShopPage implements OnInit, OnDestroy {
       this.timerSubscription = undefined;
     }
   }
-    // Navigation function
-    goToNextPage() {
-      this.router.navigate(['/flash-sale']);  // Replace with your desired route
-    }
+
+  goToNextPage() {
+    this.router.navigate(['/flash-sale']);
+  }
 }

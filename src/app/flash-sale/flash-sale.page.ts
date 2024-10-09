@@ -15,6 +15,15 @@ export class FlashSalePage implements OnInit, OnDestroy {
   selectedDiscount: string = 'all';  // Default value
   products: any[] = [];  // Initialize products array
 
+  slides = [
+    { image: '../../assets/Live.png' },
+    { image: '../../assets/Live.png' },
+    { image: '../../assets/Live.png' },
+    { image: '../../assets/Live.png' },
+    { image: '../../assets/Live.png' },
+    { image: '../../assets/Live.png' }
+  ];
+
   // Inject Router and DataService via constructor
   constructor(private router: Router, private dataService: DataService) { }
 

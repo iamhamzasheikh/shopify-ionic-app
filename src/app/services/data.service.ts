@@ -4,6 +4,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class DataService {
+
+  // home-page-data
   private homePageData = {
     logo: '/assets/image1.png',
     title: 'Shopify',
@@ -12,7 +14,7 @@ export class DataService {
     alreadyAccountText: 'I already have an account',
     arrowIcon: 'arrow-forward-outline'
   };
-
+  // product-page-data
   private products = [
     {
       image: '../../assets/sc2.png',
@@ -58,28 +60,203 @@ export class DataService {
     }
   ];
 
+
   private colorOptions: string[] = ['#FF5733', '#33FF57', '#3357FF', '#F3FF33', '#FF33F6', '#33FFF3', '#3357FF'];
   private sizeOptions: string[] = ['S', 'M', 'L', 'XL', 'XXL', 'XS'];
 
+  // shop-page-data
+  private shopPageData = {
+    images: [
+      '/assets/BigSaleBanner_Q.png',
+      '/assets/BigSaleBanner_Q.png',
+      '/assets/BigSaleBanner_Q.png',
+      '/assets/BigSaleBanner_Q.png',
+      '/assets/BigSaleBanner_Q.png',
+      '/assets/BigSaleBanner_Q.png'
+    ],
+    categories: [
+      {
+        name: 'Clothing',
+        count: 109,
+        images: ['../../assets/card1.png', '../../assets/card2.png', '../../assets/card3.png', '../../assets/card4.png']
+      },
+      {
+        name: 'Shoes',
+        count: 530,
+        images: ['../../assets/shoes1.png', '../../assets/shoes2.png', '../../assets/shoes3.png', '../../assets/shoes4.png']
+      },
+
+      {
+        name: 'Bags',
+        count: 87,
+        images: ['../../assets/bag1.png', '../../assets/bag2.png', '../../assets/bag3.png', '../../assets/bag4.png']
+      },
+
+      {
+        name: 'Lingerie',
+        count: 218,
+        images: ['../../assets/lingerie1.jpg', '../../assets/lingerie2.png', '../../assets/lingerie3.png', '../../assets/lingerie4.png']
+      },
+      {
+        name: 'Watch',
+        count: 289,
+        images: ['../../assets/watch1.png', '../../assets/watch2.png', '../../assets/watch3.png', '../../assets/watch4.png']
+      },
+      {
+        name: 'Hoodies',
+        count: 310,
+        images: ['../../assets/hoodies1.png', '../../assets/hoodies2.png', '../../assets/hoodies3.png', '../../assets/hoodies4.png']
+      }
+      // ... (other categories)
+    ],
+    slides: [
+      '../../assets/ss1.png',
+      '../../assets/ss2.png',
+      '../../assets/ss3.png',
+      '../../assets/ss4.png',
+      '../../assets/ss5.png',
+      '../../assets/ss6.png',
+      '../../assets/ss7.png',
+      '../../assets/ss8.png',
+      '../../assets/ss9.png',
+      '../../assets/ss6.png',
+      '../../assets/ss1.png',
+      '../../assets/ss2.png',
+      '../../assets/ss3.png',
+      '../../assets/ss4.png'
+    ],
+    item_slides: [
+      { image: '../../assets/item1.png', price: '$17.00' },
+      { image: '../../assets/item2.png', price: '$19.00' },
+      { image: '../../assets/item1.png', price: '$15.00' },
+      { image: '../../assets/item2.png', price: '$18.50' },
+      { image: '../../assets/item1.png', price: '$22.00' },
+      { image: '../../assets/item2.png', price: '$13.00' },
+      { image: '../../assets/item1.png', price: '$16.75' },
+      { image: '../../assets/item2.png', price: '$20.00' },
+      { image: '../../assets/item1.png', price: '$21.00' },
+      { image: '../../assets/item2.png', price: '$14.50' }
+    ],
+    popular_slides: [
+      { image: '../../assets/sc1.png', likes: 1780 },
+      { image: '../../assets/sc2.png', likes: 1023 },
+      { image: '../../assets/sc3.png', likes: 1567 },
+      { image: '../../assets/sc2.png', likes: 2301 },
+      { image: '../../assets/sc2.png', likes: 984 },
+      { image: '../../assets/sc3.png', likes: 1875 },
+      { image: '../../assets/sc1.png', likes: 1867 },
+      { image: '../../assets/sc3.png', likes: 1567 },
+      // ... (other popular slides)
+    ],
+    just_slides: [
+      { image: '../../assets/sc1.png', price: '$17.00' },
+      { image: '../../assets/sc2.png', price: '$22.50' },
+      { image: '../../assets/sc3.png', price: '$15.30' },
+      { image: '../../assets/sc2.png', price: '$25.00' },
+      { image: '../../assets/sc1.png', price: '$19.99' },
+      { image: '../../assets/sc2.png', price: '$30.00' },
+      { image: '../../assets/sc3.png', price: '$12.50' },
+      { image: '../../assets/sc1.png', price: '$29.99' },
+      { image: '../../assets/sc2.png', price: '$24.99' },
+      { image: '../../assets/sc3.png', price: '$18.75' }
+      // ... (other just slides)
+    ],
+    products: [
+      { image: '../../assets/sc1.png', discount: 20 },
+      { image: '../../assets/sc2.png', discount: 15 },
+      { image: '../../assets/sc3.png', discount: 10 },
+      { image: '../../assets/sc4.png', discount: 25 },
+      { image: '../../assets/sc2.png', discount: 30 },
+      { image: '../../assets/sc1.png', discount: 30 }
+    ],
+  };
+
+  // ready-page-data
+  private ready = [
+    {
+      image: '/assets/image3.png',
+      title: 'Ready?',
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+    },
+    {
+      image: '/assets/image3.png',
+      title: 'Ready?',
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+    },
+    {
+      image: '/assets/image3.png',
+      title: 'Ready?',
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+    },
+    {
+      image: '/assets/image3.png',
+      title: 'Ready?',
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+    },
+    {
+      image: '/assets/image3.png',
+      title: 'Ready?',
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+    },
+    {
+      image: '/assets/image3.png',
+      title: 'Ready?',
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+    }
+  ];
+
+  // receive-page
+  
+  
+
+
+
   constructor() { }
 
-  // Method to get home page data
+  // Existing methods
   getHomePageData() {
     return this.homePageData;
   }
 
-  // Method to get product data
+  // flash-sale-array
   getProducts() {
     return this.products;
   }
 
-  // Method to get color options
   getColorOptions() {
     return this.colorOptions;
   }
 
-  // Method to get size options
   getSizeOptions() {
     return this.sizeOptions;
   }
+
+  // New methods for shop page data
+  getShopPageImages() {
+    return this.shopPageData.images;
+  }
+
+  getCategories() {
+    return this.shopPageData.categories;
+  }
+
+  getSlides() {
+    return this.shopPageData.slides;
+  }
+
+  getItemSlides() {
+    return this.shopPageData.item_slides;
+  }
+
+  getPopularSlides() {
+    return this.shopPageData.popular_slides;
+  }
+
+  getJustSlides() {
+    return this.shopPageData.just_slides;
+  }
+  getReady() {
+    return this.ready;
+  }
+
 }
