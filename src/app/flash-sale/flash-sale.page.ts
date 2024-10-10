@@ -58,8 +58,18 @@ export class FlashSalePage implements OnInit, OnDestroy {
     this.selectedDiscount = discount;
   }
 
+  product = [ /* Your products array */ ];
   // Method to navigate to the next page when clicking on a product
-  goToNextPage() {
-    this.router.navigate(['/product']); // Ensure the route exists
+   goToNextPage(product: any) {
+    this.router.navigate(['product'], {
+      queryParams: { 
+        image: product.image,
+        description: product.description,
+        discount: product.discount,
+        oldPrice: product.oldPrice,
+        newPrice: product.newPrice
+      } 
+    });
   }
+
 }

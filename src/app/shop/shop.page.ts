@@ -26,6 +26,9 @@ export class ShopPage implements OnInit, OnDestroy {
   seconds: number = 58;
   private timerSubscription: Subscription | undefined;
 
+  // Flash Sale State
+  saleState: 'active' | 'ended' | 'upcoming' = 'active'; // Initialize to active
+
   constructor(private router: Router, private dataService: DataService) { }
 
   ngOnInit() {
@@ -61,6 +64,7 @@ export class ShopPage implements OnInit, OnDestroy {
             this.minutes = 59;
             this.seconds = 59;
           } else {
+            this.saleState = 'ended'; // Set state to ended when time runs out
             this.stopTimer();
           }
         }
@@ -78,4 +82,8 @@ export class ShopPage implements OnInit, OnDestroy {
   goToNextPage() {
     this.router.navigate(['/flash-sale']);
   }
+
+  
+
+
 }

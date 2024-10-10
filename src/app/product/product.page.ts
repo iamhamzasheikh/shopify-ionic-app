@@ -1,10 +1,18 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { interval, Subscription } from 'rxjs';
 import { register } from 'swiper/element/bundle';
-import { Router } from '@angular/router';
-import { DataService } from '../services/data.service';  // Import DataService
+import { Router, ActivatedRoute } from '@angular/router';
+import { DataService } from '../services/data.service';
 
 register();
+
+interface Product {
+  image: string;
+  description: string;
+  discount: string;
+  oldPrice: string;
+  newPrice: string;
+}
 
 @Component({
   selector: 'app-product',
@@ -18,22 +26,54 @@ export class ProductPage implements OnInit, OnDestroy {
   minutes: number = 0;
   seconds: number = 0;
   private timerSubscription: Subscription | undefined;
+  private queryParamsSubscription: Subscription | undefined;
 
   colorOptions: string[] = [];
   sizeOptions: string[] = [];
   selectedSlides: boolean[] = [];
 
-  constructor(private router: Router, private dataService: DataService) { }  // Inject DataService
+  img1: string | null = null;
+  text1: string | null = null;
+  discount: string | null = null;
+  oldPrice: string | null = null;
+  newPrice: string | null = null;
+
+  constructor(
+    private router: Router,
+    private dataService: DataService,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit() {
     this.startTimer();
-    this.colorOptions = this.dataService.getColorOptions();  // Get color options from DataService
-    this.sizeOptions = this.dataService.getSizeOptions();    // Get size options from DataService
+    this.colorOptions = this.dataService.getColorOptions();
+    this.sizeOptions = this.dataService.getSizeOptions();
     this.selectedSlides = new Array(this.colorOptions.length).fill(false);
+
+    // Retrieve product data from query parameters
+      // Retrieve product data from query parameters
+      this.queryParamsSubscription = this.route.queryParams.subscribe(params => {
+        console.log(params); // Log incoming parameters to debug
+        this.img1 = params['image'];
+        this.text1 = params['description'];
+        this.discount = params['discount'];
+        this.oldPrice = params['oldPrice'];
+        this.newPrice = params['newPrice'];
+  
+        // Check if the parameters are null or undefined
+        if (!this.img1 || !this.text1 || !this.discount || !this.oldPrice || !this.newPrice) {
+          console.error('Some query parameters are missing');
+        }
+      });
+  
+    
   }
 
   ngOnDestroy() {
     this.stopTimer();
+    if (this.queryParamsSubscription) {
+      this.queryParamsSubscription.unsubscribe();
+    }
   }
 
   toggleFavorite() {
@@ -71,8 +111,17 @@ export class ProductPage implements OnInit, OnDestroy {
     this.selectedSlides[index] = !this.selectedSlides[index];
   }
 
-  // Add this method to navigate to the next page
-  goToNextPage() {
-    this.router.navigate(['/cart']);
-  }
+  // Method to navigate to the next page with query parameters
+// Assuming you call goToNextPage somewhere in your code like this:
+goToNextPage(product: Product) {
+  this.router.navigate(['/cart'], {
+    queryParams: { 
+      image: product.image,
+      description: product.description,
+      discount: product.discount,
+      oldPrice: product.oldPrice,
+      newPrice: product.newPrice
+    } 
+  });
+}
 }
