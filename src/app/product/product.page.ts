@@ -21,6 +21,25 @@ interface Product {
 })
 export class ProductPage implements OnInit, OnDestroy {
 
+  selectedColorIndex: number | null = null;
+  selectedSizeIndex: number | null = null;
+
+  // Method for selecting a color// Method for selecting a color
+  selectColor(index: number) {
+    this.selectedColorIndex = index; // Set selected color index
+    console.log("Selected Color Index: ", index); // Show color index in console
+    console.log("Selected Color: ", this.colorOptions[index]); // Show selected color name in console
+  }
+
+  // Method for selecting a size
+  // Method for selecting a size
+  selectSize(index: number) {
+    this.selectedSizeIndex = index; // Set selected size index
+    console.log("Selected Size Index: ", index); // Show size index in console
+    console.log("Selected Size: ", this.sizeOptions[index]); // Show selected size in console
+  }
+
+
   isFavorite: boolean = false;
   quantity: number = 1;
   minutes: number = 0;
@@ -51,22 +70,22 @@ export class ProductPage implements OnInit, OnDestroy {
     this.selectedSlides = new Array(this.colorOptions.length).fill(false);
 
     // Retrieve product data from query parameters
-      // Retrieve product data from query parameters
-      this.queryParamsSubscription = this.route.queryParams.subscribe(params => {
-        console.log(params); // Log incoming parameters to debug
-        this.img1 = params['image'];
-        this.text1 = params['description'];
-        this.discount = params['discount'];
-        this.oldPrice = params['oldPrice'];
-        this.newPrice = params['newPrice'];
-  
-        // Check if the parameters are null or undefined
-        if (!this.img1 || !this.text1 || !this.discount || !this.oldPrice || !this.newPrice) {
-          console.error('Some query parameters are missing');
-        }
-      });
-  
-    
+    // Retrieve product data from query parameters
+    this.queryParamsSubscription = this.route.queryParams.subscribe(params => {
+      console.log(params); // Log incoming parameters to debug
+      this.img1 = params['image'];
+      this.text1 = params['description'];
+      this.discount = params['discount'];
+      this.oldPrice = params['oldPrice'];
+      this.newPrice = params['newPrice'];
+
+      // Check if the parameters are null or undefined
+      if (!this.img1 || !this.text1 || !this.discount || !this.oldPrice || !this.newPrice) {
+        console.error('Some query parameters are missing');
+      }
+    });
+
+
   }
 
   ngOnDestroy() {
@@ -112,16 +131,16 @@ export class ProductPage implements OnInit, OnDestroy {
   }
 
   // Method to navigate to the next page with query parameters
-// Assuming you call goToNextPage somewhere in your code like this:
-goToNextPage(product: Product) {
-  this.router.navigate(['/cart'], {
-    queryParams: { 
-      image: product.image,
-      description: product.description,
-      discount: product.discount,
-      oldPrice: product.oldPrice,
-      newPrice: product.newPrice
-    } 
-  });
-}
+  // Assuming you call goToNextPage somewhere in your code like this:
+  goToNextPage(product: Product) {
+    this.router.navigate(['/cart'], {
+      queryParams: {
+        image: product.image,
+        description: product.description,
+        discount: product.discount,
+        oldPrice: product.oldPrice,
+        newPrice: product.newPrice
+      }
+    });
+  }
 }

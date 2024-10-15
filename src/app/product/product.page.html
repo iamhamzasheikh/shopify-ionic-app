@@ -65,11 +65,17 @@
                     'spaceBetween': 15
                   }
                 }">
-                <swiper-slide *ngFor="let color of colorOptions; let i = index" (click)="toggleSlideSelection(i)">
+                <!-- <swiper-slide *ngFor="let color of colorOptions; let i = index" (click)="toggleSlideSelection(i)">
                   <div class="color-box" [style.backgroundColor]="color">
                     <ion-icon *ngIf="selectedSlides[i]" name="checkbox-outline" class="checkbox-icon"></ion-icon>
                   </div>
+                </swiper-slide> -->
+                <swiper-slide *ngFor="let color of colorOptions; let i = index" (click)="selectColor(i)">
+                  <div class="color-box" [style.backgroundColor]="color">
+                    <ion-icon *ngIf="selectedColorIndex === i" name="checkbox-outline" class="checkbox-icon"></ion-icon>
+                  </div>
                 </swiper-slide>
+                
               </swiper-container>
             </div>
           </div>
@@ -78,9 +84,16 @@
             <p>Size</p>
             <ion-grid class="size-grid">
               <ion-row class="size-row">
-                <ion-col class="size-col" sizeXl="2" sizeLg="2" sizeMd="2" sizeSm="2" sizeXs="2" *ngFor="let size of sizeOptions">
+                <!-- <ion-col class="size-col" sizeXl="2" sizeLg="2" sizeMd="2" sizeSm="2" sizeXs="2" *ngFor="let size of sizeOptions">
                   <div class="size-box">{{ size }}</div>
+                </ion-col> -->
+                <ion-col class="size-col" sizeXl="2" sizeLg="2" sizeMd="2" sizeSm="2" sizeXs="2" *ngFor="let size of sizeOptions; let i = index" (click)="selectSize(i)">
+                  <div class="size-box" [ngClass]="{'selected-size': selectedSizeIndex === i}">
+                    {{ size }}
+                    <ion-icon *ngIf="selectedSizeIndex === i" name="checkbox-outline" class="checkbox-icon"></ion-icon>
+                  </div>
                 </ion-col>
+                
               </ion-row>
             </ion-grid>
           </div>
