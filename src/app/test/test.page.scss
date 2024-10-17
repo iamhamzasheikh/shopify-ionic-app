@@ -34,3 +34,48 @@ ion-popover {
 
  // alert.component.scss
 
+
+//  segments-css
+
+.custom-segment {
+  display: flex;
+  border: 1px solid #e0e0e0;
+  border-radius: 25px; /* To give rounded corners */
+  overflow: hidden;
+  width: 50%;
+}
+
+.segment-button {
+  padding: 10px 30px;
+  border: none;
+  background-color: #f7f7f7;
+  cursor: pointer;
+  flex: 1;
+  text-align: center;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.segment-button.active {
+  background-color: white; /* Active background */
+  color: black; /* Active text color */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.segment-button:not(.active) {
+  background-color: #f0f0f0; /* Inactive background */
+  color: #555; /* Inactive text color */
+}
+
+.custom-segment .segment-button:first-child {
+  border-radius: 25px 0 0 25px; /* Round the left side of the first button */
+}
+
+.custom-segment .segment-button:last-child {
+  border-radius: 0 25px 25px 0; /* Round the right side of the last button */
+}
+
+.segment-content {
+  margin-top: 20px;
+}
+
+

@@ -27,60 +27,25 @@
       <div class="discount-container">
         <button class="discount-button" [class.selected]="selectedDiscount === 'all'"
           (click)="selectDiscount('all')">All</button>
-        <button class="discount-button" [class.selected]="selectedDiscount === '10%'"
-          (click)="selectDiscount('10%')">10%</button>
-        <button class="discount-button" [class.selected]="selectedDiscount === '20%'"
-          (click)="selectDiscount('20%')">20%</button>
-        <button class="discount-button" [class.selected]="selectedDiscount === '30%'"
-          (click)="selectDiscount('30%')">30%</button>
-        <button class="discount-button" [class.selected]="selectedDiscount === '40%'"
-          (click)="selectDiscount('40%')">40%</button>
-        <button class="discount-button" [class.selected]="selectedDiscount === '50%'"
-          (click)="selectDiscount('50%')">50%</button>
+        <button class="discount-button" [class.selected]="selectedDiscount === '10'"
+          (click)="selectDiscount('10')">10%</button>
+        <button class="discount-button" [class.selected]="selectedDiscount === '20'"
+          (click)="selectDiscount('20')">20%</button>
+        <button class="discount-button" [class.selected]="selectedDiscount === '30'"
+          (click)="selectDiscount('30')">30%</button>
+        <button class="discount-button" [class.selected]="selectedDiscount === '40'"
+          (click)="selectDiscount('40')">40%</button>
+        <button class="discount-button" [class.selected]="selectedDiscount === '50'"
+          (click)="selectDiscount('50')">50%</button>
       </div>
     </div>
   </section>
-  <!-- Slider-Section -->
-  <section class="hero-sale-container">
 
-    <swiper-container class="ion-margin-top ion-margin" pagination="true" [breakpoints]="{
-      '300': {
-  'slidesPerView': 1,
-  'spaceBetween': 30
-},
-'480': {
-  'slidesPerView': 1,
-  'spaceBetween': 20
-},
-'576': {
-  'slidesPerView': 1,
-  'spaceBetween': 20
-},
-'768': {
-  'slidesPerView': 2,
-  'spaceBetween': 15
-},
-'1080': {
-  'slidesPerView': 3,
-  'spaceBetween': 15
-},
-'1400': {
-  'slidesPerView': 3,
-  'spaceBetween': 20
-}
-}">
-      <swiper-slide *ngFor="let slide of slides">
-        <img [src]="slide.image" alt="">
-      </swiper-slide>
-    </swiper-container>
-
-
-  </section>
   <!-- 20%-discount-section -->
   <section class="sale-discount">
     <!-- filter-header -->
     <div class="discount-filter-container">
-      <h2 class="discount-label">20% Discount</h2>
+      <h2 class="discount-label">{{ selectedDiscount === 'all' ? 'All Discounts' : selectedDiscount + '% Discount' }}</h2>
       <ion-icon name="options-outline" class="filter-icon"></ion-icon>
     </div>
     <div class="discount-info">
@@ -104,6 +69,7 @@
     </div>
   </section>
 </ion-content>
+
 <!-- footer -->
 <ion-footer class="ion-no-border">
   <ion-toolbar>

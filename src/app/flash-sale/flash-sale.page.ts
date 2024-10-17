@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { interval, Subscription } from 'rxjs';
 import { Router } from '@angular/router';
-import { DataService } from '../services/data.service'; // Import DataService
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-flash-sale',
@@ -12,8 +12,8 @@ export class FlashSalePage implements OnInit, OnDestroy {
   minutes: number = 0;
   seconds: number = 0;
   private timerSubscription: Subscription | undefined;
-  selectedDiscount: string = 'all';  // Default value
-  products: any[] = [];  // Initialize products array
+  selectedDiscount: string = 'all';
+  products: any[] = [];
 
   slides = [
     { image: '../../assets/Live.png' },
@@ -24,12 +24,11 @@ export class FlashSalePage implements OnInit, OnDestroy {
     { image: '../../assets/Live.png' }
   ];
 
-  // Inject Router and DataService via constructor
   constructor(private router: Router, private dataService: DataService) { }
 
   ngOnInit() {
     this.startTimer();
-    this.products = this.dataService.getProducts(); // Fetch product data from DataService
+    this.loadProducts();
   }
 
   ngOnDestroy() {
@@ -53,14 +52,16 @@ export class FlashSalePage implements OnInit, OnDestroy {
     }
   }
 
-  // Method to select the discount category (e.g., 'all', '50%', '30%')
   selectDiscount(discount: string) {
     this.selectedDiscount = discount;
+    this.loadProducts();
   }
 
-  product = [ /* Your products array */ ];
-  // Method to navigate to the next page when clicking on a product
-   goToNextPage(product: any) {
+  loadProducts() {
+    this.products = this.dataService.getProductsByDiscount(this.selectedDiscount);
+  }
+
+  goToNextPage(product: any) {
     this.router.navigate(['product'], {
       queryParams: { 
         image: product.image,
@@ -71,5 +72,4 @@ export class FlashSalePage implements OnInit, OnDestroy {
       } 
     });
   }
-
 }

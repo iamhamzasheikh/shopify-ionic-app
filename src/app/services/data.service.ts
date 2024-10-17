@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 
-
 // Define Order interface here
 interface Order {
   orderNumber: string;
@@ -24,6 +23,7 @@ export class DataService {
     alreadyAccountText: 'I already have an account',
     arrowIcon: 'arrow-forward-outline'
   };
+
   // product-page-data
   private products = [
     {
@@ -94,13 +94,11 @@ export class DataService {
         count: 530,
         images: ['../../assets/shoes1.png', '../../assets/shoes2.png', '../../assets/shoes3.png', '../../assets/shoes4.png']
       },
-
       {
         name: 'Bags',
         count: 87,
         images: ['../../assets/bag1.png', '../../assets/bag2.png', '../../assets/bag3.png', '../../assets/bag4.png']
       },
-
       {
         name: 'Lingerie',
         count: 218,
@@ -116,23 +114,12 @@ export class DataService {
         count: 310,
         images: ['../../assets/hoodies1.png', '../../assets/hoodies2.png', '../../assets/hoodies3.png', '../../assets/hoodies4.png']
       }
-      // ... (other categories)
     ],
     slides: [
-      '../../assets/ss1.png',
-      '../../assets/ss2.png',
-      '../../assets/ss3.png',
-      '../../assets/ss4.png',
-      '../../assets/ss5.png',
-      '../../assets/ss6.png',
-      '../../assets/ss7.png',
-      '../../assets/ss8.png',
-      '../../assets/ss9.png',
-      '../../assets/ss6.png',
-      '../../assets/ss1.png',
-      '../../assets/ss2.png',
-      '../../assets/ss3.png',
-      '../../assets/ss4.png'
+      '../../assets/ss1.png', '../../assets/ss2.png', '../../assets/ss3.png', '../../assets/ss4.png',
+      '../../assets/ss5.png', '../../assets/ss6.png', '../../assets/ss7.png', '../../assets/ss8.png',
+      '../../assets/ss9.png', '../../assets/ss6.png', '../../assets/ss1.png', '../../assets/ss2.png',
+      '../../assets/ss3.png', '../../assets/ss4.png'
     ],
     item_slides: [
       { image: '../../assets/item1.png', price: '$17.00' },
@@ -154,8 +141,7 @@ export class DataService {
       { image: '../../assets/sc2.png', likes: 984 },
       { image: '../../assets/sc3.png', likes: 1875 },
       { image: '../../assets/sc1.png', likes: 1867 },
-      { image: '../../assets/sc3.png', likes: 1567 },
-      // ... (other popular slides)
+      { image: '../../assets/sc3.png', likes: 1567 }
     ],
     just_slides: [
       { image: '../../assets/sc1.png', price: '$17.00' },
@@ -168,7 +154,6 @@ export class DataService {
       { image: '../../assets/sc1.png', price: '$29.99' },
       { image: '../../assets/sc2.png', price: '$24.99' },
       { image: '../../assets/sc3.png', price: '$18.75' }
-      // ... (other just slides)
     ],
     products: [
       { image: '../../assets/sc1.png', discount: 20 },
@@ -214,8 +199,6 @@ export class DataService {
     }
   ];
 
-  // receive-page
-
   // Orders data for receive page
   private orders: Order[] = [
     {
@@ -247,7 +230,7 @@ export class DataService {
       images: ['../../assets/card4.png', '../../assets/card6.png', '../../assets/card2.png', '../../assets/card1.png']
     },
     {
-      orderNumber: 'Order # 922874',
+      orderNumber: 'Order # 922875',
       deliveryType: 'Standard Delivery',
       itemCount: 4,
       status: 'Delivered',
@@ -278,40 +261,31 @@ export class DataService {
     }
   ];
 
-  // New method to calculate totals for cart
-  calculateCartTotals(products: any[]) {
-    const subtotal = products.reduce((acc, product) => {
-      product.totalPrice = product.price * product.quantity;
-      return acc + product.totalPrice;
-    }, 0);
-
-    const deliveryCharges = subtotal > 0 ? 2.00 : 0.00;
-    const total = subtotal + deliveryCharges;
-
-    return { subtotal, deliveryCharges, total };
-  }
-
-
-
-
   constructor() { }
 
   getCartProducts() {
     return this.cartProducts;
   }
-  // Getter for orders
+
   getOrders() {
     return this.orders;
   }
 
-  // Existing methods
   getHomePageData() {
     return this.homePageData;
   }
 
-  // flash-sale-array
   getProducts() {
     return this.products;
+  }
+
+  getProductsByDiscount(discount: string) {
+    if (discount === 'all') {
+      return this.products;
+    } else {
+      const discountPercentage = parseInt(discount);
+      return this.products.filter(product => product.discount === discountPercentage);
+    }
   }
 
   getColorOptions() {
@@ -322,7 +296,6 @@ export class DataService {
     return this.sizeOptions;
   }
 
-  // New methods for shop page data
   getShopPageImages() {
     return this.shopPageData.images;
   }
@@ -346,12 +319,24 @@ export class DataService {
   getJustSlides() {
     return this.shopPageData.just_slides;
   }
+
   getReady() {
     return this.ready;
   }
 
-  // New method for receive page data
   getReceiveOrders(): Order[] {
     return this.orders;
+  }
+
+  calculateCartTotals(products: any[]) {
+    const subtotal = products.reduce((acc, product) => {
+      product.totalPrice = product.price * product.quantity;
+      return acc + product.totalPrice;
+    }, 0);
+
+    const deliveryCharges = subtotal > 0 ? 2.00 : 0.00;
+    const total = subtotal + deliveryCharges;
+
+    return { subtotal, deliveryCharges, total };
   }
 }
