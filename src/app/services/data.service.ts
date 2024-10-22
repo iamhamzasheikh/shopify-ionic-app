@@ -144,16 +144,16 @@ export class DataService {
       { image: '../../assets/sc3.png', likes: 1567 }
     ],
     just_slides: [
-      { image: '../../assets/sc1.png', price: '$17.00', description: 'Ut enim ad minim veniam quis nostrud',},
-      { image: '../../assets/sc2.png', price: '$22.50', description: 'Consectetur adipiscing elit sed do eiusmod',},
-      { image: '../../assets/sc3.png', price: '$15.30', description: 'Lorem ipsum dolor sit amet consectetur adipiscing',},
-      { image: '../../assets/sc2.png', price: '$25.00', description: 'Lorem ipsum dolor sit amet consectetur adipiscing',},
+      { image: '../../assets/sc1.png', price: '$17.00', description: 'Ut enim ad minim veniam quis nostrud', },
+      { image: '../../assets/sc2.png', price: '$22.50', description: 'Consectetur adipiscing elit sed do eiusmod', },
+      { image: '../../assets/sc3.png', price: '$15.30', description: 'Lorem ipsum dolor sit amet consectetur adipiscing', },
+      { image: '../../assets/sc2.png', price: '$25.00', description: 'Lorem ipsum dolor sit amet consectetur adipiscing', },
       { image: '../../assets/sc1.png', price: '$19.99', description: 'Consectetur adipiscing elit sed do eiusmod', },
-      { image: '../../assets/sc2.png', price: '$30.00', description: 'Consectetur adipiscing elit sed do eiusmod',},
+      { image: '../../assets/sc2.png', price: '$30.00', description: 'Consectetur adipiscing elit sed do eiusmod', },
       { image: '../../assets/sc3.png', price: '$12.50', description: 'Tempor incididunt ut labore et dolore magna aliqua', },
-      { image: '../../assets/sc1.png', price: '$29.99', description: 'Ut enim ad minim veniam quis nostrud',},
-      { image: '../../assets/sc2.png', price: '$24.99', description: 'Consectetur adipiscing elit sed do eiusmod',},
-      { image: '../../assets/sc3.png', price: '$18.75', description: 'Tempor incididunt ut labore et dolore magna aliqua',}
+      { image: '../../assets/sc1.png', price: '$29.99', description: 'Ut enim ad minim veniam quis nostrud', },
+      { image: '../../assets/sc2.png', price: '$24.99', description: 'Consectetur adipiscing elit sed do eiusmod', },
+      { image: '../../assets/sc3.png', price: '$18.75', description: 'Tempor incididunt ut labore et dolore magna aliqua', }
     ],
     products: [
       { image: '../../assets/sc1.png', discount: 20 },

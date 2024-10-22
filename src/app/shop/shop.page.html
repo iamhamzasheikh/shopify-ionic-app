@@ -181,7 +181,7 @@
         {{ hours.toString().padStart(2, '0') }} :
         {{ minutes.toString().padStart(2, '0') }} :
         {{ seconds.toString().padStart(2, '0') }}
-      </ion-note> 
+      </ion-note>
     </ion-list>
     <!-- flash-sale-Grid -->
     <div class="flash-sale-grid-container">
@@ -299,7 +299,7 @@
             'spaceBetween': 20
           }
         }">
-        <swiper-slide *ngFor="let just of just_slides">
+        <swiper-slide *ngFor="let just of just_slides" (click)="goToProductDetails(just)">
           <div class="item-img-container">
             <div class="item-img-inner-upper-section">
               <img [src]="just.image" class="slide-img" />

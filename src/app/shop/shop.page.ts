@@ -84,14 +84,16 @@ export class ShopPage implements OnInit, OnDestroy {
   }
 
   goToProductDetails(item: any) {
+    // Remove $ and convert to number
+    const priceNumber = parseFloat(item.price.replace('$', ''));
+
     this.router.navigate(['/product'], {
       queryParams: {
         image: item.image,
         description: item.description,
-        price: parseFloat(item.price),
+        price: priceNumber // Send clean number
       }
     });
   }
-
 
 }

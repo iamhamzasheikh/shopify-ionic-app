@@ -76,7 +76,7 @@
                     <ion-icon *ngIf="selectedColorIndex === i" name="checkbox-outline" class="checkbox-icon"></ion-icon>
                   </div>
                 </swiper-slide>
-                
+
               </swiper-container>
             </div>
           </div>
@@ -88,13 +88,14 @@
                 <!-- <ion-col class="size-col" sizeXl="2" sizeLg="2" sizeMd="2" sizeSm="2" sizeXs="2" *ngFor="let size of sizeOptions">
                   <div class="size-box">{{ size }}</div>
                 </ion-col> -->
-                <ion-col class="size-col" sizeXl="2" sizeLg="2" sizeMd="2" sizeSm="2" sizeXs="2" *ngFor="let size of sizeOptions; let i = index" (click)="selectSize(i)">
+                <ion-col class="size-col" sizeXl="2" sizeLg="2" sizeMd="2" sizeSm="2" sizeXs="2"
+                  *ngFor="let size of sizeOptions; let i = index" (click)="selectSize(i)">
                   <div class="size-box" [ngClass]="{'selected-size': selectedSizeIndex === i}">
                     {{ size }}
                     <ion-icon *ngIf="selectedSizeIndex === i" name="checkbox-outline" class="checkbox-icon"></ion-icon>
                   </div>
                 </ion-col>
-                
+
               </ion-row>
             </ion-grid>
           </div>
@@ -118,7 +119,7 @@
             </button>
 
             <div class="btn-container">
-              <button  class="add-to-cart-btn">Add to cart</button>
+              <button class="add-to-cart-btn">Add to cart</button>
               <button class="buy-now-btn">Buy now</button>
             </div>
           </div>
