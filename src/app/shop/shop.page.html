@@ -156,13 +156,13 @@
             'spaceBetween': 20
           }
         }">
-        <swiper-slide *ngFor="let item of item_slides">
+        <swiper-slide *ngFor="let item of item_slides" (click)="goToProductDetails(item)">
           <div class="item-img-container">
             <div class="item-img-inner-upper-section">
               <img [src]="item.image" class="slide-img" />
             </div>
             <div class="item-img-bottom-section">
-              <p>Lorem ipsum dolor sit amet, consectetur.</p>
+              <p>{{item.description}}</p>
               <h5>{{ item.price }}</h5>
             </div>
           </div>

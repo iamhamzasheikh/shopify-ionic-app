@@ -11,7 +11,8 @@
           <div class="header-heading">
             <div class="heading-timer">
               <!-- Step 2: Display the new price -->
-              <h1>{{ newPrice | currency }}</h1>
+              <h1>{{ (newPrice ? newPrice : price) | currency }}</h1>
+
               <div class="timer">
                 <div class="timer-container">
                   <ion-chip>

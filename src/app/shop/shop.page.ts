@@ -83,7 +83,15 @@ export class ShopPage implements OnInit, OnDestroy {
     this.router.navigate(['/flash-sale']);
   }
 
-  
+  goToProductDetails(item: any) {
+    this.router.navigate(['/product'], {
+      queryParams: {
+        image: item.image,
+        description: item.description,
+        price: parseFloat(item.price),
+      }
+    });
+  }
 
 
 }

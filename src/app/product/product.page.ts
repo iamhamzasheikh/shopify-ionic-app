@@ -12,6 +12,7 @@ interface Product {
   discount: string;
   oldPrice: string;
   newPrice: string;
+  price: string;
 }
 
 @Component({
@@ -56,6 +57,7 @@ export class ProductPage implements OnInit, OnDestroy {
   discount: string | null = null;
   oldPrice: string | null = null;
   newPrice: string | null = null;
+  price: string | null = null;
 
   constructor(
     private router: Router,
@@ -78,9 +80,10 @@ export class ProductPage implements OnInit, OnDestroy {
       this.discount = params['discount'];
       this.oldPrice = params['oldPrice'];
       this.newPrice = params['newPrice'];
+      this.price = params['price'];
 
       // Check if the parameters are null or undefined
-      if (!this.img1 || !this.text1 || !this.discount || !this.oldPrice || !this.newPrice) {
+      if (!this.img1 || !this.text1 || !this.discount || !this.oldPrice || !this.newPrice || !this.price) {
         console.error('Some query parameters are missing');
       }
     });
