@@ -258,7 +258,7 @@
     </ion-list>
   </section>
   <!-- just-for-you-section -->
-  <section class="new-Item-container">
+  <section class="new-Item-container" style="margin-bottom: 40px;">
     <!-- item-header -->
     <ion-list class="newItem-header">
       <h2 class="newItem-title">just for you</h2>
@@ -305,7 +305,7 @@
               <img [src]="just.image" class="slide-img" />
             </div>
             <div class="item-img-bottom-section">
-              <p>Lorem ipsum dolor sit amet, consectetur.</p>
+              <p>{{just.description}}</p>
               <h5>{{ just.price }}</h5>
             </div>
           </div>
