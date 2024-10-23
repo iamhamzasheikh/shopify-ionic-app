@@ -3,6 +3,7 @@ import { interval, Subscription } from 'rxjs';
 import { register } from 'swiper/element/bundle';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DataService } from '../services/data.service';
+import { ToastController } from '@ionic/angular';
 
 register();
 
@@ -62,7 +63,8 @@ export class ProductPage implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private dataService: DataService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private toastController: ToastController,
   ) { }
 
   ngOnInit() {
@@ -90,6 +92,8 @@ export class ProductPage implements OnInit, OnDestroy {
 
 
   }
+
+
 
   ngOnDestroy() {
     this.stopTimer();
@@ -133,6 +137,8 @@ export class ProductPage implements OnInit, OnDestroy {
     this.selectedSlides[index] = !this.selectedSlides[index];
   }
 
+
+
   // Method to navigate to the next page with query parameters
   // Assuming you call goToNextPage somewhere in your code like this:
   goToNextPage(product: Product) {
@@ -145,5 +151,25 @@ export class ProductPage implements OnInit, OnDestroy {
         newPrice: product.newPrice
       }
     });
+  }
+
+    // to show toast
+  // Method to display a toast message
+  async presentToast(message: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 2000, // Toast will appear for 2 seconds
+      position: 'bottom' // You can set 'top', 'middle', or 'bottom'
+    });
+    toast.present();
+  }
+
+  goToCart() {
+    if (this.selectedColorIndex !== null && this.selectedSizeIndex !== null) {
+      this.router.navigate(['/cart']);
+    } else {
+      console.error("Please select both a color and size before proceeding to cart.");
+      this.presentToast('Please select both a color and size');
+    }
   }
 }
