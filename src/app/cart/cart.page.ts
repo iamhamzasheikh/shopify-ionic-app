@@ -26,6 +26,7 @@ export class CartPage implements OnInit, OnDestroy {
       this.products = products;
       this.calculateTotals();
     });
+    
   }
 
   ngOnInit() {

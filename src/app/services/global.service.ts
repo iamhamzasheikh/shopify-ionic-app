@@ -19,13 +19,43 @@ export class GlobalService {
   private cartProductSubject = new BehaviorSubject<CartProduct[]>([]);
   cartProducts$: Observable<CartProduct[]> = this.cartProductSubject.asObservable();
 
-  constructor() { }
+    // Add this new subject for badge count
+    private cartBadgeSubject = new BehaviorSubject<number>(0);
+    cartBadge$: Observable<number> = this.cartBadgeSubject.asObservable();
 
+    constructor() {
+      // Initialize badge count
+      this.updateBadgeCount();
+    }
+
+    private updateBadgeCount() {
+      const currentProducts = this.cartProductSubject.getValue();
+      this.cartBadgeSubject.next(currentProducts.length);
+    }
   // Method to add product to cart
   addToCart(product: CartProduct) {
     const currentProducts = this.cartProductSubject.getValue();
-    currentProducts.push(product);
-    this.cartProductSubject.next(currentProducts);
+    
+    // Check if product with same specifications exists
+    const existingProductIndex = currentProducts.findIndex(item => 
+      item.description === product.description &&
+      item.color === product.color &&
+      item.size === product.size
+    );
+
+    if (existingProductIndex !== -1) {
+      // Product exists, update quantity and total price
+      const updatedProducts = [...currentProducts];
+      const existingProduct = updatedProducts[existingProductIndex];
+      existingProduct.quantity += product.quantity;
+      existingProduct.totalPrice = existingProduct.price * existingProduct.quantity;
+      
+      this.cartProductSubject.next(updatedProducts);
+    } else {
+      // Product doesn't exist, add new product
+      currentProducts.push(product);
+      this.cartProductSubject.next(currentProducts);
+    }
   }
 
   // Method to remove product from cart
@@ -42,6 +72,8 @@ export class GlobalService {
     currentProducts[index].totalPrice = currentProducts[index].price * quantity;
     this.cartProductSubject.next(currentProducts);
   }
+
+  
 
   // Method to get current cart products
   getCartProducts(): CartProduct[] {

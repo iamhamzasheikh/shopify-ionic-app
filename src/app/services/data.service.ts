@@ -70,7 +70,8 @@ export class DataService {
     }
   ];
 
-  private colorOptions: string[] = ['#FF5733', '#33FF57', '#3357FF', '#F3FF33', '#FF33F6', '#33FFF3', '#3357FF'];
+  // private colorOptions: string[] = ['#FF5733', '#33FF57', '#3357FF', '#F3FF33', '#FF33F6', '#33FFF3', '#3357FF'];
+  private colorOptions: string[] = ['Red', 'Green', 'Blue', 'Yellow', 'Pink', 'Cyan', 'Indigo'];
   private sizeOptions: string[] = ['S', 'M', 'L', 'XL', 'XXL', 'XS'];
 
   // shop-page-data
