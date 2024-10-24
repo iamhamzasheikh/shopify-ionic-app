@@ -28,7 +28,8 @@
               </div>
             </div>
             <!-- Step 3: Display the discount -->
-            <div class="para">{{discount}}% OFF</div>
+            <!-- <div class="para">{{discount}}% OFF</div> -->
+            <div class="para" *ngIf="hasDiscount()">{{discount}}% OFF</div>
             <!-- Step 4: Display the product description -->
             <p>{{text1}}</p>
           </div>
@@ -119,7 +120,7 @@
             </button>
 
             <div class="btn-container">
-              <button class="add-to-cart-btn"(click)="goToCart()" >Add to cart</button>
+              <button class="add-to-cart-btn" (click)="goToCart()">Add to cart</button>
               <button class="buy-now-btn">Buy now</button>
             </div>
           </div>

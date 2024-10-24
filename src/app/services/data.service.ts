@@ -237,7 +237,7 @@ export class DataService {
       images: ['../../assets/card4.png', '../../assets/card6.png', '../../assets/card2.png', '../../assets/card1.png']
     }
   ];
-
+  //  cart-page
   private cartProducts = [
     {
       name: 'Product 1',
@@ -249,16 +249,6 @@ export class DataService {
       price: 19.00,
       totalPrice: 0.00
     },
-    {
-      name: 'Product 2',
-      description: 'Adipisicing elit.',
-      color: 'Blue',
-      size: 'L',
-      quantity: 0,
-      image: '../../assets/cart2.png',
-      price: 15.00,
-      totalPrice: 0.00
-    }
   ];
 
   constructor() { }

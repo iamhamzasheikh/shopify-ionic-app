@@ -30,7 +30,7 @@
           </div>
           <!-- product-cart -->
           <div class="select-product-container">
-            <div *ngFor="let product of products" class="img-box-details">
+            <div *ngFor="let product of products; let i = index" class="img-box-details">
               <div class="img">
                 <img [src]="product.image" alt="">
                 <ion-icon name="trash-outline" (click)="removeProduct(product)"></ion-icon>
@@ -43,11 +43,11 @@
                 <ion-item lines="none">
                   <ion-label>Price: ${{ product.price.toFixed(2) }}</ion-label>
                   <div class="quantity-selector">
-                    <ion-button fill="clear" (click)="decrement(product)">
+                    <ion-button fill="clear" (click)="decrement(product, i)">
                       <ion-icon name="remove-circle-outline"></ion-icon>
                     </ion-button>
                     <ion-input type="number" [(ngModel)]="product.quantity" readonly></ion-input>
-                    <ion-button fill="clear" (click)="increment(product)">
+                    <ion-button fill="clear" (click)="increment(product, i)">
                       <ion-icon name="add-circle-outline"></ion-icon>
                     </ion-button>
                   </div>

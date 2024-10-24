@@ -1,86 +1,106 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertService } from '../services/alert.service';
-import { DataService } from '../services/data.service'; // Import the DataService
+import { GlobalService } from '../services/global.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.page.html',
   styleUrls: ['./cart.page.scss'],
 })
-export class CartPage {
+export class CartPage implements OnInit, OnDestroy {
   products: any[] = [];
-  newProductAdded: any = null;
   deliveryCharges: number = 0;
   subtotal: number = 0;
   total: number = 0;
+  private cartSubscription: Subscription;
 
-  constructor(private router: Router, private alertService: AlertService, private dataService: DataService) {
-    this.products = this.dataService.getCartProducts(); // Fetch products from DataService
+  constructor(
+    private router: Router,
+    private alertService: AlertService,
+    private globalService: GlobalService
+  ) {
+    // Subscribe to cart products
+    this.cartSubscription = this.globalService.cartProducts$.subscribe(products => {
+      this.products = products;
+      this.calculateTotals();
+    });
+  }
+
+  ngOnInit() {
+    this.products = this.globalService.getCartProducts();
     this.calculateTotals();
+  }
+
+  ngOnDestroy() {
+    if (this.cartSubscription) {
+      this.cartSubscription.unsubscribe();
+    }
+  }
+
+  // Calculate final price considering possible discount
+  calculateProductPrice(product: any): number {
+    if (product.discount) {
+      return product.price - (product.price * (product.discount / 100));
+    }
+    return product.price;
+  }
+
+  // Calculate total price for a product
+  calculateProductTotal(product: any): number {
+    const finalPrice = this.calculateProductPrice(product);
+    return finalPrice * product.quantity;
   }
 
   goToNextPage() {
     this.router.navigate(['/payment']);
   }
 
-  async decrement(product: any) {
+  async decrement(product: any, index: number) {
     if (product.quantity > 0) {
       product.quantity--;
+      product.totalPrice = this.calculateProductTotal(product);
+      this.globalService.updateQuantity(index, product.quantity);
       this.calculateTotals();
     }
-
     if (product.quantity === 0) {
       await this.alertService.showQuantityZeroAlert();
       this.removeProduct(product);
     }
   }
 
-  async increment(product: any) {
+  async increment(product: any, index: number) {
     product.quantity++;
+    product.totalPrice = this.calculateProductTotal(product);
+    this.globalService.updateQuantity(index, product.quantity);
     this.calculateTotals();
-
-    if (product.quantity > 5) {
+    if (product.quantity >= 5) {
       await this.alertService.showQuantityLimitExceededAlert();
-
-      if (!this.newProductAdded) {
-        this.addNewProduct();
-      }
     }
   }
 
   removeProduct(product: any) {
-    this.products = this.products.filter(p => p !== product);
-    this.calculateTotals();
-  }
-
-  addNewProduct() {
-    this.newProductAdded = {
-      name: 'New Product',
-      description: 'A newly added product after exceeding the limit.',
-      color: 'Red',
-      size: 'S',
-      quantity: 1,
-      image: '../../assets/cart1.png',
-      price: 20.00,
-      totalPrice: 0.00
-    };
-    this.products.push(this.newProductAdded);
-    this.calculateTotals();
-  }
-
-  removeNewProduct() {
-    if (this.newProductAdded) {
-      this.products = this.products.filter(product => product !== this.newProductAdded);
-      this.newProductAdded = null;
-      this.calculateTotals();
+    const index = this.products.indexOf(product);
+    if (index > -1) {
+      this.globalService.removeFromCart(index);
     }
+    this.calculateTotals();
   }
 
   calculateTotals() {
-    const totals = this.dataService.calculateCartTotals(this.products);
-    this.subtotal = totals.subtotal;
-    this.deliveryCharges = totals.deliveryCharges;
-    this.total = totals.total;
+    this.subtotal = this.products.reduce((total, product) => {
+      return total + this.calculateProductTotal(product);
+    }, 0);
+
+    // You can adjust delivery charges logic as needed
+    this.deliveryCharges = this.subtotal > 0 ? 5.00 : 0;
+    this.total = this.subtotal + this.deliveryCharges;
+  }
+
+  // Helper method to display price with or without discount
+  getDisplayPrice(product: any): string {
+    const finalPrice = this.calculateProductPrice(product);
+    return finalPrice.toFixed(2);
   }
 }
