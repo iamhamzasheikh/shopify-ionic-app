@@ -421,3 +421,22 @@ ion-content {
         }
     }
 }
+
+.address-area {
+    transition: height linear 0.5s ease-in-out; /* Smooth transition for height */
+    overflow: hidden; /* Hide overflow */
+  }
+  
+  .address-area.expanded {
+    height: 150px; /* Set height when expanded (adjust as necessary) */
+  }
+  
+  .transition-input {
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.5s ease-in-out; /* Fade effect for the input field */
+  }
+  
+  .address-area.expanded .transition-input {
+    opacity: 1; /* Fully visible when expanded */
+  }
+  

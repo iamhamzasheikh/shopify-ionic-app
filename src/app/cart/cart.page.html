@@ -11,23 +11,40 @@
             </h2>
           </div>
           <!-- address-area -->
-          <div class="address-area">
+          <!-- address-area -->
+          <div class="address-area" [ngClass]="{'expanded': isEditing}">
             <ion-card>
               <ion-grid class="address-container">
                 <ion-row>
                   <ion-col size="10">
                     <h2>Shipping Address</h2>
-                    <p>26, Duong So 2, Thao Dien Ward, An Phu, District 2, Ho Chi Minh city</p>
+                    <ng-container *ngIf="!isEditing; else editMode">
+                      <p>{{ address }}</p>
+                    </ng-container>
+                    <ng-template #editMode>
+                      <ion-item class="transition-input">
+                        <ion-label position="floating">Enter your address</ion-label>
+                        <ion-input [(ngModel)]="tempAddress" type="text"></ion-input>
+                      </ion-item>
+                    </ng-template>
                   </ion-col>
                   <ion-col size="2" class="edit-icon">
-                    <ion-button fill="clear">
-                      <ion-icon name="pencil" style="color: white;"></ion-icon>
-                    </ion-button>
+                    <ng-container *ngIf="!isEditing">
+                      <ion-button fill="clear" (click)="editAddress()">
+                        <ion-icon name="pencil" style="color: white;"></ion-icon>
+                      </ion-button>
+                    </ng-container>
+                    <ng-container *ngIf="isEditing">
+                      <ion-button fill="clear" (click)="saveAddress()">
+                        <ion-icon name="save" style="color: white;"></ion-icon>
+                      </ion-button>
+                    </ng-container>
                   </ion-col>
                 </ion-row>
               </ion-grid>
             </ion-card>
           </div>
+
           <!-- product-cart -->
           <div class="select-product-container">
             <div *ngFor="let product of products; let i = index" class="img-box-details">

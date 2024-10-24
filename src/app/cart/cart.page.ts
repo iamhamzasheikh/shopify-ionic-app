@@ -16,6 +16,10 @@ export class CartPage implements OnInit, OnDestroy {
   total: number = 0;
   private cartSubscription: Subscription;
 
+  address: string = "26, Duong So 2, Thao Dien Ward, An Phu, District 2, Ho Chi Minh city";
+  tempAddress: string = '';
+  isEditing: boolean = false;
+
   constructor(
     private router: Router,
     private alertService: AlertService,
@@ -34,11 +38,27 @@ export class CartPage implements OnInit, OnDestroy {
     this.calculateTotals();
   }
 
+    // Start editing the address
+    editAddress() {
+      this.isEditing = true;
+      this.tempAddress = this.address; // Store the current address in a temp variable for editing
+    }
+  
+    // Save the edited address
+    saveAddress() {
+      if (this.tempAddress.trim()) {
+        this.address = this.tempAddress; // Update the main address
+      }
+      this.isEditing = false; // Exit editing mode
+    }
+
   ngOnDestroy() {
     if (this.cartSubscription) {
       this.cartSubscription.unsubscribe();
     }
   }
+
+  
 
   // Calculate final price considering possible discount
   calculateProductPrice(product: any): number {
