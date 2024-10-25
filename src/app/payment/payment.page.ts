@@ -91,21 +91,28 @@ export class PaymentPage implements OnInit, OnDestroy {
     });
   }
 
+  // --- Methods to add quantity management ---
+  incrementQuantity(index: number): void {
+    this.cartProducts[index].quantity += 1;
+    this.calculateTotal(); // Recalculate total after quantity changes
+  }
+
+  decrementQuantity(index: number): void {
+    if (this.cartProducts[index].quantity > 1) {
+      this.cartProducts[index].quantity -= 1;
+      this.calculateTotal(); // Recalculate total after quantity changes
+    }
+  }
+
   // Total calculation methods
   calculateTotal() {
     // Calculate subtotal from cart products
     const subtotal = this.cartProducts.reduce((sum, product) => {
-      return sum + (product.totalPrice || 0);
+      return sum + (product.totalPrice || 0) * product.quantity; // Adjust based on quantity
     }, 0);
   
-    // Add shipping cost based on selected option only if there are items in the cart
-    let shippingCost = 0;
-    if (this.cartProducts.length > 0) {
-      shippingCost = this.getShippingCost();
-    }
-  
-    // Calculate final total
-    this.total = subtotal + shippingCost;
+    // Exclude shipping cost from the final total
+    this.total = subtotal;
     this.updateTotalDisplay();
   }
 
@@ -196,7 +203,8 @@ export class PaymentPage implements OnInit, OnDestroy {
     this.items = this.cartProducts.map(product => ({
       image: product.image,
       description: product.description,
-      price: product.totalPrice.toFixed(2)
+      price: product.totalPrice.toFixed(2),
+      quantity: product.quantity // Ensure the quantity is mapped
     }));
     this.calculateTotal();
   }

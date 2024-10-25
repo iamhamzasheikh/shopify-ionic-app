@@ -17,7 +17,8 @@ interface CartTotals {
   subtotal: number;
   deliveryCharges: number;
   total: number;
-  
+  shipping?: string;
+  shippingCost?: number;
 }
 
 // Interface for address and contact information
@@ -123,6 +124,15 @@ export class GlobalService {
     this.cartProductSubject.next(currentProducts);
   }
 
+  // New method to update cart products
+  updateCartProducts(products: CartProduct[]) {
+    this.cartProductSubject.next(products);
+    this.updateBadgeCount();
+    // Recalculate totals when products are updated
+    const totals = this.calculateTotals();
+    this.updateCartTotals(totals);
+  }
+
   getCartProducts(): CartProduct[] {
     return this.cartProductSubject.getValue();
   }
@@ -134,7 +144,7 @@ export class GlobalService {
 
   calculateTotals() {
     const products = this.cartProductSubject.getValue();
-    const subtotal = products.reduce((acc, product) => acc + product.totalPrice, 0);
+    const subtotal = products.reduce((acc, product) => acc + (product.price * product.quantity), 0);
     const deliveryCharges = subtotal > 0 ? 2.00 : 0.00;
     const total = subtotal + deliveryCharges;
     return { subtotal, deliveryCharges, total };
