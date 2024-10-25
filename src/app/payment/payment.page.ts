@@ -12,9 +12,12 @@ export class PaymentPage implements OnInit, OnDestroy {
   private cartSubscription: Subscription;
   private totalsSubscription: Subscription;
   private addressSubscription: Subscription;
+  
+  // Cart related properties
   cartProducts: any[] = [];
   cartTotals: any;
   items: any[] = [];
+  total: number = 0;
 
   // Headings and addresses arrays
   headings: string[] = [
@@ -35,13 +38,16 @@ export class PaymentPage implements OnInit, OnDestroy {
     { type: 'Standard', time: '3-5 days', price: '$5.00' }
   ];
 
+  // Selected shipping option
+  selectedShipping: string = 'Standard';
+
   // Address editing properties
   isEditingAddress: boolean = false;
   tempAddress: string = '';
   tempEmail: string = '';
   editingIndex: number = -1;
 
-  // Original properties kept for backward compatibility
+  // Contact information properties
   shippingAddress: string = '';
   tempShippingAddress: string = '';
   contactInfo = {
@@ -67,7 +73,7 @@ export class PaymentPage implements OnInit, OnDestroy {
     // Subscribe to cart totals
     this.totalsSubscription = this.globalService.cartTotals$.subscribe(totals => {
       this.cartTotals = totals;
-      this.updateTotalDisplay();
+      this.calculateTotal();
     });
 
     // Subscribe to address information
@@ -85,18 +91,55 @@ export class PaymentPage implements OnInit, OnDestroy {
     });
   }
 
+  // Total calculation methods
+  calculateTotal() {
+    // Calculate subtotal from cart products
+    const subtotal = this.cartProducts.reduce((sum, product) => {
+      return sum + (product.totalPrice || 0);
+    }, 0);
+  
+    // Add shipping cost based on selected option only if there are items in the cart
+    let shippingCost = 0;
+    if (this.cartProducts.length > 0) {
+      shippingCost = this.getShippingCost();
+    }
+  
+    // Calculate final total
+    this.total = subtotal + shippingCost;
+    this.updateTotalDisplay();
+  }
+
+  getShippingCost(): number {
+    const selectedOption = this.shippingOptions.find(option => 
+      option.type === this.selectedShipping
+    );
+    return selectedOption ? parseFloat(selectedOption.price.replace('$', '')) : 0;
+  }
+
   // Navigation method
   goToNextPage() {
+    // Save final total and shipping details before navigation
+    this.globalService.updateCartTotals({
+      ...this.cartTotals,
+      total: this.total,
+      shipping: this.selectedShipping,
+      shippingCost: this.getShippingCost()
+    });
     this.router.navigate(['/receive']);
   }
 
-  // New address editing methods
+  // Shipping option selection
+  onShippingOptionChange(option: string) {
+    this.selectedShipping = option;
+    this.calculateTotal();
+  }
+
+  // Address editing methods
   editAddress(index: number) {
     this.isEditingAddress = true;
     this.editingIndex = index;
     this.tempAddress = this.addresses[index];
     if (index === 1) {
-      // For contact information, extract email
       const emailMatch = this.addresses[index].match(/Email: (.+)/);
       this.tempEmail = emailMatch ? emailMatch[1] : this.email;
     }
@@ -105,14 +148,11 @@ export class PaymentPage implements OnInit, OnDestroy {
   saveAddress(index: number) {
     if (this.tempAddress.trim()) {
       if (index === 0) {
-        // Saving shipping address
         this.addresses[index] = this.tempAddress;
-        this.shippingAddress = this.tempAddress; // Update original property
+        this.shippingAddress = this.tempAddress;
       } else if (index === 1) {
-        // Saving contact information
         const phoneNumber = this.tempAddress.split(',')[0].trim();
         this.addresses[index] = `${phoneNumber}, Email: ${this.tempEmail}`;
-        // Update original properties
         this.contactInfo.phone = phoneNumber;
         this.contactInfo.email = this.tempEmail;
         this.email = this.tempEmail;
@@ -125,7 +165,7 @@ export class PaymentPage implements OnInit, OnDestroy {
     this.updateGlobalAddressInfo();
   }
 
-  // Original methods kept for backward compatibility
+  // Contact information methods
   editContactInfo() {
     this.isEditingContact = true;
     this.tempContactInfo = {...this.contactInfo};
@@ -139,7 +179,7 @@ export class PaymentPage implements OnInit, OnDestroy {
     this.isEditingContact = false;
   }
 
-  // Update global service with new address info
+  // Update global service
   private updateGlobalAddressInfo() {
     const phoneNumber = this.addresses[1].split(',')[0].trim();
     this.globalService.updateAddressInfo({
@@ -151,22 +191,21 @@ export class PaymentPage implements OnInit, OnDestroy {
     });
   }
 
-  // Cart items update method
+  // Cart items update
   private updateItems() {
     this.items = this.cartProducts.map(product => ({
       image: product.image,
       description: product.description,
       price: product.totalPrice.toFixed(2)
     }));
+    this.calculateTotal();
   }
 
-  // Total display update method
+  // Total display update
   private updateTotalDisplay() {
-    if (this.cartTotals) {
-      const totalElement = document.querySelector('.total-title');
-      if (totalElement) {
-        totalElement.textContent = `Total $${this.cartTotals.total.toFixed(2)}`;
-      }
+    const totalElement = document.querySelector('.total-title');
+    if (totalElement) {
+      totalElement.textContent = `Total $${this.total.toFixed(2)}`;
     }
   }
 
@@ -175,24 +214,31 @@ export class PaymentPage implements OnInit, OnDestroy {
     this.cartProducts = this.globalService.getCartProducts();
     this.cartTotals = this.globalService.getCartTotals();
     const addressInfo = this.globalService.getAddressInfo();
+    
     if (addressInfo) {
       this.shippingAddress = addressInfo.shippingAddress;
       this.contactInfo = addressInfo.contactInfo;
-      // Initialize addresses array
       this.addresses[0] = addressInfo.shippingAddress;
       if (addressInfo.contactInfo) {
         this.addresses[1] = `${addressInfo.contactInfo.phone}, Email: ${addressInfo.contactInfo.email}`;
         this.email = addressInfo.contactInfo.email;
       }
     }
+    
     this.updateItems();
-    this.updateTotalDisplay();
+    this.calculateTotal();
   }
 
   ngOnDestroy() {
     // Cleanup subscriptions
-    this.cartSubscription?.unsubscribe();
-    this.totalsSubscription?.unsubscribe();
-    this.addressSubscription?.unsubscribe();
+    if (this.cartSubscription) {
+      this.cartSubscription.unsubscribe();
+    }
+    if (this.totalsSubscription) {
+      this.totalsSubscription.unsubscribe();
+    }
+    if (this.addressSubscription) {
+      this.addressSubscription.unsubscribe();
+    }
   }
 }

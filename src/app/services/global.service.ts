@@ -17,6 +17,7 @@ interface CartTotals {
   subtotal: number;
   deliveryCharges: number;
   total: number;
+  
 }
 
 // Interface for address and contact information
