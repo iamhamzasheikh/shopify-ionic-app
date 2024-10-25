@@ -20,6 +20,17 @@ export class CartPage implements OnInit, OnDestroy {
   tempAddress: string = '';
   isEditing: boolean = false;
 
+   // Add new properties for contact info
+   contactInfo = {
+    phone: '+923360639358',
+    email: 'zafarhamza789@gmail.com'
+  };
+  tempContactInfo = {
+    phone: '',
+    email: ''
+  };
+  isEditingContact: boolean = false;
+
   constructor(
     private router: Router,
     private alertService: AlertService,
@@ -36,6 +47,8 @@ export class CartPage implements OnInit, OnDestroy {
   ngOnInit() {
     this.products = this.globalService.getCartProducts();
     this.calculateTotals();
+
+    
   }
 
     // Start editing the address
@@ -117,11 +130,25 @@ export class CartPage implements OnInit, OnDestroy {
     // You can adjust delivery charges logic as needed
     this.deliveryCharges = this.subtotal > 0 ? 5.00 : 0;
     this.total = this.subtotal + this.deliveryCharges;
+
+       // Update totals in GlobalService
+       this.globalService.updateCartTotals({
+        subtotal: this.subtotal,
+        deliveryCharges: this.deliveryCharges,
+        total: this.total
+      });
   }
+
 
   // Helper method to display price with or without discount
   getDisplayPrice(product: any): string {
     const finalPrice = this.calculateProductPrice(product);
     return finalPrice.toFixed(2);
   }
+
+  goToPaymentPage() {
+    const cartData = this.globalService.getCartProducts(); // Cart ka data le lo
+    this.router.navigate(['/payment'], { state: { cartItems: cartData } }); // Payment page pe pass karo
+  }
+  
 }

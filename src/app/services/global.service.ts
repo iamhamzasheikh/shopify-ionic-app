@@ -11,6 +11,13 @@ interface CartProduct {
   totalPrice: number;
 }
 
+// interface add kiya cart totals ke liye
+interface CartTotals {
+  subtotal: number;
+  deliveryCharges: number;
+  total: number;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -19,25 +26,45 @@ export class GlobalService {
   private cartProductSubject = new BehaviorSubject<CartProduct[]>([]);
   cartProducts$: Observable<CartProduct[]> = this.cartProductSubject.asObservable();
 
-    // Add this new subject for badge count
-    private cartBadgeSubject = new BehaviorSubject<number>(0);
-    cartBadge$: Observable<number> = this.cartBadgeSubject.asObservable();
+  // Add this new subject for badge count
+  private cartBadgeSubject = new BehaviorSubject<number>(0);
+  cartBadge$: Observable<number> = this.cartBadgeSubject.asObservable();
 
-    constructor() {
-      // Initialize badge count
-      this.updateBadgeCount();
-    }
+  // subject add kiya cart totals ke liye
+  private cartTotalsSubject = new BehaviorSubject<CartTotals>({
+    subtotal: 0,
+    deliveryCharges: 0,
+    total: 0
+  });
+  cartTotals$ = this.cartTotalsSubject.asObservable(); // Observable expose kiya
 
-    private updateBadgeCount() {
-      const currentProducts = this.cartProductSubject.getValue();
-      this.cartBadgeSubject.next(currentProducts.length);
-    }
+  constructor() {
+    // Initialize badge count
+    this.updateBadgeCount();
+  }
+  
+
+  private updateBadgeCount() {
+    const currentProducts = this.cartProductSubject.getValue();
+    this.cartBadgeSubject.next(currentProducts.length);
+  }
+
+   // method for cart total calculation
+   updateCartTotals(totals: CartTotals) {
+    // to update cart total
+    this.cartTotalsSubject.next(totals);
+  }
+
+  getCartTotals(): CartTotals {
+    // to return cart total
+    return this.cartTotalsSubject.getValue();
+  }
   // Method to add product to cart
   addToCart(product: CartProduct) {
     const currentProducts = this.cartProductSubject.getValue();
-    
+
     // Check if product with same specifications exists
-    const existingProductIndex = currentProducts.findIndex(item => 
+    const existingProductIndex = currentProducts.findIndex(item =>
       item.description === product.description &&
       item.color === product.color &&
       item.size === product.size
@@ -49,7 +76,7 @@ export class GlobalService {
       const existingProduct = updatedProducts[existingProductIndex];
       existingProduct.quantity += product.quantity;
       existingProduct.totalPrice = existingProduct.price * existingProduct.quantity;
-      
+
       this.cartProductSubject.next(updatedProducts);
     } else {
       // Product doesn't exist, add new product
@@ -73,7 +100,7 @@ export class GlobalService {
     this.cartProductSubject.next(currentProducts);
   }
 
-  
+
 
   // Method to get current cart products
   getCartProducts(): CartProduct[] {
