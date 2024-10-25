@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
+// Interface for cart products
 interface CartProduct {
   image: string;
   description: string;
@@ -11,59 +12,83 @@ interface CartProduct {
   totalPrice: number;
 }
 
-// interface add kiya cart totals ke liye
+// Interface for cart totals
 interface CartTotals {
   subtotal: number;
   deliveryCharges: number;
   total: number;
 }
 
+// Interface for address and contact information
+interface AddressInfo {
+  shippingAddress: string;
+  contactInfo: {
+    phone: string;
+    email: string;
+  }
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class GlobalService {
-  // Initialize with empty cart product
+  // Cart products management
   private cartProductSubject = new BehaviorSubject<CartProduct[]>([]);
   cartProducts$: Observable<CartProduct[]> = this.cartProductSubject.asObservable();
 
-  // Add this new subject for badge count
+  // Cart badge management
   private cartBadgeSubject = new BehaviorSubject<number>(0);
   cartBadge$: Observable<number> = this.cartBadgeSubject.asObservable();
 
-  // subject add kiya cart totals ke liye
+  // Cart totals management
   private cartTotalsSubject = new BehaviorSubject<CartTotals>({
     subtotal: 0,
     deliveryCharges: 0,
     total: 0
   });
-  cartTotals$ = this.cartTotalsSubject.asObservable(); // Observable expose kiya
+  cartTotals$ = this.cartTotalsSubject.asObservable();
+
+  // Address information management
+  private addressInfoSubject = new BehaviorSubject<AddressInfo>({
+    shippingAddress: '',
+    contactInfo: {
+      phone: '',
+      email: ''
+    }
+  });
+  addressInfo$ = this.addressInfoSubject.asObservable();
 
   constructor() {
-    // Initialize badge count
     this.updateBadgeCount();
   }
-  
 
+  // Address and contact information methods
+  updateAddressInfo(addressInfo: AddressInfo) {
+    this.addressInfoSubject.next(addressInfo);
+  }
+
+  getAddressInfo(): AddressInfo {
+    return this.addressInfoSubject.getValue();
+  }
+
+  // Cart badge methods
   private updateBadgeCount() {
     const currentProducts = this.cartProductSubject.getValue();
     this.cartBadgeSubject.next(currentProducts.length);
   }
 
-   // method for cart total calculation
-   updateCartTotals(totals: CartTotals) {
-    // to update cart total
+  // Cart totals methods
+  updateCartTotals(totals: CartTotals) {
     this.cartTotalsSubject.next(totals);
   }
 
   getCartTotals(): CartTotals {
-    // to return cart total
     return this.cartTotalsSubject.getValue();
   }
-  // Method to add product to cart
+
+  // Cart product methods
   addToCart(product: CartProduct) {
     const currentProducts = this.cartProductSubject.getValue();
-
-    // Check if product with same specifications exists
     const existingProductIndex = currentProducts.findIndex(item =>
       item.description === product.description &&
       item.color === product.color &&
@@ -71,28 +96,25 @@ export class GlobalService {
     );
 
     if (existingProductIndex !== -1) {
-      // Product exists, update quantity and total price
       const updatedProducts = [...currentProducts];
       const existingProduct = updatedProducts[existingProductIndex];
       existingProduct.quantity += product.quantity;
       existingProduct.totalPrice = existingProduct.price * existingProduct.quantity;
-
       this.cartProductSubject.next(updatedProducts);
     } else {
-      // Product doesn't exist, add new product
       currentProducts.push(product);
       this.cartProductSubject.next(currentProducts);
     }
+    this.updateBadgeCount();
   }
 
-  // Method to remove product from cart
   removeFromCart(index: number) {
     const currentProducts = this.cartProductSubject.getValue();
     currentProducts.splice(index, 1);
     this.cartProductSubject.next(currentProducts);
+    this.updateBadgeCount();
   }
 
-  // Method to update quantity
   updateQuantity(index: number, quantity: number) {
     const currentProducts = this.cartProductSubject.getValue();
     currentProducts[index].quantity = quantity;
@@ -100,25 +122,20 @@ export class GlobalService {
     this.cartProductSubject.next(currentProducts);
   }
 
-
-
-  // Method to get current cart products
   getCartProducts(): CartProduct[] {
     return this.cartProductSubject.getValue();
   }
 
-  // Method to clear cart
   clearCart() {
     this.cartProductSubject.next([]);
+    this.updateBadgeCount();
   }
 
-  // Method to calculate totals
   calculateTotals() {
     const products = this.cartProductSubject.getValue();
     const subtotal = products.reduce((acc, product) => acc + product.totalPrice, 0);
     const deliveryCharges = subtotal > 0 ? 2.00 : 0.00;
     const total = subtotal + deliveryCharges;
-
     return { subtotal, deliveryCharges, total };
   }
 }

@@ -15,15 +15,24 @@
               <ion-grid class="payment-address-container">
                 <ion-row>
                   <ion-col size="10">
-                    <h2>{{ headings[i] }}</h2> <!-- Bind the heading for each address -->
-                    <p>{{ address }}</p> <!-- Bind the address from the array -->
-
-                    <!-- Conditionally show email only for the second container -->
-                    <p *ngIf="i === 1">Email: {{ email }}</p>
+                    <h2>{{ headings[i] }}</h2>
+                    <div *ngIf="!isEditingAddress">
+                      <p>{{ address }}</p>
+                      <p *ngIf="i === 1">Email: {{ email }}</p>
+                    </div>
+                    <div *ngIf="isEditingAddress">
+                      <ion-textarea [(ngModel)]="tempAddress" placeholder="Enter address" rows="3">
+                      </ion-textarea>
+                      <ion-input *ngIf="i === 1" [(ngModel)]="tempEmail" placeholder="Enter email">
+                      </ion-input>
+                    </div>
                   </ion-col>
                   <ion-col size="2" class="edit-icon">
-                    <ion-button fill="clear">
+                    <ion-button fill="clear" *ngIf="!isEditingAddress" (click)="editAddress(i)">
                       <ion-icon name="pencil" style="color: white;"></ion-icon>
+                    </ion-button>
+                    <ion-button fill="clear" *ngIf="isEditingAddress" (click)="saveAddress(i)">
+                      <ion-icon name="checkmark" style="color: white;"></ion-icon>
                     </ion-button>
                   </ion-col>
                 </ion-row>
@@ -110,10 +119,6 @@
                 <button (click)="goToNextPage()">Pay</button>
               </div>
             </div>
-
-
-
-
           </div>
         </ion-col>
       </ion-row>
