@@ -12,12 +12,15 @@ export class PaymentPage implements OnInit, OnDestroy {
   private cartSubscription: Subscription;
   private totalsSubscription: Subscription;
   private addressSubscription: Subscription;
-  
+
   // Cart related properties
   cartProducts: any[] = [];
   cartTotals: any;
   items: any[] = [];
   total: number = 0;
+
+  // Property for the estimated delivery date
+  estimatedDeliveryDate: Date | null = null;
 
   // Headings and addresses arrays
   headings: string[] = [
@@ -39,7 +42,7 @@ export class PaymentPage implements OnInit, OnDestroy {
   ];
 
   // Selected shipping option
-  selectedShipping: string = 'Standard';
+  selectedShipping: string | null = null;
 
   // Address editing properties
   isEditingAddress: boolean = false;
@@ -91,33 +94,32 @@ export class PaymentPage implements OnInit, OnDestroy {
     });
   }
 
-  // --- Methods to add quantity management ---
+  // Quantity management methods
   incrementQuantity(index: number): void {
     this.cartProducts[index].quantity += 1;
-    this.calculateTotal(); // Recalculate total after quantity changes
+    this.calculateTotal();
   }
 
   decrementQuantity(index: number): void {
     if (this.cartProducts[index].quantity > 1) {
       this.cartProducts[index].quantity -= 1;
-      this.calculateTotal(); // Recalculate total after quantity changes
+      this.calculateTotal();
     }
   }
 
   // Total calculation methods
   calculateTotal() {
-    // Calculate subtotal from cart products
     const subtotal = this.cartProducts.reduce((sum, product) => {
-      return sum + (product.totalPrice || 0) * product.quantity; // Adjust based on quantity
+      return sum + (product.totalPrice || 0);
     }, 0);
-  
-    // Exclude shipping cost from the final total
-    this.total = subtotal;
+
+    const shippingCost = this.cartProducts.length > 0 ? this.getShippingCost() : 0;
+    this.total = subtotal + shippingCost;
     this.updateTotalDisplay();
   }
 
   getShippingCost(): number {
-    const selectedOption = this.shippingOptions.find(option => 
+    const selectedOption = this.shippingOptions.find(option =>
       option.type === this.selectedShipping
     );
     return selectedOption ? parseFloat(selectedOption.price.replace('$', '')) : 0;
@@ -125,7 +127,6 @@ export class PaymentPage implements OnInit, OnDestroy {
 
   // Navigation method
   goToNextPage() {
-    // Save final total and shipping details before navigation
     this.globalService.updateCartTotals({
       ...this.cartTotals,
       total: this.total,
@@ -135,10 +136,28 @@ export class PaymentPage implements OnInit, OnDestroy {
     this.router.navigate(['/receive']);
   }
 
-  // Shipping option selection
+  // Combined shipping option change handler
   onShippingOptionChange(option: string) {
     this.selectedShipping = option;
-    this.calculateTotal();
+
+    // Set delivery days based on selected shipping option
+    const today = new Date();
+    let deliveryDays = 0;
+
+    if (option === 'Express') {
+      deliveryDays = 2;
+    } else if (option === 'Standard') {
+      deliveryDays = 5;
+    }
+
+    // Calculate estimated delivery date
+    this.estimatedDeliveryDate = new Date(today);
+    this.estimatedDeliveryDate.setDate(today.getDate() + deliveryDays);
+
+    // Recalculate total with new shipping cost if items are in the cart
+    if (this.cartProducts.length > 0) {
+      this.calculateTotal();
+    }
   }
 
   // Address editing methods
@@ -175,12 +194,12 @@ export class PaymentPage implements OnInit, OnDestroy {
   // Contact information methods
   editContactInfo() {
     this.isEditingContact = true;
-    this.tempContactInfo = {...this.contactInfo};
+    this.tempContactInfo = { ...this.contactInfo };
   }
 
   saveContactInfo() {
     if (this.tempContactInfo.phone.trim() && this.tempContactInfo.email.trim()) {
-      this.contactInfo = {...this.tempContactInfo};
+      this.contactInfo = { ...this.tempContactInfo };
       this.updateGlobalAddressInfo();
     }
     this.isEditingContact = false;
@@ -204,7 +223,7 @@ export class PaymentPage implements OnInit, OnDestroy {
       image: product.image,
       description: product.description,
       price: product.totalPrice.toFixed(2),
-      quantity: product.quantity // Ensure the quantity is mapped
+      quantity: product.quantity
     }));
     this.calculateTotal();
   }
@@ -222,7 +241,7 @@ export class PaymentPage implements OnInit, OnDestroy {
     this.cartProducts = this.globalService.getCartProducts();
     this.cartTotals = this.globalService.getCartTotals();
     const addressInfo = this.globalService.getAddressInfo();
-    
+
     if (addressInfo) {
       this.shippingAddress = addressInfo.shippingAddress;
       this.contactInfo = addressInfo.contactInfo;
@@ -232,7 +251,7 @@ export class PaymentPage implements OnInit, OnDestroy {
         this.email = addressInfo.contactInfo.email;
       }
     }
-    
+
     this.updateItems();
     this.calculateTotal();
   }

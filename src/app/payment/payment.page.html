@@ -84,7 +84,10 @@
             <div *ngFor="let option of shippingOptions" class="shipping-option">
               <ion-row class="option-row">
                 <ion-col size="4" class="shipping-type">
-                  <ion-radio></ion-radio>
+                  <!-- Bind each radio button to selectedShipping using ngModel and ionRadioGroup -->
+                  <ion-radio-group [(ngModel)]="selectedShipping" (ionChange)="onShippingOptionChange(option.type)">
+                    <ion-radio [value]="option.type"></ion-radio>
+                  </ion-radio-group>
                   <span>{{ option.type }}</span>
                 </ion-col>
                 <ion-col size="4" class="shipping-time">
@@ -95,9 +98,9 @@
                 </ion-col>
               </ion-row>
             </div>
-
-            <p>Delivered on or before Thursday, 23 April 2024</p>
-
+            <!-- Delivery Date Display -->
+            <p *ngIf="estimatedDeliveryDate">Delivered on or before {{ estimatedDeliveryDate | date:'EEEE, d MMMM y' }}
+            </p>
             <div class="checkout-section">
               <ion-grid>
                 <ion-row class="payment-row">
