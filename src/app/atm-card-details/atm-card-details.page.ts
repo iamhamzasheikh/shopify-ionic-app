@@ -2,6 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
+import { GlobalService } from '../services/global.service'; // import service
 
 @Component({
   selector: 'app-atm-card-details',
@@ -13,32 +14,27 @@ export class AtmCardDetailsPage implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private globalService: GlobalService // inject service
   ) {
     this.cardForm = this.formBuilder.group({
       cardholderName: ['', [Validators.required]],
-      cardNumber: ['', [Validators.required, Validators.minLength(4)]],
-      expiryDate: ['', [Validators.required, Validators.pattern(/^(0[1-9]|1[0-2])\/([0-9]{2})$/)]]
+      cardNumber: ['', [Validators.required, Validators.minLength(16), Validators.maxLength(16)]],
+      expiryDate: ['', [Validators.required, Validators.pattern(/^(0[1-9]|1[0-2])\/([0-9]{2})$/)]],
     });
   }
 
   ngOnInit() {}
 
-  isFormValid(): boolean {
-    return this.cardForm.valid;
+  saveCard() {
+    if (this.cardForm.valid) {
+      const cardData = this.cardForm.value;
+      this.globalService.updateCardDetails(cardData); // Update the card details in the service
+      this.modalCtrl.dismiss(cardData);
+    }
   }
 
   dismissModal() {
     this.modalCtrl.dismiss();
-  }
-
-  saveCard() {
-    console.log('Form Values:', this.cardForm.value);
-    console.log('Form Valid:', this.cardForm.valid);
-    console.log('Form Errors:', this.cardForm.errors);
-    
-    if (this.cardForm.valid) {
-      this.modalCtrl.dismiss(this.cardForm.value);
-    }
   }
 }

@@ -30,6 +30,13 @@ interface AddressInfo {
   }
 }
 
+// Interface for card details
+interface CardDetails {
+  cardholderName: string;
+  cardNumber: string;
+  expiryDate: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -149,4 +156,22 @@ export class GlobalService {
     const total = subtotal + deliveryCharges;
     return { subtotal, deliveryCharges, total };
   }
+
+    // Card details management
+ // Default sample data
+ private cardDetailsSubject = new BehaviorSubject<CardDetails>({
+  cardholderName: 'AMANDA MORGAN',
+  cardNumber: '**** **** **** 1579',
+  expiryDate: '12/22'
+});
+
+cardDetails$ = this.cardDetailsSubject.asObservable();
+
+updateCardDetails(cardDetails: CardDetails) {
+  this.cardDetailsSubject.next(cardDetails);
+}
+
+getCardDetails(): CardDetails {
+  return this.cardDetailsSubject.getValue();
+}
 }

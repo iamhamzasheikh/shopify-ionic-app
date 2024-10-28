@@ -2,6 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { AtmCardDetailsPage } from '../atm-card-details/atm-card-details.page';
+import { GlobalService } from '../services/global.service'; // Import GlobalService
 
 @Component({
   selector: 'app-payment-method',
@@ -10,14 +11,20 @@ import { AtmCardDetailsPage } from '../atm-card-details/atm-card-details.page';
 })
 export class PaymentMethodPage implements OnInit {
   cardDetails = {
-    cardholderName: 'AMANDA MORGAN',
-    cardNumber: '**** **** **** 1579',
-    expiryDate: '12/22'
+    cardholderName: '',
+    cardNumber: '',
+    expiryDate: ''
   };
 
-  constructor(private modalCtrl: ModalController) {}
+  constructor(
+    private modalCtrl: ModalController,
+    private globalService: GlobalService // Inject GlobalService
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    // Fetch card details from GlobalService on component initialization
+    this.cardDetails = this.globalService.getCardDetails();
+  }
 
   async openCardModal() {
     const modal = await this.modalCtrl.create({
@@ -31,13 +38,14 @@ export class PaymentMethodPage implements OnInit {
 
     const { data } = await modal.onDidDismiss();
     if (data) {
+      // Update local cardDetails with data from the service
+      this.globalService.updateCardDetails(data); // Save updated data to service
       this.cardDetails = {
         cardholderName: data.cardholderName,
         cardNumber: this.formatCardNumber(data.cardNumber),
         expiryDate: data.expiryDate
       };
     }
-    console.log(data);
   }
 
   private formatCardNumber(number: string): string {
