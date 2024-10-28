@@ -80,7 +80,7 @@
             <div class="summary-heading">
               <h2>Shipping Option</h2>
             </div>
-
+            <!-- shipping-option -->
             <div *ngFor="let option of shippingOptions" class="shipping-option">
               <ion-row class="option-row">
                 <ion-col size="4" class="shipping-type">
@@ -98,6 +98,7 @@
                 </ion-col>
               </ion-row>
             </div>
+
             <!-- Delivery Date Display -->
             <p *ngIf="estimatedDeliveryDate">Delivered on or before {{ estimatedDeliveryDate | date:'EEEE, d MMMM y' }}
             </p>

@@ -37,8 +37,9 @@ export class PaymentPage implements OnInit, OnDestroy {
 
   // Shipping options
   shippingOptions = [
-    { type: 'Express', time: '1-2 days', price: '$12.00' },
-    { type: 'Standard', time: '3-5 days', price: '$5.00' }
+    { type: 'Express', time: '1 - 2 days', price: '$12.00' },
+    { type: 'Standard', time: '3 - 5 days', price: '$5.00' },
+    { type: 'Cash on Delivery', time: '9 - 10 days', price: '' }
   ];
 
   // Selected shipping option
@@ -137,29 +138,33 @@ export class PaymentPage implements OnInit, OnDestroy {
   }
 
   // Combined shipping option change handler
+
   onShippingOptionChange(option: string) {
     this.selectedShipping = option;
-
-    // Set delivery days based on selected shipping option
-    const today = new Date();
-    let deliveryDays = 0;
-
-    if (option === 'Express') {
-      deliveryDays = 2;
-    } else if (option === 'Standard') {
-      deliveryDays = 5;
+  
+    // Find the selected shipping option from the list
+    const selectedOption = this.shippingOptions.find(opt => opt.type === option);
+    
+    if (selectedOption && selectedOption.time) {
+      // Extract delivery range (e.g., "9-10 days" becomes [9, 10])
+      const deliveryDaysRange = selectedOption.time.match(/\d+/g)?.map(Number);
+  
+      if (deliveryDaysRange && deliveryDaysRange.length > 0) {
+        const today = new Date();
+        const maxDeliveryDays = Math.max(...deliveryDaysRange);  // Choose the maximum number of days for delivery
+  
+        // Set estimated delivery date
+        this.estimatedDeliveryDate = new Date(today);
+        this.estimatedDeliveryDate.setDate(today.getDate() + maxDeliveryDays);
+      }
     }
-
-    // Calculate estimated delivery date
-    this.estimatedDeliveryDate = new Date(today);
-    this.estimatedDeliveryDate.setDate(today.getDate() + deliveryDays);
-
-    // Recalculate total with new shipping cost if items are in the cart
+  
+    // Recalculate total with the new shipping cost
     if (this.cartProducts.length > 0) {
       this.calculateTotal();
     }
   }
-
+  
   // Address editing methods
   editAddress(index: number) {
     this.isEditingAddress = true;
