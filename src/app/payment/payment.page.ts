@@ -39,7 +39,7 @@ export class PaymentPage implements OnInit, OnDestroy {
   shippingOptions = [
     { type: 'Express', time: '1 - 2 days', price: '$12.00' },
     { type: 'Standard', time: '3 - 5 days', price: '$5.00' },
-    { type: 'Cash on Delivery', time: '9 - 10 days', price: '' }
+    { type: 'Cash on Delivery', time: '9 - 10 days', price: 'Free' }
   ];
 
   // Selected shipping option
@@ -123,8 +123,12 @@ export class PaymentPage implements OnInit, OnDestroy {
     const selectedOption = this.shippingOptions.find(option =>
       option.type === this.selectedShipping
     );
-    return selectedOption ? parseFloat(selectedOption.price.replace('$', '')) : 0;
+    if (selectedOption) {
+      return selectedOption.price === 'Free' ? 0 : parseFloat(selectedOption.price.replace('$', ''));
+    }
+    return 0;
   }
+  
 
   // Navigation method
   goToNextPage() {

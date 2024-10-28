@@ -61,14 +61,13 @@ ion-content {
                     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
                     border-radius: 15px;
 
-                    /* Nested styling for the card logo */
                     .card-logo {
                         img {
-                            width: 40px;
+                            width: 100px;
                         }
                     }
 
-                    /* Nested styling for the settings icon */
+
                     .settings-icon {
                         display: flex;
                         justify-content: flex-end;
@@ -80,7 +79,6 @@ ion-content {
                         }
                     }
 
-                    /* Nested styling for card details */
                     .card-details {
                         margin-top: 15px;
 

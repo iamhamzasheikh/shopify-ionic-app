@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Add Card Details</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismissModal()">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+  <form [formGroup]="cardForm" (ngSubmit)="saveCard()">
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">Cardholder Name</ion-label>
+        <ion-input formControlName="cardholderName" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Card Number</ion-label>
+        <ion-input formControlName="cardNumber" type="text" maxlength="16"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Expiry Date (MM/YY)</ion-label>
+        <ion-input formControlName="expiryDate" type="text" maxlength="5"></ion-input>
+      </ion-item>
+    </ion-list>
+
+    <div class="ion-padding">
+      <ion-button expand="block" type="submit" [disabled]="!cardForm.valid">
+        Save Changes
+      </ion-button>
+    </div>
+  </form>
+</ion-content>
