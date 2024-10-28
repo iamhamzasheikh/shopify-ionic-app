@@ -277,4 +277,8 @@ export class PaymentPage implements OnInit, OnDestroy {
       this.addressSubscription.unsubscribe();
     }
   }
+  goToPaymentMethod() {
+    this.router.navigate(['/payment-method']);
+  }
+  
 }

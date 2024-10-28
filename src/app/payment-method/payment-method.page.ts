@@ -37,6 +37,7 @@ export class PaymentMethodPage implements OnInit {
         expiryDate: data.expiryDate
       };
     }
+    console.log(data);
   }
 
   private formatCardNumber(number: string): string {
