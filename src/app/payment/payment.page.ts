@@ -12,12 +12,16 @@ export class PaymentPage implements OnInit, OnDestroy {
   private cartSubscription: Subscription;
   private totalsSubscription: Subscription;
   private addressSubscription: Subscription;
+  private cardSubscription: Subscription;
 
   // Cart related properties
   cartProducts: any[] = [];
   cartTotals: any;
   items: any[] = [];
   total: number = 0;
+
+  // Card details property
+  cardDetails: any;
 
   // Property for the estimated delivery date
   estimatedDeliveryDate: Date | null = null;
@@ -93,6 +97,11 @@ export class PaymentPage implements OnInit, OnDestroy {
         }
       }
     });
+
+    // Subscribe to card details
+    this.cardSubscription = this.globalService.cardDetails$.subscribe(details => {
+      this.cardDetails = details;
+    });
   }
 
   // Quantity management methods
@@ -128,9 +137,8 @@ export class PaymentPage implements OnInit, OnDestroy {
     }
     return 0;
   }
-  
 
-  // Navigation method
+  // Navigation methods
   goToNextPage() {
     this.globalService.updateCartTotals({
       ...this.cartTotals,
@@ -141,8 +149,11 @@ export class PaymentPage implements OnInit, OnDestroy {
     this.router.navigate(['/receive']);
   }
 
-  // Combined shipping option change handler
+  goToPaymentMethod() {
+    this.router.navigate(['/payment-method']);
+  }
 
+  // Shipping option change handler
   onShippingOptionChange(option: string) {
     this.selectedShipping = option;
   
@@ -168,7 +179,7 @@ export class PaymentPage implements OnInit, OnDestroy {
       this.calculateTotal();
     }
   }
-  
+
   // Address editing methods
   editAddress(index: number) {
     this.isEditingAddress = true;
@@ -249,6 +260,8 @@ export class PaymentPage implements OnInit, OnDestroy {
     // Initialize data from GlobalService
     this.cartProducts = this.globalService.getCartProducts();
     this.cartTotals = this.globalService.getCartTotals();
+    this.cardDetails = this.globalService.getCardDetails();
+    
     const addressInfo = this.globalService.getAddressInfo();
 
     if (addressInfo) {
@@ -276,9 +289,8 @@ export class PaymentPage implements OnInit, OnDestroy {
     if (this.addressSubscription) {
       this.addressSubscription.unsubscribe();
     }
+    if (this.cardSubscription) {
+      this.cardSubscription.unsubscribe();
+    }
   }
-  goToPaymentMethod() {
-    this.router.navigate(['/payment-method']);
-  }
-  
 }

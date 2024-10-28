@@ -3,12 +3,11 @@
     <ion-grid class="payment-grid">
       <ion-row class="payment-row">
         <ion-col sizeLg="6" sizeXl="6" sizeMd="6" sizeSm="12" sizeXs="12" class="payment-col">
-
+          <!-- Left side content remains unchanged -->
           <div class="payment-header">
-            <h2 class="payment-text">
-              Payment
-            </h2>
+            <h2 class="payment-text">Payment</h2>
           </div>
+          
           <!-- address-area -->
           <div class="payment-address-area">
             <ion-card *ngFor="let address of addresses; let i = index">
@@ -74,8 +73,8 @@
             </div>
           </div>
         </ion-col>
-        <ion-col class="payment-col" sizeLg="6" sizeXl="6" sizeMd="6" sizeSm="12" sizeXs="12">
 
+        <ion-col class="payment-col" sizeLg="6" sizeXl="6" sizeMd="6" sizeSm="12" sizeXs="12">
           <div class="payment-summary-area">
             <div class="summary-heading">
               <h2>Shipping Option</h2>
@@ -84,7 +83,6 @@
             <div *ngFor="let option of shippingOptions" class="shipping-option">
               <ion-row class="option-row">
                 <ion-col size="4" class="shipping-type">
-                  <!-- Bind each radio button to selectedShipping using ngModel and ionRadioGroup -->
                   <ion-radio-group [(ngModel)]="selectedShipping" (ionChange)="onShippingOptionChange(option.type)">
                     <ion-radio [value]="option.type"></ion-radio>
                   </ion-radio-group>
@@ -98,24 +96,43 @@
                 </ion-col>
               </ion-row>
             </div>
+            
             <!-- Delivery Date Display -->
-            <p *ngIf="estimatedDeliveryDate">Delivered on or before {{ estimatedDeliveryDate | date:'EEEE, d MMMM y' }}
-            </p>
+            <p *ngIf="estimatedDeliveryDate">Delivered on or before {{ estimatedDeliveryDate | date:'EEEE, d MMMM y' }}</p>
 
-            <div class="checkout-section">
-              <ion-grid>
-                <ion-row class="payment-row">
-                  <ion-col size="10" class="payment-info">
-                    <h2 class="payment-title">Payment Method</h2>
-                    <ion-button class="payment-button" fill="outline" (click)="goToPaymentMethod()">
-                      Card
-                    </ion-button>
-                  </ion-col>
-                  <ion-col size="2" class="edit-col">
-                    <ion-icon name="create-outline" class="edit-icon"(click)="goToPaymentMethod()"></ion-icon>
-                  </ion-col>
-                </ion-row>
-              </ion-grid>
+            <!-- Payment Method Section -->
+            <div class="payment-method-section">
+              <h2>Payment Method</h2>
+              
+              <!-- Card Display -->
+              <div class="card-display" *ngIf="cardDetails">
+                <ion-grid class="credit-card">
+                  <ion-row>
+                    <ion-col size="9">
+                      <div class="card-logo">
+                        <img src="../../assets/pngimg.com - mastercard_PNG16.png" alt="card-logo" />
+                      </div>
+                    </ion-col>
+                    <ion-col size="3">
+                      <div class="settings-icon" (click)="goToPaymentMethod()">
+                        <ion-icon name="settings-outline"></ion-icon>
+                      </div>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row class="card-details">
+                    <ion-col>
+                      <p class="card-number">{{cardDetails.cardNumber}}</p>
+                      <p class="cardholder-name">{{cardDetails.cardholderName}}</p>
+                      <p class="expiry-date">{{cardDetails.expiryDate}}</p>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </div>
+
+              <!-- Add Card Button (shown when no card is saved) -->
+              <ion-button class="add-card-btn" *ngIf="!cardDetails" fill="outline" (click)="goToPaymentMethod()">
+                Add Card
+              </ion-button>
             </div>
 
             <div class="payment-btn-area">

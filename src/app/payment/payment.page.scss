@@ -406,3 +406,69 @@ ion-content {
     }
 }
 
+/* Add this to your existing payment.page.scss */
+
+.payment-method-section {
+    margin: 20px 0;
+    padding: 15px;
+    background: #1e1e1e;
+    border-radius: 10px;
+  
+    h2 {
+      color: white;
+      margin-bottom: 15px;
+    }
+  
+    .credit-card {
+      background: linear-gradient(45deg, #1a1f2d, #2d3546);
+      border-radius: 15px;
+      padding: 20px;
+      margin-bottom: 15px;
+      color: white;
+  
+      .card-logo {
+        img {
+          width: 60px;
+          height: auto;
+        }
+      }
+  
+      .settings-icon {
+        text-align: right;
+        ion-icon {
+          font-size: 24px;
+          color: #ffffff;
+          cursor: pointer;
+        }
+      }
+  
+      .card-details {
+        margin-top: 20px;
+  
+        .card-number {
+          font-size: 18px;
+          letter-spacing: 2px;
+          margin-bottom: 15px;
+        }
+  
+        .cardholder-name {
+          font-size: 16px;
+          text-transform: uppercase;
+          margin-bottom: 5px;
+        }
+  
+        .expiry-date {
+          font-size: 14px;
+          color: #cccccc;
+        }
+      }
+    }
+  
+    .add-card-btn {
+      width: 100%;
+      margin-top: 10px;
+      --background: transparent;
+      --border-color: white;
+      --color: white;
+    }
+  }
