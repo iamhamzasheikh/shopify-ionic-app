@@ -1,3 +1,5 @@
+<!-- payment.page.html -->
+
 <ion-content [fullscreen]="true">
   <ion-list class="payment-main-container">
     <ion-grid class="payment-grid">
@@ -10,27 +12,53 @@
           
           <!-- address-area -->
           <div class="payment-address-area">
-            <ion-card *ngFor="let address of addresses; let i = index">
+            <!-- Shipping Address Card -->
+            <ion-card>
               <ion-grid class="payment-address-container">
                 <ion-row>
                   <ion-col size="10">
-                    <h2>{{ headings[i] }}</h2>
-                    <div *ngIf="!isEditingAddress">
-                      <p>{{ address }}</p>
-                      <p *ngIf="i === 1">Email: {{ email }}</p>
+                    <h2>{{ headings[0] }}</h2>
+                    <div *ngIf="!isEditingShipping">
+                      <p>{{ addresses[0] }}</p>
                     </div>
-                    <div *ngIf="isEditingAddress">
-                      <ion-textarea [(ngModel)]="tempAddress" placeholder="Enter address" rows="3">
+                    <div *ngIf="isEditingShipping">
+                      <ion-textarea [(ngModel)]="tempShippingAddress" placeholder="Enter shipping address" rows="3">
                       </ion-textarea>
-                      <ion-input *ngIf="i === 1" [(ngModel)]="tempEmail" placeholder="Enter email">
+                    </div>
+                  </ion-col>
+                  <ion-col size="2" class="edit-icon">
+                    <ion-button fill="clear" *ngIf="!isEditingShipping" (click)="editShippingAddress()">
+                      <ion-icon name="pencil" style="color: white;"></ion-icon>
+                    </ion-button>
+                    <ion-button fill="clear" *ngIf="isEditingShipping" (click)="saveShippingAddress()">
+                      <ion-icon name="checkmark" style="color: white;"></ion-icon>
+                    </ion-button>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-card>
+
+            <!-- Contact Information Card -->
+            <ion-card>
+              <ion-grid class="payment-address-container">
+                <ion-row>
+                  <ion-col size="10">
+                    <h2>{{ headings[1] }}</h2>
+                    <div *ngIf="!isEditingContact">
+                      <p>{{ addresses[1] }}</p>
+                    </div>
+                    <div *ngIf="isEditingContact">
+                      <ion-input [(ngModel)]="tempPhone" placeholder="Enter phone number" class="mb-2">
+                      </ion-input>
+                      <ion-input [(ngModel)]="tempEmail" placeholder="Enter email">
                       </ion-input>
                     </div>
                   </ion-col>
                   <ion-col size="2" class="edit-icon">
-                    <ion-button fill="clear" *ngIf="!isEditingAddress" (click)="editAddress(i)">
+                    <ion-button fill="clear" *ngIf="!isEditingContact" (click)="editContactInfo()">
                       <ion-icon name="pencil" style="color: white;"></ion-icon>
                     </ion-button>
-                    <ion-button fill="clear" *ngIf="isEditingAddress" (click)="saveAddress(i)">
+                    <ion-button fill="clear" *ngIf="isEditingContact" (click)="saveContactInfo()">
                       <ion-icon name="checkmark" style="color: white;"></ion-icon>
                     </ion-button>
                   </ion-col>
@@ -99,6 +127,22 @@
             
             <!-- Delivery Date Display -->
             <p *ngIf="estimatedDeliveryDate">Delivered on or before {{ estimatedDeliveryDate | date:'EEEE, d MMMM y' }}</p>
+
+            <div class="checkout-section">
+              <ion-grid>
+                <ion-row class="payment-row">
+                  <ion-col size="10" class="payment-info">
+                    <h2 class="payment-title">Payment Method</h2>
+                    <ion-button class="payment-button" fill="outline" (click)="goToPaymentMethod()">
+                      Card
+                    </ion-button>
+                  </ion-col>
+                  <ion-col size="2" class="edit-col">
+                    <ion-icon name="create-outline" class="edit-icon"(click)="goToPaymentMethod()"></ion-icon>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </div>
 
             <!-- Payment Method Section -->
             <div class="payment-method-section">

@@ -1,3 +1,5 @@
+// Payment.page.ts
+
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { GlobalService } from '../services/global.service';
@@ -49,24 +51,19 @@ export class PaymentPage implements OnInit, OnDestroy {
   // Selected shipping option
   selectedShipping: string | null = null;
 
-  // Address editing properties
-  isEditingAddress: boolean = false;
-  tempAddress: string = '';
+  // Address editing properties - UPDATED
+  isEditingShipping: boolean = false;
+  isEditingContact: boolean = false;
+  tempShippingAddress: string = '';
+  tempPhone: string = '';
   tempEmail: string = '';
-  editingIndex: number = -1;
 
   // Contact information properties
   shippingAddress: string = '';
-  tempShippingAddress: string = '';
   contactInfo = {
     phone: '',
     email: ''
   };
-  tempContactInfo = {
-    phone: '',
-    email: ''
-  };
-  isEditingContact: boolean = false;
 
   constructor(
     private router: Router,
@@ -180,49 +177,40 @@ export class PaymentPage implements OnInit, OnDestroy {
     }
   }
 
-  // Address editing methods
-  editAddress(index: number) {
-    this.isEditingAddress = true;
-    this.editingIndex = index;
-    this.tempAddress = this.addresses[index];
-    if (index === 1) {
-      const emailMatch = this.addresses[index].match(/Email: (.+)/);
-      this.tempEmail = emailMatch ? emailMatch[1] : this.email;
-    }
+  // UPDATED Address editing methods
+  editShippingAddress() {
+    this.isEditingShipping = true;
+    this.tempShippingAddress = this.addresses[0];
   }
 
-  saveAddress(index: number) {
-    if (this.tempAddress.trim()) {
-      if (index === 0) {
-        this.addresses[index] = this.tempAddress;
-        this.shippingAddress = this.tempAddress;
-      } else if (index === 1) {
-        const phoneNumber = this.tempAddress.split(',')[0].trim();
-        this.addresses[index] = `${phoneNumber}, Email: ${this.tempEmail}`;
-        this.contactInfo.phone = phoneNumber;
-        this.contactInfo.email = this.tempEmail;
-        this.email = this.tempEmail;
-      }
+  saveShippingAddress() {
+    if (this.tempShippingAddress.trim()) {
+      this.addresses[0] = this.tempShippingAddress;
+      this.shippingAddress = this.tempShippingAddress;
+      this.updateGlobalAddressInfo();
     }
-    this.isEditingAddress = false;
-    this.editingIndex = -1;
-    this.tempAddress = '';
-    this.tempEmail = '';
-    this.updateGlobalAddressInfo();
+    this.isEditingShipping = false;
+    this.tempShippingAddress = '';
   }
 
-  // Contact information methods
   editContactInfo() {
     this.isEditingContact = true;
-    this.tempContactInfo = { ...this.contactInfo };
+    const phoneMatch = this.addresses[1].match(/^([^,]+)/);
+    this.tempPhone = phoneMatch ? phoneMatch[1].trim() : '';
+    this.tempEmail = this.email;
   }
 
   saveContactInfo() {
-    if (this.tempContactInfo.phone.trim() && this.tempContactInfo.email.trim()) {
-      this.contactInfo = { ...this.tempContactInfo };
+    if (this.tempPhone.trim() && this.tempEmail.trim()) {
+      this.addresses[1] = `${this.tempPhone}, Email: ${this.tempEmail}`;
+      this.email = this.tempEmail;
+      this.contactInfo.phone = this.tempPhone;
+      this.contactInfo.email = this.tempEmail;
       this.updateGlobalAddressInfo();
     }
     this.isEditingContact = false;
+    this.tempPhone = '';
+    this.tempEmail = '';
   }
 
   // Update global service

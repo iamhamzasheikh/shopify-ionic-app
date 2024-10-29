@@ -2,7 +2,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { AtmCardDetailsPage } from '../atm-card-details/atm-card-details.page';
-import { GlobalService } from '../services/global.service'; // Import GlobalService
+import { GlobalService } from '../services/global.service'; 
+import { Location } from '@angular/common'; 
 
 @Component({
   selector: 'app-payment-method',
@@ -18,7 +19,8 @@ export class PaymentMethodPage implements OnInit {
 
   constructor(
     private modalCtrl: ModalController,
-    private globalService: GlobalService // Inject GlobalService
+    private globalService: GlobalService, // Inject GlobalService
+    private location: Location 
   ) {}
 
   ngOnInit() {
@@ -50,5 +52,10 @@ export class PaymentMethodPage implements OnInit {
 
   private formatCardNumber(number: string): string {
     return '**** **** **** ' + number.slice(-4);
+  }
+
+   // Method to navigate back
+   goBack() {
+    this.location.back();
   }
 }
