@@ -1,13 +1,36 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>status</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">status</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-segment [(ngModel)]="selectedSegment">
+    <ion-segment-button value="shipped">
+      <ion-label>Shipped</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="delivered">
+      <ion-label>Delivered</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <!-- Shipped Segment -->
+  <div *ngIf="selectedSegment === 'shipped'" class="status-container">
+    <ion-label class="status-header">SHIPPED</ion-label>
+    <!-- Loop through each item in the cartProducts array -->
+    <div *ngFor="let item of cartProducts" class="status-item">
+      <img [src]="item.image" alt="Product Image" class="product-image" />
+      <div class="item-details">
+        <p>Quantity: {{ item.quantity }}</p>
+        <p>Total: ${{ item.totalPrice }}</p>
+      </div>
+      <ion-button fill="outline" class="status-button" (click)="changeStatus(item)">STATUS CHANGE</ion-button>
+    </div>
+  </div>
+
+  <!-- Delivered Segment -->
+  <div *ngIf="selectedSegment === 'delivered'" class="status-container">
+    <ion-label class="status-header">DELIVERED</ion-label>
+    <div *ngFor="let item of deliveredProducts" class="status-item">
+      <img [src]="item.image" alt="Product Image" class="product-image"/>
+      <div class="item-details">
+        <p>Quantity: {{ item.quantity }}</p>
+        <p>Subtotal: ${{ item.totalPrice }}</p>
+      </div>
+    </div>
+  </div>
 </ion-content>
