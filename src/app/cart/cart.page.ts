@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 import { AlertService } from '../services/alert.service';
 import { GlobalService } from '../services/global.service';
 import { Subscription } from 'rxjs';
@@ -10,18 +11,15 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./cart.page.scss'],
 })
 export class CartPage implements OnInit, OnDestroy {
-  // Cart product management
   products: any[] = [];
   subtotal: number = 0;
   total: number = 0;
   private cartSubscription: Subscription;
 
-  // Address management
   address: string = '';
   tempAddress: string = '';
   isEditing: boolean = false;
 
-  // Contact information management
   contactInfo = {
     phone: '',
     email: ''
@@ -34,16 +32,15 @@ export class CartPage implements OnInit, OnDestroy {
 
   constructor(
     private router: Router,
+    private alertController: AlertController,
     private alertService: AlertService,
     private globalService: GlobalService
   ) {
-    // Subscribe to cart changes
     this.cartSubscription = this.globalService.cartProducts$.subscribe(products => {
       this.products = products;
       this.calculateTotals();
     });
 
-    // Load saved address info
     const savedAddressInfo = this.globalService.getAddressInfo();
     if (savedAddressInfo.shippingAddress) {
       this.address = savedAddressInfo.shippingAddress;
@@ -62,24 +59,64 @@ export class CartPage implements OnInit, OnDestroy {
     }
   }
 
-  // Modified to use full price without discount
   calculateProductTotal(product: any): number {
     return product.price * product.quantity;
   }
 
   async increment(product: any, index: number) {
-    product.quantity++;
-    product.totalPrice = this.calculateProductTotal(product);
-    await this.globalService.updateQuantity(index, product.quantity);
-    this.calculateTotals();
+    if (product.quantity < 5) {
+      product.quantity++;
+      product.totalPrice = this.calculateProductTotal(product);
+      await this.globalService.updateQuantity(index, product.quantity);
+      this.calculateTotals();
+    } else {
+      const alert = await this.alertController.create({
+        header: 'Quantity Limit Reached',
+        message: 'You have reached the maximum quantity of 5. Do you want to add more?',
+        buttons: [
+          {
+            text: 'No',
+            role: 'cancel'
+          },
+          {
+            text: 'Yes',
+            handler: async () => {
+              product.quantity++;
+              product.totalPrice = this.calculateProductTotal(product);
+              await this.globalService.updateQuantity(index, product.quantity);
+              this.calculateTotals();
+            }
+          }
+        ]
+      });
+      await alert.present();
+    }
   }
-  
+
   async decrement(product: any, index: number) {
-    if (product.quantity > 0) {
+    if (product.quantity > 1) {
       product.quantity--;
       product.totalPrice = this.calculateProductTotal(product);
       await this.globalService.updateQuantity(index, product.quantity);
       this.calculateTotals();
+    } else {
+      const alert = await this.alertController.create({
+        header: 'Remove Product',
+        message: 'Do you want to remove this product from the cart?',
+        buttons: [
+          {
+            text: 'Cancel',
+            role: 'cancel'
+          },
+          {
+            text: 'Remove',
+            handler: async () => {
+              this.removeProduct(product);
+            }
+          }
+        ]
+      });
+      await alert.present();
     }
   }
 
@@ -91,23 +128,12 @@ export class CartPage implements OnInit, OnDestroy {
     this.calculateTotals();
   }
 
-  // Modified to calculate totals using full price and excluding delivery charges
   calculateTotals() {
-    // Calculate subtotal using full price (without discount)
     this.subtotal = this.products.reduce((total, product) => {
       const productTotal = product.price * product.quantity;
-      console.log(`Product: ${product.name}, Full Price: ${product.price}, Quantity: ${product.quantity}, Total: ${productTotal}`);
       return total + productTotal;
     }, 0);
-  
-    console.log(`Subtotal (Full Price): ${this.subtotal}`);
-    this.total = this.subtotal; // Total is now equal to subtotal without delivery charges
-    console.log(`Total without delivery: ${this.total}`);
-  }
-
-  // For display purposes only - shows original price
-  getDisplayPrice(product: any): string {
-    return product.price.toFixed(2);
+    this.total = this.subtotal;
   }
 
   // Address and contact info methods remain unchanged
@@ -131,12 +157,12 @@ export class CartPage implements OnInit, OnDestroy {
 
   editContactInfo() {
     this.isEditingContact = true;
-    this.tempContactInfo = {...this.contactInfo};
+    this.tempContactInfo = { ...this.contactInfo };
   }
 
   saveContactInfo() {
     if (this.tempContactInfo.phone.trim() && this.tempContactInfo.email.trim()) {
-      this.contactInfo = {...this.tempContactInfo};
+      this.contactInfo = { ...this.tempContactInfo };
       this.updateGlobalAddressInfo();
     }
     this.isEditingContact = false;
@@ -144,7 +170,7 @@ export class CartPage implements OnInit, OnDestroy {
 
   cancelContactEdit() {
     this.isEditingContact = false;
-    this.tempContactInfo = {...this.contactInfo};
+    this.tempContactInfo = { ...this.contactInfo };
   }
 
   private updateGlobalAddressInfo() {

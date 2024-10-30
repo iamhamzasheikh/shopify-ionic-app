@@ -174,9 +174,10 @@
               </div>
 
               <!-- Add Card Button (shown when no card is saved) -->
-              <ion-button class="add-card-btn" *ngIf="!cardDetails" fill="outline" (click)="goToPaymentMethod()">
-                Add Card
+              <ion-button class="add-card-btn" *ngIf="!cardDetails?.length" fill="outline" (click)="goToPaymentMethod()">
+                Add Payment Method
               </ion-button>
+              
             </div>
 
             <div class="payment-btn-area">

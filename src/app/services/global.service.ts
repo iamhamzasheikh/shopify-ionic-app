@@ -173,6 +173,7 @@ updateCardDetails(cardDetails: CardDetails) {
 }
 
 getCardDetails(): CardDetails {
-  return this.cardDetailsSubject.getValue();
+  return this.cardDetailsSubject.getValue() || [];
+  
 }
 }

@@ -62,6 +62,10 @@ const routes: Routes = [
     path: 'atm-card-details',
     loadChildren: () => import('./atm-card-details/atm-card-details.module').then( m => m.AtmCardDetailsPageModule)
   },
+  {
+    path: 'status',
+    loadChildren: () => import('./status/status.module').then( m => m.StatusPageModule)
+  },
 
 
 
