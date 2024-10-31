@@ -16,7 +16,11 @@
       <div class="btn-container">
         <button (click)="goToNextPage()">{{ homePageData?.buttonLabel ? homePageData.buttonLabel : "Default Button Label" }}</button>
         <div class="already-account">
-          <p>{{ homePageData?.alreadyAccountText ? homePageData.alreadyAccountText : "I already have an account" }}</p>
+          <!-- <p>{{ homePageData?.alreadyAccountText ? homePageData.alreadyAccountText : "I already have an account" }}</p> -->
+          <p (click)="goToShop()" style="cursor: pointer;">
+            {{ homePageData?.alreadyAccountText || "I already have an account" }}
+          </p>
+          
           <div> 
             <ion-icon [name]="homePageData?.arrowIcon ? homePageData.arrowIcon : 'arrow-forward-outline'"></ion-icon>
           </div>

@@ -8,20 +8,30 @@ import { GlobalService } from '../services/global.service';
 })
 export class StatusPage implements OnInit {
   selectedSegment: string = 'shipped';
-  cartProducts: any[] = []; // Array to hold all products
-  deliveredProducts: any[] = []; // New array for delivered products
+  cartProducts: any[] = [];
+  deliveredProducts: any[] = [];
 
-  constructor(private globalService: GlobalService) {}
+  constructor(private globalService: GlobalService) {
+    // Subscribe to cart products
+    this.globalService.cartProducts$.subscribe(products => {
+      this.cartProducts = products;
+    });
 
-  ngOnInit() {
-    // Fetch all products from the global service
-    this.cartProducts = this.globalService.getCartProducts();
+    // Subscribe to delivered products
+    this.globalService.deliveredProducts$.subscribe(products => {
+      this.deliveredProducts = products;
+    });
   }
 
-  // Method to handle status change
+  ngOnInit() {
+    // Initial load not needed due to subscriptions
+  }
+
   changeStatus(item: any) {
-    // Remove item from cartProducts and add to deliveredProducts
-    this.cartProducts = this.cartProducts.filter(cartItem => cartItem !== item);
-    this.deliveredProducts.push(item);
+    this.globalService.moveToDelivered(item);
+  }
+
+  removeDeliveredItem(item: any) {
+    this.globalService.removeDeliveredItem(item);
   }
 }

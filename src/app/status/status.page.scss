@@ -94,3 +94,23 @@ ion-segment {
     }
   }
   
+
+  .status-item {
+    .item-content {
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+  
+    .remove-icon {
+      color: red;
+      font-size: 24px;
+      margin-left: 10px;
+      cursor: pointer;
+      transition: color 0.3s ease;
+  
+      &:hover {
+        color: darkred;
+      }
+    }
+  }

@@ -184,4 +184,16 @@ export class CartPage implements OnInit, OnDestroy {
     this.updateGlobalAddressInfo();
     this.router.navigate(['/payment']);
   }
+
+  goToHome() {
+    this.router.navigate(['/home']);
+  }
+
+  goToCart() {
+    this.router.navigate(['/cart'])
+  }
+
+  goToSetting() {
+    this.router.navigate(['/setting']);
+  }
 }

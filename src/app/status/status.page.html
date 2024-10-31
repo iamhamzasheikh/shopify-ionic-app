@@ -26,10 +26,17 @@
   <div *ngIf="selectedSegment === 'delivered'" class="status-container">
     <ion-label class="status-header">DELIVERED</ion-label>
     <div *ngFor="let item of deliveredProducts" class="status-item">
-      <img [src]="item.image" alt="Product Image" class="product-image"/>
-      <div class="item-details">
-        <p>Quantity: {{ item.quantity }}</p>
-        <p>Subtotal: ${{ item.totalPrice }}</p>
+      <div class="item-content">
+        <img [src]="item.image" alt="Product Image" class="product-image"/>
+        <div class="item-details">
+          <p>Quantity: {{ item.quantity }}</p>
+          <p>Subtotal: ${{ item.totalPrice }}</p>
+        </div>
+        <ion-icon 
+          name="close-circle" 
+          class="remove-icon" 
+          (click)="removeDeliveredItem(item)"
+        ></ion-icon>
       </div>
     </div>
   </div>

@@ -3,6 +3,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { GlobalService } from '../services/global.service';
 import { Subscription } from 'rxjs';
+import { AlertController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-payment',
@@ -46,7 +48,8 @@ export class PaymentPage implements OnInit, OnDestroy {
 
   constructor(
     private router: Router,
-    private globalService: GlobalService
+    private globalService: GlobalService,
+    private alertController: AlertController
   ) {
     this.cartSubscription = this.globalService.cartProducts$.subscribe(products => {
       this.cartProducts = products;
@@ -100,21 +103,33 @@ export class PaymentPage implements OnInit, OnDestroy {
     return selectedOption ? (selectedOption.price === 'Free' ? 0 : parseFloat(selectedOption.price.replace('$', ''))) : 0;
   }
 
-  goToNextPage() {
+  async goToNextPage() {
     if (!this.cartProducts.length) {
-      alert("Your cart is empty. Please add products.");
+      await this.presentAlert(
+        'Empty Cart', 
+        'Your cart is empty. Please add products.'
+      );
       return;
     }
     if (!this.contactInfo.phone || !this.contactInfo.email) {
-      alert("Contact information is missing. Please add your contact details.");
+      await this.presentAlert(
+        'Missing Information', 
+        'Contact information is missing. Please add your contact details.'
+      );
       return;
     }
     if (!this.shippingAddress) {
-      alert("Shipping address is missing. Please add your address.");
+      await this.presentAlert(
+        'Missing Address', 
+        'Shipping address is missing. Please add your address.'
+      );
       return;
     }
     if (!this.selectedShipping) {
-      alert("Shipping method is not selected. Please choose a shipping option.");
+      await this.presentAlert(
+        'Missing Shipping Method', 
+        'Shipping method is not selected. Please choose a shipping option.'
+      );
       return;
     }
 
@@ -125,6 +140,17 @@ export class PaymentPage implements OnInit, OnDestroy {
       shippingCost: this.getShippingCost()
     });
     this.router.navigate(['/status']);
+  }
+
+  
+  async presentAlert(header: string, message: string) {
+    const alert = await this.alertController.create({
+      header: header,
+      message: message,
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
 
   onShippingOptionChange(option: string) {
@@ -238,5 +264,17 @@ export class PaymentPage implements OnInit, OnDestroy {
   }
     goToPaymentMethod() {
     this.router.navigate(['/payment-method']);
+  }
+
+  goToHome() {
+    this.router.navigate(['/home']);
+  }
+
+  goToCart() {
+    this.router.navigate(['/cart'])
+  }
+
+  goToSetting() {
+    this.router.navigate(['/setting']);
   }
 }

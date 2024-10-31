@@ -72,4 +72,17 @@ export class FlashSalePage implements OnInit, OnDestroy {
       } 
     });
   }
+
+  
+  goToHome() {
+    this.router.navigate(['/home']);
+  }
+
+  goToCart() {
+    this.router.navigate(['/cart'])
+  }
+
+  goToSetting() {
+    this.router.navigate(['/setting']);
+  }
 }

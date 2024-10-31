@@ -25,4 +25,7 @@ export class HomePage implements OnInit {
     // Navigate to the 'create-account' page
     this.router.navigate(['/create-account']);
   }
+  goToShop() {
+    this.router.navigate(['/shop']);
+  }
 }

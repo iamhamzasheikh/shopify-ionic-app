@@ -70,15 +70,17 @@
   </section>
 </ion-content>
 
-<!-- footer -->
+<!-- footer-section -->
+
 <ion-footer class="ion-no-border">
   <ion-toolbar>
     <ion-tabs>
       <ion-tab-bar slot="bottom">
-        <ion-tab-button tab="home">
-          <ion-icon name="home-outline"></ion-icon>
+        <ion-tab-button >
+          <ion-icon name="home-outline" (click)="goToHome()"></ion-icon>
           <ion-label>Home</ion-label>
         </ion-tab-button>
+        
 
         <ion-tab-button tab="favorites">
           <ion-icon name="heart-outline"></ion-icon>
@@ -90,16 +92,17 @@
           <ion-label>Orders</ion-label>
         </ion-tab-button>
 
-        <ion-tab-button tab="cart">
+        <ion-tab-button tab="cart" (click)="goToCart()">
           <ion-icon name="cart-outline"></ion-icon>
           <ion-label>Cart</ion-label>
         </ion-tab-button>
 
-        <ion-tab-button tab="profile">
+        <ion-tab-button tab="profile" (click)="goToSetting()">
           <ion-icon name="person-outline"></ion-icon>
           <ion-label>Profile</ion-label>
         </ion-tab-button>
       </ion-tab-bar>
     </ion-tabs>
+
   </ion-toolbar>
 </ion-footer>
