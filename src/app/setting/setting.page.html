@@ -7,25 +7,29 @@
 
     <div class="setting-img-container">
       <div class="img-box-round" (click)="presentActionSheet()">
-        <img [src]="profileImage" [attr.data-unique]="uniqueId" class="profile-image">
+        <img [src]="getProfileImageSrc()" [attr.data-unique]="uniqueId" class="profile-image">
       </div>
       <ion-icon class="edit-icon" name="pencil" (click)="presentActionSheet()"></ion-icon>
     </div>
 
     <div class="setting-input-container">
       <div class="inputs-control">
-        <input type="text" placeholder="Enter Name">
-        <input type="email" name="email" placeholder="Enter Email">
+        <input type="text" [(ngModel)]="userName" placeholder="Enter Name">
+        <input type="email" [(ngModel)]="userEmail" name="email" placeholder="Enter Email">
         <input type="password" name="password" placeholder="Enter Password">
       </div>
-
     </div>
 
     <div class="btn-container-setting">
       <div class="btn-control-btn">
         <button (click)="onSaveChanges()">{{ buttonText }}</button>
       </div>
+      <div class="google-login-btn">
+        <button (click)="loginWithGoogle()">
+          <ion-icon name="logo-google" class="google-icon"></ion-icon>
+          Continue with Google
+        </button>
+      </div>
     </div>
-
   </ion-list>
 </ion-content>

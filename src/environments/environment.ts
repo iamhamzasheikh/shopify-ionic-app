@@ -3,7 +3,16 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebaseConfig: {
+    apiKey: "AIzaSyB3SQp5IvSIBujwvbwzAquO-CSqfkLlldA",
+    authDomain: "shopify-login-39776.firebaseapp.com",
+    projectId: "shopify-login-39776",
+    storageBucket: "shopify-login-39776.firebasestorage.app",
+    messagingSenderId: "704517579336",
+    appId: "1:704517579336:web:6d3b2f3d6b8469d36aee7d",
+    measurementId: "G-89Y5QRLKG4"
+  }
 };
 
 /*
