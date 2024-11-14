@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "704517579336",
+    "project_id": "shopify-login-39776",
+    "storage_bucket": "shopify-login-39776.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:704517579336:android:925654236274bad76aee7d",
+        "android_client_info": {
+          "package_name": "com.hamza.shopify"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "704517579336-st206ucel986tb73or6r8g9cavpcvrme.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzPBYV17hDBHR7kQpMYkdR5tN7MMjG8ws"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "704517579336-st206ucel986tb73or6r8g9cavpcvrme.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
